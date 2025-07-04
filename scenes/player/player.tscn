@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckoi2bs7alwus"]
+
+[ext_resource type="Script" uid="uid://cbct8021jfb8r" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://b8qghsdihlx2s" path="res://icon.svg" id="2_dovo2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
+friction = 0.2
+
+[sub_resource type="Animation" id="Animation_75vfm"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_gmlin"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_p47bc"]
+resource_name = "run"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_lvxji"]
+resource_name = "walk"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75vfm"]
+_data = {
+&"fall": SubResource("Animation_75vfm"),
+&"idle": SubResource("Animation_gmlin"),
+&"jump": SubResource("Animation_dovo2"),
+&"run": SubResource("Animation_p47bc"),
+&"walk": SubResource("Animation_lvxji")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
+size = Vector2(40, 40)
+
+[node name="Player" type="RigidBody2D"]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_dovo2")
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_8afob")
+walk_speed = 133.3
+run_speed = 400.0
+jump_speed = 500.0
+
+[node name="Body" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dovo2")
+
+[node name="FloorRayCast" type="RayCast2D" parent="Body"]
+unique_name_in_owner = true
+position = Vector2(58, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_75vfm")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8afob")
+debug_color = Color(0.94472, 0.114976, 0.515016, 0.42)

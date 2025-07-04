@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://g7rufqr6nph4"]
+
+[ext_resource type="Script" uid="uid://8k8gmi4twr86" path="res://scenes/game/screens/main_menu.gd" id="1_e4g4o"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_e4g4o")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

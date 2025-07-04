@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnghny5qx4jo3"]
+
+[ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bieffb2su8cdn" path="res://scenes/game/screens/world_screen.gd" id="1_noejq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
+size = Vector2(889, 20)
+
+[node name="WorldScreen" type="Node"]
+script = ExtResource("1_noejq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(1069, -75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(817, 179)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(1768, 99)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(2688, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(2687, 189)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(434.5, 1080)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(16, 1045)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
