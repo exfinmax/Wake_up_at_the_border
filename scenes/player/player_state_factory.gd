@@ -4,7 +4,7 @@ var states :Dictionary= {}
 
 func _init() -> void:
 	states = {
-		Player.State.IDLE : PlayerStateIdle,
+		Player.State.ATTACK : PlayerStateAttack,
 		Player.State.MOVE : PlayerStateMove,
 		Player.State.AIR : PlayerStateAir,
 		

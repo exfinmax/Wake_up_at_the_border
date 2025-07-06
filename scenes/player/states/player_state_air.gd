@@ -4,7 +4,6 @@ extends PlayerState
 var is_fall:bool = false
 
 func _enter_tree() -> void:
-	player.linear_velocity.y = -player.jump_speed
 	animation.play("jump")
 
 func _physics_process(delta: float) -> void:

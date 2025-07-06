@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnghny5qx4jo3"]
+[gd_scene load_steps=5 format=3 uid="uid://bnghny5qx4jo3"]
 
 [ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bieffb2su8cdn" path="res://scenes/game/screens/world_screen.gd" id="1_noejq"]
+[ext_resource type="Script" uid="uid://brscnjh47t1fh" path="res://scenes/game/screens/stage_manager.gd" id="2_3iult"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
 size = Vector2(889, 20)
 
 [node name="WorldScreen" type="Node"]
 script = ExtResource("1_noejq")
+
+[node name="StageManager" type="Node2D" parent="."]
+script = ExtResource("2_3iult")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -51,6 +55,7 @@ position = Vector2(434.5, 1080)
 shape = SubResource("RectangleShape2D_80nbo")
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(16, 1045)
+position = Vector2(16, 1068)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
