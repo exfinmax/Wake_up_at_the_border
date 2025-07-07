@@ -2,8 +2,10 @@ class_name PlayerStateMove
 extends PlayerState
 
 
+var is_npc = false
 
 func _enter_tree() -> void:
+	detect_area.body_entered.connect(on_attack_area.bind())
 	animation.play("idle")
 
 func _physics_process(delta: float) -> void:
@@ -20,9 +22,16 @@ func unhand_input(delta:float) -> void:
 		player.linear_velocity.y = -player.jump_speed
 		transfrom_state(Player.State.AIR)
 	elif Input.is_action_just_pressed("interact"):
+		if is_npc:
+			transfrom_state(Player.State.INTERACT)
 		transfrom_state(Player.State.ATTACK)
+	elif Input.is_action_just_pressed("ui_down"):
+		transfrom_state(Player.State.DEFEND)
 	elif Input.is_action_pressed("ui_left"):
 		player.linear_velocity.x = clampf(player.linear_velocity.x + -player.walk_speed * delta * 10, -player.run_speed, 0)
 	elif Input.is_action_pressed("ui_right"):
 		player.linear_velocity.x = clampf(player.linear_velocity.x + player.walk_speed * delta * 10, 0, player.run_speed)
 	
+func on_attack_area(body: Node2D) -> void:
+	if body.is_in_group("npc"):
+		is_npc = true

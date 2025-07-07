@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7alqo0bumt7"]
+
+[ext_resource type="Script" uid="uid://dnrfdnr3jag0v" path="res://components/attack.gd" id="1_umjfi"]
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_umjfi")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
