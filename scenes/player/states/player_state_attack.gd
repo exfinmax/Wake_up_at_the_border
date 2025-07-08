@@ -34,7 +34,7 @@ func change_animation_finished() -> void:
 
 func on_detect_area(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		body.get_hurt(player.atk)
+		body.get_hurt(-player.atk)
 
 func _exit_tree() -> void:
 	detect_area.monitoring = false

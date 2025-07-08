@@ -1,13 +1,12 @@
 class_name Attack
 extends Node2D
 
-@export var atk: int
+@export var atk: float
 @export var crit: float
 
 @onready var attack_area: Area2D = $AttackArea
 
 var can_useful_attack:bool = false
-
 
 
 func change_atk(number: int) -> void:

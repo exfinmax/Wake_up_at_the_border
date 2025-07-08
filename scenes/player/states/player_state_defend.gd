@@ -4,7 +4,6 @@ extends PlayerState
 func _enter_tree() -> void:
 	player.can_recover_energy = false
 	animation.play("defend")
-	defend_area.monitoring = true
 	defend_area.area_entered.connect(on_defend_area.bind())
 
 func _physics_process(delta: float) -> void:

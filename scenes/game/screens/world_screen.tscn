@@ -56,6 +56,7 @@ shape = SubResource("RectangleShape2D_80nbo")
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(16, 1068)
+atk = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)

@@ -10,8 +10,7 @@ enum State {
 	INTERACT,
 }
 @export_category("Attribute")
-@export var atk: int
-@export var max_hp: int
+@export var atk: float
 @export var crit: float
 @export var max_energy: float
 @export var energy_recover_speed: float
@@ -35,6 +34,8 @@ var is_defend:bool = false
 @onready var body: Node2D = %Body
 @onready var detect_area: Area2D = %AttackArea
 @onready var defend_area: Area2D = %DefendArea
+@onready var health: Health = %Health
+
 
 
 func _ready() -> void:
@@ -55,8 +56,10 @@ func switch_state(state:State) -> void:
 	current_state.name = "PlayerState" + str(state)
 	call_deferred("add_child", current_state)
 	
-func get_hurt(current_atk:int) -> void:
-	current_hp = clampi(current_hp - current_atk, 0, max_hp)
+func get_hurt(current_atk:float) -> void:
+	if !is_defend:
+		health.show()
+		health.change_hp(current_atk)
 	switch_state(State.HURT)
 
 func set_heading() -> void:
