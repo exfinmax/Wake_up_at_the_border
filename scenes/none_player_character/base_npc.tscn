@@ -1,36 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://blq5m6ptshit8"]
+[gd_scene load_steps=4 format=3 uid="uid://blq5m6ptshit8"]
 
 [ext_resource type="Script" uid="uid://3sewjevushw8" path="res://scenes/none_player_character/base_npc.gd" id="1_uubn6"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="2_4ew4y"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="3_x6jyf"]
-
-[sub_resource type="Animation" id="Animation_uubn6"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_4ew4y"]
-resource_name = "move"
-
-[sub_resource type="Animation" id="Animation_x6jyf"]
-resource_name = "jump"
-
-[sub_resource type="Animation" id="Animation_ncfpq"]
-resource_name = "hurt"
-
-[sub_resource type="Animation" id="Animation_55k7i"]
-resource_name = "death"
-
-[sub_resource type="Animation" id="Animation_adg4m"]
-resource_name = "fall"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncfpq"]
-_data = {
-&"death": SubResource("Animation_55k7i"),
-&"fall": SubResource("Animation_adg4m"),
-&"hurt": SubResource("Animation_ncfpq"),
-&"idle": SubResource("Animation_uubn6"),
-&"jump": SubResource("Animation_x6jyf"),
-&"move": SubResource("Animation_4ew4y")
-}
 
 [node name="BaseNpc" type="CharacterBody2D"]
 collision_layer = 4
@@ -45,6 +17,9 @@ unique_name_in_owner = true
 
 [node name="Attack" parent="Body" instance=ExtResource("2_4ew4y")]
 unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
+debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
 
 [node name="FindPlayerarea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
@@ -61,12 +36,6 @@ unique_name_in_owner = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_ncfpq")
-}
 
 [editable path="Body/Attack"]
 [editable path="Health"]

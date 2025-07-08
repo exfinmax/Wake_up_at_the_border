@@ -1,7 +1,7 @@
 class_name NpcStateHurt
 extends NpcState
 
-const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT
+const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT * 30
 
 func _enter_tree() -> void:
 	npc.velocity = KNOCKBACK_VELOCITY * npc.heading

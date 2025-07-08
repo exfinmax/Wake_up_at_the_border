@@ -2,13 +2,16 @@ class_name NpcStateAttack
 extends NpcState
 
 var target : Node2D
+var index : int = 1
 
 func _enter_tree() -> void:
-	target = npc_data.player
+	target = npc_data.target
 	
 
 func _physics_process(delta: float) -> void:
-	froce_target(delta)
+	if !npc.attack.can_useful_attack:
+		froce_target(delta)
+	attack_target()
 
 func froce_target(delta: float) -> void:
 	var direction = npc.position.direction_to(target.position)
@@ -19,4 +22,8 @@ func froce_target(delta: float) -> void:
 		
 func attack_target() -> void:
 	if npc.attack.can_useful_attack:
-		npc.attack.attack()
+		animation.play("attack_%s" % [str(index)])
+		target.get_hurt(npc.attack.get_attack_number())
+			
+		await animation.animation_finished
+		

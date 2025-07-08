@@ -1,6 +1,8 @@
 class_name Player
 extends RigidBody2D
 
+const DURATION_BETWEEN_HURT := 1200
+
 enum State {
 	ATTACK,
 	MOVE,
@@ -25,10 +27,12 @@ var heading : int = 1
 var state_factory := PlayerStateFactory.new()
 var current_state : PlayerState
 var current_energy :float
-var current_hp
 
+var can_be_hurt : bool = true
 var can_recover_energy:bool = true
 var is_defend:bool = false
+
+var time_since_last_hurt:= Time.get_ticks_msec()
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var body: Node2D = %Body
@@ -45,6 +49,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	set_heading()
 	recover_energy(delta)
+	if Time.get_ticks_msec() - time_since_last_hurt > DURATION_BETWEEN_HURT:
+		can_be_hurt = true
 
 
 func switch_state(state:State) -> void:
@@ -57,9 +63,11 @@ func switch_state(state:State) -> void:
 	call_deferred("add_child", current_state)
 	
 func get_hurt(current_atk:float) -> void:
-	if !is_defend:
+	if !is_defend && can_be_hurt:
+		can_be_hurt = false
 		health.show()
-		health.change_hp(current_atk)
+		health.change_hp(-current_atk)
+		time_since_last_hurt = Time.get_ticks_msec()
 	switch_state(State.HURT)
 
 func set_heading() -> void:

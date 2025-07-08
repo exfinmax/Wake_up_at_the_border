@@ -12,7 +12,7 @@ var can_useful_attack:bool = false
 func change_atk(number: int) -> void:
 	atk = atk + number
 
-func attack() -> int:
+func get_attack_number() -> int:
 	if can_useful_attack:
 		if randf_range(0,1) > crit:
 			return atk * 2

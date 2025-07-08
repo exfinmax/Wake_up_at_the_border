@@ -19,7 +19,8 @@ func is_hp_zero() -> bool:
 	if current_hp == 0:
 		return true
 	return false
-func change_hp(number: int) -> void:
+
+func change_hp(number: float) -> void:
 	current_hp = clampf(current_hp + number, 0, max_hp)
 	texture_progress_bar.value = current_hp
 

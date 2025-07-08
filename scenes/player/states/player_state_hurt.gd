@@ -1,7 +1,7 @@
 class_name PlayerStateHurt
 extends PlayerState
 
-const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT
+const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT * 300
 
 func _enter_tree() -> void:
 	player.linear_velocity = KNOCKBACK_VELOCITY * player.heading
@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	player.health.hide()
 	if player.health.is_hp_zero():
 		GameEvents.player_death.emit()
+		player.collision_layer = 0
 	elif player.is_defend:
 		player.is_defend = false
 		transfrom_state(Player.State.DEFEND)
