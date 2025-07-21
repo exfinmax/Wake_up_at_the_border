@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://blq5m6ptshit8"]
+[gd_scene load_steps=3 format=3 uid="uid://blq5m6ptshit8"]
 
 [ext_resource type="Script" uid="uid://3sewjevushw8" path="res://scenes/none_player_character/base_npc.gd" id="1_uubn6"]
-[ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="2_4ew4y"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="3_x6jyf"]
 
 [node name="BaseNpc" type="CharacterBody2D"]
@@ -15,27 +14,10 @@ unique_name_in_owner = true
 
 [node name="NpcSprite" type="Sprite2D" parent="Body"]
 
-[node name="Attack" parent="Body" instance=ExtResource("2_4ew4y")]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
-debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
-
-[node name="FindPlayerarea" type="Area2D" parent="Body"]
-unique_name_in_owner = true
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FindPlayerarea"]
-
-[node name="FloorRayCast" type="RayCast2D" parent="Body"]
-unique_name_in_owner = true
-target_position = Vector2(0, 0)
-
 [node name="Health" parent="." instance=ExtResource("3_x6jyf")]
 unique_name_in_owner = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[editable path="Body/Attack"]
 [editable path="Health"]

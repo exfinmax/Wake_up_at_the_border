@@ -6,11 +6,11 @@ func _enter_tree() -> void:
 	animation.play("defend")
 	defend_area.area_entered.connect(on_defend_area.bind())
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released("ui_down"):
 		player.can_recover_energy = true
 		transfrom_state(Player.State.MOVE)
 
-func on_defend_area(area: Area2D) -> void:
+func on_defend_area(_area: Area2D) -> void:
 	if player.current_energy > 2:
 		player.is_defend = true

@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8dj0klo2odvc"]
+
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_45x13"]
+[ext_resource type="Script" uid="uid://bnsn4bd3anjfm" path="res://scenes/none_player_character/npc/npc.gd" id="2_y35i5"]
+[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="3_1i2mj"]
+[ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://assets/person.png" id="3_bqx6u"]
+[ext_resource type="Script" uid="uid://dffd7m2xd1v38" path="res://Resource/dialogue/dialog.gd" id="3_y35i5"]
+[ext_resource type="PackedScene" uid="uid://ca4fk36afmpiv" path="res://scenes/dialogue/dialog_manager.tscn" id="4_bqx6u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i2mj"]
+atlas = ExtResource("3_bqx6u")
+region = Rect2(25, 15, 14, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqx6u"]
+atlas = ExtResource("3_bqx6u")
+region = Rect2(21, 14, 21, 14)
+
+[sub_resource type="Resource" id="Resource_1i2mj"]
+script = ExtResource("3_y35i5")
+dialogs = {}
+metadata/_custom_type_script = "uid://dffd7m2xd1v38"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehbti"]
+atlas = ExtResource("3_bqx6u")
+region = Rect2(25, 15, 14, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i2mj"]
+size = Vector2(20, 48)
+
+[node name="Npc" groups=["NPC"] instance=ExtResource("1_45x13")]
+script = ExtResource("2_y35i5")
+npc_id = "npc_1"
+npc_name = "Origin"
+current_dia_state = "start"
+sprite = SubResource("AtlasTexture_1i2mj")
+custom_scale = Vector2(0, 0)
+dia_texture = SubResource("AtlasTexture_bqx6u")
+dialog_resource = SubResource("Resource_1i2mj")
+quests = Array[ExtResource("3_1i2mj")]([])
+walk_speed = 0.0
+run_speed = 0.0
+type = 1
+
+[node name="Body" parent="." index="0"]
+scale = Vector2(2, 2)
+
+[node name="NpcSprite" parent="Body" index="0"]
+texture = SubResource("AtlasTexture_ehbti")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_1i2mj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+[node name="DialogManager" parent="." index="4" instance=ExtResource("4_bqx6u")]
+
+[editable path="Health"]

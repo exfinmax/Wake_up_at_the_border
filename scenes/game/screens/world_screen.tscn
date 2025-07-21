@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnghny5qx4jo3"]
+[gd_scene load_steps=7 format=3 uid="uid://bnghny5qx4jo3"]
 
 [ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bieffb2su8cdn" path="res://scenes/game/screens/world_screen.gd" id="1_noejq"]
 [ext_resource type="Script" uid="uid://brscnjh47t1fh" path="res://scenes/game/screens/stage_manager.gd" id="2_3iult"]
-[ext_resource type="PackedScene" uid="uid://dat7kkan4quhg" path="res://scenes/none_player_character/enemy/enemy_golem.tscn" id="4_u0hug"]
+[ext_resource type="PackedScene" uid="uid://dat7kkan4quhg" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.tscn" id="4_u0hug"]
+[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="5_nll8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
 size = Vector2(889, 20)
@@ -57,10 +58,13 @@ shape = SubResource("RectangleShape2D_80nbo")
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(16, 1068)
-atk = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
 
 [node name="EnemyGolem" parent="." instance=ExtResource("4_u0hug")]
 position = Vector2(1117, 1227)
+
+[node name="Npc" parent="." instance=ExtResource("5_nll8i")]
+position = Vector2(359, 1037)
+custom_scale = Vector2(2, 2)

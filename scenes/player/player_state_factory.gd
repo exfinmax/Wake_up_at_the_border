@@ -9,7 +9,6 @@ func _init() -> void:
 		Player.State.AIR : PlayerStateAir,
 		Player.State.DEFEND : PlayerStateDefend,
 		Player.State.HURT : PlayerStateHurt,
-		Player.State.INTERACT : PlayerStateInteract,
 	}
 
 func change_state(state:Player.State ) -> PlayerState:

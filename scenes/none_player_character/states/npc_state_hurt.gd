@@ -1,17 +1,21 @@
 class_name NpcStateHurt
 extends NpcState
 
-const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT * 30
+const KNOCKBACK_VELOCITY :Vector2 = Vector2.LEFT 
 
 func _enter_tree() -> void:
-	npc.velocity = KNOCKBACK_VELOCITY * npc.heading
+	npc.health.show()
+	npc.velocity = KNOCKBACK_VELOCITY * -npc.velocity.x 
 	if npc.health.is_hp_zero():
 		animation.play("death")
 	else:
 		animation.play("hurt")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	await animation.animation_finished
+	npc.velocity = Vector2.ZERO
+	npc.heading = -npc.heading
+	npc.health.hide()
 	if npc.health.is_hp_zero():
 		npc.queue_free()
 	else:

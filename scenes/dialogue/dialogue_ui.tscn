@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://do5neb8tjv0g2"]
+
+[ext_resource type="Script" uid="uid://qra3my536wc2" path="res://scenes/dialogue/dialogue_ui.gd" id="1_jdtl4"]
+[ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://assets/Fonts/Schrödinger.ttf" id="1_olrts"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdtl4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 10
+border_width_right = 8
+border_width_bottom = 10
+expand_margin_left = 8.0
+expand_margin_top = 10.0
+expand_margin_right = 8.0
+expand_margin_bottom = 10.0
+
+[node name="DialogueUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdtl4")
+text_show_time = 0.05
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -283.0
+offset_right = -10.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jdtl4")
+
+[node name="DialogBox" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Speaker" type="Label" parent="CanvasLayer/Panel/DialogBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_olrts")
+theme_override_font_sizes/font_size = 20
+text = "NPC Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/DialogBox"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SpeakerIcon" type="TextureRect" parent="CanvasLayer/Panel/DialogBox/HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/DialogBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text" type="Label" parent="CanvasLayer/Panel/DialogBox/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(893, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="CanvasLayer/Panel/DialogBox/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(1, 0.321569, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "X"
+
+[connection signal="pressed" from="CanvasLayer/Panel/CloseButton" to="." method="_on_close_button_pressed"]

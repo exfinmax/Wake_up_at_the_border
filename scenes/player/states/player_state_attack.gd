@@ -13,10 +13,10 @@ func _enter_tree() -> void:
 	animation.play("attack_1")
 	time_start_attack = Time.get_ticks_msec()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	change_animation_finished()
 	if is_animation_finished:
-		if Input.is_action_just_pressed("interact"):
+		if Input.is_action_pressed("interact"):
 			index += 1
 			if index > 3:
 				transfrom_state(Player.State.MOVE)
@@ -34,7 +34,7 @@ func change_animation_finished() -> void:
 
 func on_detect_area(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		body.get_hurt(-player.atk)
+		body.get_hurt(player.atk)
 
 func _exit_tree() -> void:
 	detect_area.monitoring = false

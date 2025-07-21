@@ -10,7 +10,7 @@ var player_detect_area : Area2D
 var floor_ray_cast : RayCast2D
 
 
-func setup(context_npc: BaseNpc, context_animation: AnimationPlayer, context_player_detect_area: Area2D, context_floor_ray_cast: RayCast2D, context_data: NpcData) -> void:
+func setup(context_npc: BaseNpc, context_animation: AnimationPlayer, context_player_detect_area: Area2D = null, context_floor_ray_cast: RayCast2D = null, context_data: NpcData = null) -> void:
 	npc = context_npc
 	animation = context_animation
 	player_detect_area = context_player_detect_area
