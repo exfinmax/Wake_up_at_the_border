@@ -59,6 +59,10 @@ func show_dialog(speaker, text: String, options: Dictionary):
 	if not options.is_empty():
 		for option in options.keys():
 			var button = Button.new()
+			button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+			button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
+			button.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
+			button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 			button.text = option
 			button.add_theme_color_override("font_size", 20)
 			button.pressed.connect(_on_option_selected.bind(button))

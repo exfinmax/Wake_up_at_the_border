@@ -37,8 +37,7 @@ custom_scale = Vector2(0, 0)
 dia_texture = SubResource("AtlasTexture_bqx6u")
 dialog_resource = SubResource("Resource_1i2mj")
 quests = Array[ExtResource("3_1i2mj")]([])
-walk_speed = 0.0
-run_speed = 0.0
+run_speed = 200.0
 type = 1
 
 [node name="Body" parent="." index="0"]

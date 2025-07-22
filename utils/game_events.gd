@@ -5,3 +5,4 @@
 extends Node
 
 signal player_death
+signal dialog_end

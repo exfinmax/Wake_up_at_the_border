@@ -7,7 +7,8 @@ var is_fall:bool = false
 func _enter_tree() -> void:
 	animation.play("jump")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
 	# 下落时切换动画
 	if player.velocity.y > 0 && !is_fall:
 		animation.play("fall")

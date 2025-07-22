@@ -32,8 +32,8 @@ func change_animation_finished() -> void:
 
 # 攻击判定
 func _on_detect_area(body: Node2D) -> void:
-	if body.is_in_group("enemy") and attack_component:
-		attack_component.check_attack()
+	if body && body.is_in_group("Enemy"):
+		attack_component.check_attack(body)
 
 
 

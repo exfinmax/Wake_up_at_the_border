@@ -337,13 +337,13 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_6cv16")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_j4nxn")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_28m0y")
 }, {
 "duration": 1.0,
@@ -351,7 +351,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"defend",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -513,6 +513,20 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_cnsyf"]
 resource_name = "attack_2"
@@ -532,6 +546,20 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_007i1"]
 resource_name = "attack_3"
@@ -549,6 +577,20 @@ tracks/0/keys = {
 "values": [{
 "args": [&"attack_3", 1.0, false],
 "method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
 }]
 }
 
@@ -761,10 +803,8 @@ scale = Vector2(2.3, 2.3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_hir57")
-animation = &"jump"
+animation = &"attack_3"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="InteractArea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
@@ -788,9 +828,13 @@ shape = SubResource("CircleShape2D_fm80t")
 [node name="Attack" parent="Body" instance=ExtResource("4_qek5x")]
 unique_name_in_owner = true
 
+[node name="AttackArea" parent="Body/Attack" index="0"]
+collision_mask = 4
+
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
 position = Vector2(21.7391, -14.3478)
 shape = SubResource("RectangleShape2D_5gtgg")
+debug_color = Color(0.922121, 0.137598, 0.598647, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

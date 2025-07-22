@@ -80,13 +80,13 @@ func switch_state(state:State, data:PlayerData = PlayerData.new()) -> void:
 	call_deferred("add_child", current_state)
 	
 # 受伤处理，减少血量，记录时间，触发闪烁
-func get_hurt(current_atk:float) -> void:
+func get_hurt(current_atk:float, sourcer: Node2D) -> void:
 	if !is_defend && can_be_hurt:
 		can_be_hurt = false
 		health_component.change_hp(-current_atk)
 		time_since_last_hurt = Time.get_ticks_msec()
 		start_blink() # 新增：受伤闪烁
-	switch_state(State.HURT)
+	switch_state(State.HURT, PlayerData.build().add_target(sourcer))
 
 # 受伤闪烁效果
 func start_blink():
@@ -107,12 +107,36 @@ func _on_blink_timeout():
 		$Body.modulate = Color(1,1,1,1)
 		current_timer.queue_free()
 
-# 设置朝向，根据速度自动翻转
+# 直接设置朝向值（1为右，-1为左）
+func set_heading_value(new_heading: int) -> void:
+	if new_heading != 0 and new_heading != heading:
+		heading = new_heading
+		_update_visual_direction()
+
+# 根据移动设置朝向
 func set_heading() -> void:
-	if velocity.x > 0:
-		body.scale.x = abs(body.scale.x)
-	elif velocity.x < 0:
-		body.scale.x = -abs(body.scale.x)
+	if velocity.x != 0:
+		set_heading_value(sign(velocity.x))
+
+# 根据方向向量设置朝向
+func set_heading_from_direction(direction: Vector2) -> void:
+	if direction.x != 0:
+		set_heading_value(sign(direction.x))
+
+# 获取到目标的方向向量
+func get_direction_to(target_pos: Vector2) -> Vector2:
+	return (target_pos - global_position).normalized()
+
+# 面向目标（可以选择是否立即转向）
+func face_target(target_pos: Vector2, immediate: bool = true) -> void:
+	var dir := get_direction_to(target_pos)
+	if immediate or sign(dir.x) == heading:
+		set_heading_from_direction(dir)
+
+# 更新视觉方向
+func _update_visual_direction() -> void:
+	if body:
+		body.scale.x = abs(body.scale.x) * heading
 
 # 能量恢复逻辑
 func recover_energy(delta: float) -> void:

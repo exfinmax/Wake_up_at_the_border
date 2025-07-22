@@ -8,13 +8,14 @@ class_name Attack
 @export var max_atk_index: int = 3
 
 # 攻击判定区域（需在场景中绑定Area2D）
-@onready var area: Area2D = $Area2D if has_node("Area2D") else null
+@onready var attack_area: Area2D = $AttackArea
 
 # 攻击检测信号
 signal attack_hit(target)
 
 # 是否可以进行有效攻击（如动画帧判定）
 var can_useful_attack: bool = true
+var current_target: Node2D = null
 
 # 获取当前攻击力
 func get_attack_number() -> float:
@@ -22,12 +23,19 @@ func get_attack_number() -> float:
 
 # 触发攻击检测（如在攻击动画关键帧调用）
 func check_attack():
-	if area:
-		for body in area.get_overlapping_bodies():
-			if body.has_method("get_hurt"):
-				body.get_hurt(get_attack_number())
-				emit_signal("attack_hit", body)
+	if current_target != null && current_target.has_method("get_hurt"):
+		current_target.get_hurt(get_attack_number(), current_target)
+		emit_signal("attack_hit", current_target)
+		can_useful_attack = false
 
 # 可选：重置攻击状态
 func reset_attack():
 	can_useful_attack = true
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	current_target = body
+
+
+func _on_attack_area_body_exited(body: Node2D) -> void:
+	current_target = null

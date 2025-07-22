@@ -6,53 +6,102 @@
 class_name NpcStateAttack
 extends NpcState
 
-# 攻击目标节点
-var target : Node2D
-# 攻击动画索引
-var index : int = 1
 
-# 进入树形结构时调用
+
+
+
+
+# 状态变量
+var target: Node2D = null  # 攻击目标节点
+var attack_timer: float = 0.0  # 攻击计时器
+var can_attack: bool = true  # 是否可以攻击
+var attack_combo: int = 1  # 连击计数
+var is_attack:bool = false
+
+# 进入状态时的初始化
 func _enter_tree() -> void:
-	# 获取攻击目标
+	# 获取攻击目标并初始化状态
 	target = npc_data.target
+	if target == null:
+		_switch_to_move()
+		return
+		
+
 	
-	
+	# 确保攻击组件就绪
+	if npc.attack_component:
+		npc.attack_component.reset_attack()
 
 # 物理过程更新
 func _physics_process(delta: float) -> void:
-	# 如果无法进行有效攻击，则强制移动到目标位置
-	if !npc.attack.can_useful_attack:
-		froce_target(delta)
+	if not target:
+		_switch_to_move()
 		return
-	attack_target()
-	await animation.animation_finished
-
-# 强制移动到目标位置
-func froce_target(delta: float) -> void:
-	# 计算移动方向
-	var direction = npc.position.direction_to(target.position)
-	# 如果与目标距离大于5，则加速移动
-	if npc.position.distance_to(target.position) > 5:
-		# 如果目标在右侧，则向右加速
-		if direction.x > 0:
-			npc.velocity.x = clampf(npc.velocity.x + npc.run_speed * delta, 0, npc.run_speed)
-		# 如果目标在左侧，则向左加速
-		elif direction.x < 0:
-			npc.velocity.x = clampf(npc.velocity.x + -npc.run_speed * delta, -npc.run_speed, 0)
-	# 如果与目标距离小于等于5，则减速
+		
+	attack_timer -= delta
+	
+	var distance = npc.global_position.distance_to(target.global_position)
+	
+	if distance > npc.attack_range && !is_attack:
+		_chase_target(delta)
 	else:
-		npc.velocity.x = move_toward(npc.velocity.x, 0, delta)
+		_perform_attack()
 
-# 攻击目标
-func attack_target() -> void:
-	# 如果可以进行有效攻击
-	if npc.attack.can_useful_attack:
-		# 随机选择一个攻击动画索引
-		index = randi_range(1, npc.attack.max_atk_index)
-		# 播放攻击动画
-		animation.play("attack_%s" % [str(index)])
-		# 目标受到攻击
-		target.get_hurt(npc.attack.get_attack_number())
+# 追逐目标
+func _chase_target(delta: float) -> void:
+	var direction = (target.global_position - npc.global_position).normalized()
+	npc.velocity.x = direction.x * npc.run_speed
+	
+	if abs(npc.velocity.x) > 0:
+		animation.play("move")
+	
+	# 如果距离过远，切换到移动状态
+	if npc.global_position.distance_to(target.global_position) > npc.chase_range:
+		_switch_to_move()
+
+# 执行攻击
+func _perform_attack() -> void:
+	npc.velocity.x = 0
+	
+	if attack_timer <= 0 and can_attack:
+		# 开始攻击动画
+		is_attack = true
+		animation.play("attack_" + str(attack_combo))
+		attack_timer = npc.attack_cooldown
+		can_attack = false
+		
+		
+		# 等待动画完成
+		await animation.animation_finished
+		
+		# 处理连击
+		attack_combo = (attack_combo % 3) + 1
+		is_attack = false
+		can_attack = true
+		
+		# 随机决定是否后退拉开距离
+		if randf() < 0.3:
+			_perform_backstep()
+
+# 后退动作
+func _perform_backstep() -> void:
+	var direction = (npc.global_position - target.global_position).normalized()
+	npc.velocity = direction * npc.run_speed * 1.5
+	animation.play("jump")
+	await animation.animation_finished
+	npc.velocity.x = 0
+
+# 切换到移动状态
+func _switch_to_move() -> void:
+	transfrom_state(BaseNpc.State.MOVE)
+
+# 状态退出
+func _exit_tree() -> void:
+	if npc.attack_component:
+		npc.attack_component.reset_attack()
+	attack_combo = 1
+	attack_timer = 0.0
+
 		
 		
 

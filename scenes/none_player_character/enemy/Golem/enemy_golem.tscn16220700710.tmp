@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dat7kkan4quhg"]
+[gd_scene load_steps=25 format=3 uid="uid://dat7kkan4quhg"]
 
 [ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_fxvmg"]
 [ext_resource type="Script" uid="uid://cq7810dlxg0le" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.gd" id="2_r71u1"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://dhb4mnaxp1ht7" path="res://assets/Golem/No Armor/Golem_AttackC_FX.png" id="11_js3yf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8ssd"]
-radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8saw"]
 radius = 18.0
@@ -218,20 +217,6 @@ tracks/7/keys = {
 "update": 1,
 "values": [5, 0, 1, 2, 3, 4]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Body/Attack")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"check_attack"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_hgdto"]
 resource_name = "attack_2"
@@ -333,20 +318,6 @@ tracks/7/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Body/Attack")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.25),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"check_attack"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_s160n"]
 resource_name = "attack_3"
@@ -447,20 +418,6 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Body/Attack")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"check_attack"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_wqlru"]
@@ -729,24 +686,6 @@ tracks/3/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_b8ssd"]
-resource_name = "jump"
-length = 0.3
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"move", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_edd01"]
 _data = {
 &"RESET": SubResource("Animation_p8saw"),
@@ -757,16 +696,15 @@ _data = {
 &"fall": SubResource("Animation_vwp7a"),
 &"hurt": SubResource("Animation_3dsho"),
 &"idle": SubResource("Animation_q652i"),
-&"jump": SubResource("Animation_b8ssd"),
 &"move": SubResource("Animation_ukey1")
 }
 
 [node name="EnemyGolem" instance=ExtResource("1_fxvmg")]
 script = ExtResource("2_r71u1")
-acceleration = 20.0
+run_speed = 200.0
 
 [node name="Body" parent="." index="0"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(-1.5, 1.5)
 
 [node name="NpcSprite" parent="Body" index="0"]
 scale = Vector2(1.1, 1.1)
@@ -783,10 +721,10 @@ frame = 5
 unique_name_in_owner = true
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
-position = Vector2(24.6667, 2)
+position = Vector2(22.6667, 2)
 shape = SubResource("CircleShape2D_b8ssd")
 debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
 
@@ -802,6 +740,7 @@ unique_name_in_owner = true
 position = Vector2(26.6667, 0)
 
 [node name="Health" parent="." index="1"]
+visible = true
 position = Vector2(-24, -19)
 max_hp = 30.0
 can_show = true

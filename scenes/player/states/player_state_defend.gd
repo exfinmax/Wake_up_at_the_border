@@ -7,7 +7,8 @@ func _enter_tree() -> void:
 	animation.play("defend")
 	defend_area.area_entered.connect(on_defend_area.bind())
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	player.velocity.x = lerpf(player.velocity.x, 0, player.friction * delta)
 	if Input.is_action_just_released("ui_down"):
 		player.can_recover_energy = true
 		transfrom_state(Player.State.MOVE)

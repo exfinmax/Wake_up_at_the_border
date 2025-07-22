@@ -7,7 +7,7 @@ script = ExtResource("1_umjfi")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 6
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 debug_color = Color(0.922121, 0.137598, 0.598647, 0.42)

@@ -1,25 +1,23 @@
-# NPC状态工厂，负责切换NPC的不同状态
-
-
-
-
+# NPC状态工厂，负责创建和管理NPC的不同状态
 class_name NpcStateFactory
 
 # 存储所有NPC状态的词典
 # 键：BaseNpc.State枚举值
 # 值：对应状态的类
-var states :Dictionary= {}
+var states: Dictionary = {}
 
 # 初始化函数
 # 在NPC状态工厂创建时调用
-# 初始化所有可能的状态，并存储在states字典中
+# 初始化所有基础状态，并存储在states字典中
 func _init() -> void:
 	states = {
-		BaseNpc.State.ATTACK : NpcStateAttack,
-		BaseNpc.State.MOVE : NpcStateMove,
-		BaseNpc.State.AIR : NpcStateAir,
-		BaseNpc.State.HURT : NpcStateHurt,
-		BaseNpc.State.SPECIAL : NpcStateSpecial,
+		BaseNpc.State.MOVE : NpcStateMove,    # 移动状态
+		BaseNpc.State.AIR : NpcStateAir,      # 空中状态
+		BaseNpc.State.ATTACK : NpcStateAttack,# 攻击状态
+		BaseNpc.State.HURT : NpcStateHurt,    # 受伤状态
+		BaseNpc.State.DEFEND : NpcStateDefend,# 防御状态
+		BaseNpc.State.IDLE : NpcStateIdle,    # 待机状态
+		BaseNpc.State.SPECIAL : NpcStateSpecial# 特殊状态（仅用于特定NPC）
 	}
 
 # 切换NPC状态的函数

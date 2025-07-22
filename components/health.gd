@@ -62,7 +62,7 @@ func _setup_health_bar() -> void:
 			texture_progress_bar.texture_progress = texture_progress
 		if texture_under:
 			texture_progress_bar.texture_under = texture_under
-		visible = can_show
+		texture_progress_bar.visible = can_show
 
 func _initialize_health() -> void:
 	if texture_progress_bar:

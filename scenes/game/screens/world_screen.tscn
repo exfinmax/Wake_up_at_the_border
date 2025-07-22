@@ -65,6 +65,9 @@ zoom = Vector2(1.5, 1.5)
 [node name="EnemyGolem" parent="." instance=ExtResource("4_u0hug")]
 position = Vector2(1117, 1227)
 
+[node name="EnemyGolem2" parent="." instance=ExtResource("4_u0hug")]
+position = Vector2(1019, 1225)
+
 [node name="Npc" parent="." instance=ExtResource("5_nll8i")]
 position = Vector2(359, 1037)
 custom_scale = Vector2(2, 2)
