@@ -6,13 +6,14 @@ var index : int = 1
 
 func _enter_tree() -> void:
 	target = npc_data.target
-	attack_target()
+	
 	
 
 func _physics_process(delta: float) -> void:
 	if !npc.attack.can_useful_attack:
 		froce_target(delta)
-	
+		return
+	attack_target()
 
 func froce_target(delta: float) -> void:
 	var direction = npc.position.direction_to(target.position)

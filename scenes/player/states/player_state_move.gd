@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		transfrom_state(Player.State.AIR)
 	
 func unhand_input(delta:float) -> void:
+	set_friction(delta)
 	if Input.is_action_just_pressed("ui_up"):
 		player.velocity.y = -player.jump_speed
 		transfrom_state(Player.State.AIR)
@@ -24,10 +25,7 @@ func unhand_input(delta:float) -> void:
 		transfrom_state(Player.State.ATTACK)
 	elif Input.is_action_just_pressed("ui_down"):
 		transfrom_state(Player.State.DEFEND)
-	elif Input.is_action_pressed("ui_left"):
-		player.velocity.x = clampf(player.velocity.x + -player.walk_speed * delta * 10, -player.run_speed, 0)
-	elif Input.is_action_pressed("ui_right"):
-		player.velocity.x = clampf(player.velocity.x + player.walk_speed * delta * 10, 0, player.run_speed)
+	
 
 func change_ani() -> void:
 	if absf(player.velocity.x) > player.walk_speed:
@@ -62,3 +60,11 @@ func _input(event: InputEvent) -> void:
 			
 	if event.is_action_pressed("quest_menu"):
 		quest_manager.show_hide_log()
+
+func set_friction(delta:float) -> void:
+	var x_input: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var velocity_weight: float = delta * (player.acceleration if x_input else player.friction)
+	player.velocity.x = lerpf(player.velocity.x, x_input * player.walk_speed, velocity_weight)
+	if absf(player.velocity.x) < 2.0:
+		player.velocity.x = 0.0
+	

@@ -13,7 +13,8 @@ func _enter_tree() -> void:
 	animation.play("attack_1")
 	time_start_attack = Time.get_ticks_msec()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	player.velocity.x = lerpf(player.velocity.x, 0, player.friction * delta)
 	change_animation_finished()
 	if is_animation_finished:
 		if Input.is_action_pressed("interact"):

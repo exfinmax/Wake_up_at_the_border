@@ -18,6 +18,8 @@ enum State {
 @export var max_energy: float
 @export var energy_recover_speed: float
 @export_category("Move")
+@export var acceleration: float
+@export var friction: float
 @export var walk_speed:float
 @export var run_speed:float
 @export var jump_speed:float
