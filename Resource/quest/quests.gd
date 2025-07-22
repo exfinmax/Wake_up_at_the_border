@@ -1,3 +1,8 @@
+# 任务管理脚本，负责任务的添加、完成、状态切换等
+
+
+
+
 class_name Quest
 extends Resource
 

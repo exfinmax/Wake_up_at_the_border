@@ -1,3 +1,8 @@
+# NPC脚本，负责NPC的对话、任务、交互等
+
+
+
+
 class_name Npc
 extends BaseNpc
 

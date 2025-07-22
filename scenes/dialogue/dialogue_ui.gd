@@ -1,3 +1,7 @@
+# 对话UI脚本，负责对话界面的显示与交互
+
+
+
 extends Control
 
 signal text_show_off

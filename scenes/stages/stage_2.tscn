@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://clgis77b5672s"]
+
+[node name="Stage_2" type="Node2D"]
+
+[node name="DreamPlatforms" type="Node2D" parent="."]
+
+[node name="DreamPlatform1" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(200, 400)
+
+[node name="DreamPlatform2" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(400, 350)
+
+[node name="Key" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(600, 300)
+
+[node name="RealPlatforms" type="Node2D" parent="."]
+
+[node name="RealPlatform1" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(300, 500)
+
+[node name="RealPlatform2" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(500, 450)
+
+[node name="Door" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(800, 250)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SwitchButton" type="Node2D" parent="."]
+position = Vector2(100, 200)

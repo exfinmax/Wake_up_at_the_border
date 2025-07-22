@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dnc8y5e12t413"]
+
+[node name="Stage_4" type="Node2D"]
+
+[node name="MemoryPieces" type="Node2D" parent="."]
+
+[node name="Piece1" type="Sprite2D" parent="MemoryPieces"]
+position = Vector2(200, 400)
+
+[node name="Piece2" type="Sprite2D" parent="MemoryPieces"]
+position = Vector2(400, 350)
+
+[node name="Piece3" type="Sprite2D" parent="MemoryPieces"]
+position = Vector2(600, 300)
+
+[node name="Piece4" type="Sprite2D" parent="MemoryPieces"]
+position = Vector2(800, 250)
+
+[node name="Piece5" type="Sprite2D" parent="MemoryPieces"]
+position = Vector2(1000, 200)
+
+[node name="PuzzleUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Enemies" type="Node2D" parent="."]

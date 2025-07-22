@@ -1,3 +1,44 @@
-[gd_scene format=3 uid="uid://enxdts355brl"]
+[gd_scene format=3 uid="uid://bjw1pph41n6q4"]
 
 [node name="Stage_1" type="Node2D"]
+
+[node name="Label_Move" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 600.0
+offset_right = 50.0
+offset_bottom = 600.0
+text = "按A/D键左右移动"
+
+[node name="Label_Jump" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 650.0
+offset_right = 50.0
+offset_bottom = 650.0
+text = "按空格跳跃"
+
+[node name="Label_Interact" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 700.0
+offset_right = 50.0
+offset_bottom = 700.0
+text = "靠近NPC按E键对话"
+
+[node name="TorchPieces" type="Node2D" parent="."]
+
+[node name="TorchPiece1" type="Sprite2D" parent="TorchPieces"]
+position = Vector2(300, 500)
+
+[node name="TorchPiece2" type="Sprite2D" parent="TorchPieces"]
+position = Vector2(500, 400)
+
+[node name="TorchPiece3" type="Sprite2D" parent="TorchPieces"]
+position = Vector2(700, 300)
+
+[node name="Fog" type="Sprite2D" parent="."]
+position = Vector2(400, 300)
+
+[node name="NPC" type="Node2D" parent="."]
+position = Vector2(200, 500)
+
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2(900, 200)

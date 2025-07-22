@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bqitpnqnd3gci"]
+
+[node name="Stage_3" type="Node2D"]
+
+[node name="Chaser" type="Node2D" parent="."]
+position = Vector2(100, 100)
+
+[node name="PlayerStart" type="Node2D" parent="."]
+position = Vector2(50, 100)
+
+[node name="Gates" type="Node2D" parent="."]
+
+[node name="Gate1" type="Sprite2D" parent="Gates"]
+position = Vector2(900, 200)
+
+[node name="Switches" type="Node2D" parent="."]
+
+[node name="Switch1" type="Sprite2D" parent="Switches"]
+position = Vector2(300, 400)
+
+[node name="Switch2" type="Sprite2D" parent="Switches"]
+position = Vector2(500, 350)
+
+[node name="Switch3" type="Sprite2D" parent="Switches"]
+position = Vector2(700, 300)

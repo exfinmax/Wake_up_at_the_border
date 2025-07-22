@@ -10,6 +10,7 @@ extends BaseNpc
 
 
 func _ready() -> void:
+	self.add_to_group("Enemy")
 	animation_player = animation
 	super._ready()
 

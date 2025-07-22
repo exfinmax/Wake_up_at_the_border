@@ -1,3 +1,7 @@
+# 任务管理器，负责任务的添加、完成、追踪等
+
+
+
 extends Node2D
 
 signal quest_updated(quest_id: String)

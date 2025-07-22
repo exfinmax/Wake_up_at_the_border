@@ -1,8 +1,9 @@
-[gd_scene load_steps=85 format=3 uid="uid://ckoi2bs7alwus"]
+[gd_scene load_steps=87 format=3 uid="uid://ckoi2bs7alwus"]
 
 [ext_resource type="Script" uid="uid://cbct8021jfb8r" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://byof4kcnyimfk" path="res://assets/adventurer-v1.5-Sheet.png" id="2_0owmy"]
 [ext_resource type="Texture2D" uid="uid://c3tq5bow46bs8" path="res://assets/adventurer-hand-combat-Sheet.png" id="3_qek5x"]
+[ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_qek5x"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="13_gx1jg"]
 [ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://assets/Fonts/Schrödinger.ttf" id="13_myrg7"]
 [ext_resource type="PackedScene" uid="uid://covnl53pmvjrn" path="res://scenes/quest/quest_manager.tscn" id="14_fcs02"]
@@ -489,6 +490,8 @@ size = Vector2(18, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gtgg"]
+
 [sub_resource type="Animation" id="Animation_0owmy"]
 length = 0.001
 
@@ -743,12 +746,10 @@ size = Vector2(27, 57)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_8afob")
-atk = 10.0
-crit = 0.4
 max_energy = 10.0
 energy_recover_speed = 0.5
-acceleration = 40.0
-friction = 13.3
+acceleration = 20.0
+friction = 20.0
 walk_speed = 133.3
 run_speed = 400.0
 jump_speed = 500.0
@@ -765,12 +766,12 @@ autoplay = "idle"
 frame = 3
 frame_progress = 1.0
 
-[node name="DetectArea" type="Area2D" parent="Body"]
+[node name="InteractArea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DetectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/InteractArea"]
 position = Vector2(21.3043, -14.3478)
 shape = SubResource("RectangleShape2D_fm80t")
 
@@ -783,6 +784,13 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DefendArea"]
 position = Vector2(13.913, -15.2174)
 shape = SubResource("CircleShape2D_fm80t")
+
+[node name="Attack" parent="Body" instance=ExtResource("4_qek5x")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
+position = Vector2(21.7391, -14.3478)
+shape = SubResource("RectangleShape2D_5gtgg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -869,11 +877,13 @@ size_flags_vertical = 3
 
 [node name="Health" parent="." instance=ExtResource("13_gx1jg")]
 unique_name_in_owner = true
-visible = false
-position = Vector2(-20, -72)
-max_hp = 100.0
+position = Vector2(-25, -80)
+can_show = true
 
 [node name="QuestManager" parent="." instance=ExtResource("14_fcs02")]
 unique_name_in_owner = true
 
 [node name="QuestConponent" parent="." instance=ExtResource("15_myrg7")]
+
+[editable path="Body/Attack"]
+[editable path="Health"]

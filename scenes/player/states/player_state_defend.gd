@@ -1,3 +1,4 @@
+# 防御状态
 class_name PlayerStateDefend
 extends PlayerState
 
@@ -11,6 +12,7 @@ func _physics_process(_delta: float) -> void:
 		player.can_recover_energy = true
 		transfrom_state(Player.State.MOVE)
 
+# 检查能量，决定是否进入防御
 func on_defend_area(_area: Area2D) -> void:
 	if player.current_energy > 2:
 		player.is_defend = true

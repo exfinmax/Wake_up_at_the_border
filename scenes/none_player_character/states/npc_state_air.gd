@@ -1,3 +1,8 @@
+# NPC空中状态脚本，负责NPC在空中时的行为
+
+
+
+
 class_name NpcStateAir
 extends NpcState
 

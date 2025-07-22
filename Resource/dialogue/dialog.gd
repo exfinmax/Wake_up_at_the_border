@@ -1,3 +1,7 @@
+# 对话数据管理脚本，负责加载、获取NPC对话内容
+
+
+
 extends Resource
 
 class_name Dialog

@@ -1,3 +1,8 @@
+# 任务目标组件，管理任务目标的状态和判定
+
+
+
+
 class_name Objectives
 extends Resource
 

@@ -1,3 +1,8 @@
+# 屏幕基类，负责不同界面的切换和数据传递
+
+
+
+
 class_name Screen
 extends Node
 

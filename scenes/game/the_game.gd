@@ -1,3 +1,8 @@
+# 游戏主流程脚本，负责关卡切换、主界面等
+
+
+
+
 class_name TheGame
 extends Node
 

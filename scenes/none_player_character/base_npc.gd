@@ -1,3 +1,8 @@
+# NPC基类，负责NPC的基础属性和行为
+
+
+
+
 class_name BaseNpc
 extends CharacterBody2D
 
