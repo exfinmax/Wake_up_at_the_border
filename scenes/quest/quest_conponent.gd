@@ -86,7 +86,7 @@ func _on_quest_update(quest_id: String):
 		update_quest_tracker(quest)
 	selected_quest = null
 
-func _on_objective_updated(quest_id: String, objective_id: String):
+func _on_objective_updated(quest_id: String, _objective_id: String):
 	if selected_quest && selected_quest.quest_id == quest_id:
 		update_quest_tracker(selected_quest)
 	selected_quest = null

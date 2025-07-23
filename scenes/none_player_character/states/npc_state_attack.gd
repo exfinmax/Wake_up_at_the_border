@@ -6,17 +6,18 @@
 class_name NpcStateAttack
 extends NpcState
 
+# 攻击目标节点
+var target : Node2D
+# 攻击动画索引
+var index : int = 1
+var is_attack: bool = false
 
 
 
-
-
-# 状态变量
-var target: Node2D = null  # 攻击目标节点
 var attack_timer: float = 0.0  # 攻击计时器
 var can_attack: bool = true  # 是否可以攻击
 var attack_combo: int = 1  # 连击计数
-var is_attack:bool = false
+
 
 # 进入状态时的初始化
 func _enter_tree() -> void:
@@ -27,10 +28,7 @@ func _enter_tree() -> void:
 		return
 		
 
-	
-	# 确保攻击组件就绪
-	if npc.attack_component:
-		npc.attack_component.reset_attack()
+
 
 # 物理过程更新
 func _physics_process(delta: float) -> void:
@@ -67,7 +65,7 @@ func _perform_attack() -> void:
 		# 开始攻击动画
 		is_attack = true
 		animation.play("attack_" + str(attack_combo))
-		attack_timer = npc.attack_cooldown
+		attack_timer = npc.attack_colddown
 		can_attack = false
 		
 		
@@ -95,14 +93,11 @@ func _perform_backstep() -> void:
 func _switch_to_move() -> void:
 	transfrom_state(BaseNpc.State.MOVE)
 
-# 状态退出
-func _exit_tree() -> void:
-	if npc.attack_component:
-		npc.attack_component.reset_attack()
-	attack_combo = 1
-	attack_timer = 0.0
-
-		
-		
-
-	
+func ray_cast_detect() -> void:
+	# 射线检测，用于判断NPC是否在地面上
+	# 如果射线未碰撞到地面，或者需要随机改变方向
+	if not floor_ray_cast.is_colliding():
+		# 改变NPC的朝向
+		npc.heading = -npc.heading
+		# 停止NPC的水平速度
+		npc.velocity.x = 0

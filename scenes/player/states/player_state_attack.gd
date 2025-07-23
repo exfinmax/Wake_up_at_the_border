@@ -32,8 +32,8 @@ func change_animation_finished() -> void:
 
 # 攻击判定
 func _on_detect_area(body: Node2D) -> void:
-	if body && body.is_in_group("Enemy"):
-		attack_component.check_attack(body)
+	if body.is_in_group("Enemy") and attack_component:
+		attack_component.check_attack()
 
 
 
@@ -41,8 +41,7 @@ func _on_detect_area(body: Node2D) -> void:
 func _start_attack() -> void:
 	animation.play("attack_1")
 	time_start_attack = Time.get_ticks_msec()
-	if attack_component:
-		attack_component.reset_attack()
+
 
 # 继续连击
 func _continue_combo() -> void:
@@ -54,8 +53,7 @@ func _continue_combo() -> void:
 	animation.play("attack_%s" % [combo_index])
 	time_start_attack = Time.get_ticks_msec()
 	is_animation_finished = false
-	if attack_component:
-		attack_component.reset_attack()
+
 
 # 结束攻击
 func _end_attack() -> void:

@@ -6,6 +6,7 @@
 [node name="BaseNpc" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_uubn6")
+walk_speed = 100.0
 run_speed = 300.0
 
 [node name="Body" type="Node2D" parent="."]

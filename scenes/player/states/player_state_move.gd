@@ -20,7 +20,6 @@ func _enter_tree() -> void:
 
 # 物理帧处理，处理输入和动画切换
 func _physics_process(delta: float) -> void:
-	
 	_handle_movement_input(delta)
 	_update_animation()
 	# 如果y方向有速度，切换到空中状态
@@ -36,7 +35,7 @@ func _handle_movement_input(delta:float) -> void:
 		transfrom_state(Player.State.AIR)
 	# 攻击输入（仅对敌人有效）
 	elif Input.is_action_just_pressed("interact") && no_npc:
-		transfrom_state(Player.State.ATTACK, PlayerData.build().add_target(attack_component.current_target))
+		transfrom_state(Player.State.ATTACK)
 	# 防御输入
 	elif Input.is_action_just_pressed("ui_down"):
 		transfrom_state(Player.State.DEFEND)
@@ -55,7 +54,8 @@ func _on_interact_area_entered(body: Node2D) -> void:
 	if body.is_in_group("NPC") || body.is_in_group("Item"):
 		target = body
 		no_npc = false
-
+	elif body.is_in_group("Enemy"):
+		target = body
 
 # 离开交互区域
 func _on_interact_area_exited(body: Node2D) -> void:
@@ -65,11 +65,13 @@ func _on_interact_area_exited(body: Node2D) -> void:
 
 # 处理输入事件（如对话、物品交互、任务日志）
 func _input(event: InputEvent) -> void:
+	# 如果不在对话中
+	if not is_in_dia:
 		# 按下交互键
 		if event.is_action_pressed("interact"):
 			if target:
 				# 与NPC对话
-				if target.is_in_group("NPC") && !is_in_dia:
+				if target.is_in_group("NPC"):
 					target.start_dialogue()
 					is_in_dia = true
 					quest_conponent.check_quest_objectives(target.npc_id, "talk_to")
@@ -83,8 +85,8 @@ func _input(event: InputEvent) -> void:
 				# 停止移动
 				player.velocity = Vector2.ZERO
 	# 按下任务日志键，显示/隐藏任务日志
-		if event.is_action_pressed("quest_menu"):
-			quest_manager.show_hide_log()
+	if event.is_action_pressed("quest_menu"):
+		quest_manager.show_hide_log()
 
 # 设置摩擦力和加速度，实现平滑移动
 func set_friction(delta:float) -> void:

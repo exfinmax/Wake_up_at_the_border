@@ -11,44 +11,28 @@ var rand_change: bool = false
 
 func _enter_tree() -> void:
 	# 玩家进入检测区域时触发
-	set_rand_change()
 	player_detect_area.body_entered.connect(on_detect_player.bind())
 
-
-	
-
-
-
 func _physics_process(delta: float) -> void:
-	# 检测并更新朝向
+	# 物理过程，负责更新NPC的位置和状态
 	ray_cast_detect()
-	
-	# 根据当前朝向更新移动
-	var target_speed := npc.walk_speed * npc.heading
-	npc.velocity.x = lerpf(npc.velocity.x, target_speed, npc.acceleration * delta)
-	
-	# 直接更新动画（因为朝向由基类处理）
-	if abs(npc.velocity.x) > 0.1:
-		animation.play("move")
-	else:
-		animation.play("idle")
-	
-	# 检查是否需要切换到空中状态
-	if not npc.is_on_floor():
+	set_move_animation(delta)
+	# 如果NPC在垂直方向上有速度，则切换到空中状态
+	if npc.velocity.y != 0:
 		transfrom_state(BaseNpc.State.AIR)
 	
 func ray_cast_detect() -> void:
-	# 根据射线检测判断是否需要改变方向
-	if floor_ray_cast and not floor_ray_cast.is_colliding():
-		# 如果前方没有地面，立即改变方向
-		npc.set_heading_value(-npc.heading)
-		npc.velocity.x = 0  # 停止当前移动
+	# 射线检测，用于判断NPC是否在地面上
+	# 如果射线未碰撞到地面，或者需要随机改变方向
+	if not floor_ray_cast.is_colliding() || rand_change:
+		# 改变NPC的朝向
+		npc.heading = -npc.heading
+		# 停止NPC的水平速度
+		npc.velocity.x = 0
+		# 重置随机改变方向的标志
 		rand_change = false
-	elif rand_change:
-		# 随机改变方向
-		npc.set_heading_value(-npc.heading)
-		npc.velocity.x = 0  # 停止当前移动
-		rand_change = false
+		# 等待一段时间后再次尝试随机改变方向
+		await get_tree().create_timer(randf_range(0.5,1)).timeout
 
 func on_detect_player(player: Player) -> void:
 	# 当检测到玩家时触发
@@ -69,8 +53,18 @@ func set_rand_change() -> void:
 		set_rand_change()
 		
 
-func set_move_animation() -> void:
+func set_move_animation(delta:float) -> void:
+	# 设置移动动画的逻辑
+	# 根据NPC的朝向和速度更新其水平速度
+	if npc.heading > 0:
+		npc.velocity.x = clampf(npc.velocity.x + npc.walk_speed * delta * npc.heading, 0, npc.heading * npc.walk_speed)
+		# 如果目标在左侧，则向左加速
+	elif npc.heading < 0:
+		npc.velocity.x = clampf(npc.velocity.x + npc.walk_speed * delta * npc.heading, npc.heading * npc.walk_speed, 0)
 	# 如果NPC不能进行有效攻击，则根据其速度播放相应的动画
-	if not attack_component.can_useful_attack:
-		# 根据速度选择动画
-		animation.play("move" if abs(npc.velocity.x) > 0.1 else "idle")
+	# 如果NPC水平速度为0，则播放待机动画
+	if npc.velocity.x == 0:
+		animation.play("idle")
+	# 如果NPC水平速度不为0，则播放移动动画
+	elif npc.velocity.x != 0:
+		animation.play("move")

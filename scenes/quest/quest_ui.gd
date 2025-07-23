@@ -41,10 +41,6 @@ func update_quest_list():
 	else:
 		for quest in active_quests:
 			var button = Button.new()
-			button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
-			button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
-			button.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
-			button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 			button.add_theme_font_size_override("font_size", 20)
 			button.text = quest.quest_name
 			button.pressed.connect(_on_quest_selected.bind(quest))
@@ -106,7 +102,7 @@ func _on_quest_updated(quest_id: String):
 	
 	
 
-func _on_objectives_updated(quest_id: String, objectives_id: String):
+func _on_objectives_updated(quest_id: String, _objectives_id: String):
 	if selected_quest && selected_quest.quest_id == quest_id:
 		_on_quest_selected(selected_quest)
 	else:
