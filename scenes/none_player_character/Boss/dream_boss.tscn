@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://chmu1ki42ga8i"]
+
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_kuqfq"]
+[ext_resource type="Script" uid="uid://ceq5ks2c7ju8r" path="res://scenes/none_player_character/Boss/dream_boss.gd" id="2_po1ra"]
+
+[node name="Dream_Boss" instance=ExtResource("1_kuqfq")]
+script = ExtResource("2_po1ra")
+
+[editable path="Health"]

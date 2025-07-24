@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddljcrhlepuik"]
+[gd_scene load_steps=4 format=3 uid="uid://ddljcrhlepuik"]
 
-[ext_resource type="Script" uid="uid://dvxkmsxwhnad6" path="res://Scripts/quest/quest_ui.gd" id="1_2py3j"]
-[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="2_k7jjv"]
-[ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://Assets/Fonts/Schrödinger.ttf" id="3_0l0hj"]
+[ext_resource type="Script" uid="uid://dvxkmsxwhnad6" path="res://scenes/quest/quest_ui.gd" id="1_2py3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuj88"]
 bg_color = Color(0, 0, 0, 1)
@@ -74,18 +72,16 @@ layout_mode = 2
 [node name="List" type="Label" parent="CanvasLayer/Panel/Contents/Headings"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_k7jjv")
 theme_override_font_sizes/font_size = 40
-text = "Avaliable	       Quest"
+text = "Avaliable    Quest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Details" type="Label" parent="CanvasLayer/Panel/Contents/Headings"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_k7jjv")
 theme_override_font_sizes/font_size = 40
-text = "Quest	    Details"
+text = "Quest  Details"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -109,7 +105,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(569, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_0l0hj")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -120,7 +115,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(569, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.403922, 1)
-theme_override_fonts/font = ExtResource("3_0l0hj")
 theme_override_font_sizes/font_size = 25
 text = "Description"
 autowrap_mode = 1

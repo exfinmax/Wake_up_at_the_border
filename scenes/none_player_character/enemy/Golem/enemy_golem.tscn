@@ -2,16 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_fxvmg"]
 [ext_resource type="Script" uid="uid://cq7810dlxg0le" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.gd" id="2_r71u1"]
-[ext_resource type="Texture2D" uid="uid://55oe2h1e67vk" path="res://assets/Golem/No Armor/Golem_IdleB.png" id="3_pcsi1"]
-[ext_resource type="Texture2D" uid="uid://ccb332m7v42le" path="res://assets/Golem/No Armor/Golem_Run.png" id="4_7e0ku"]
-[ext_resource type="Texture2D" uid="uid://cdfarqidx3hah" path="res://assets/Golem/No Armor/Golem_AttackA_FX.png" id="4_p8saw"]
+[ext_resource type="Texture2D" uid="uid://55oe2h1e67vk" path="res://assets/enemy/Golem/No Armor/Golem_IdleB.png" id="3_pcsi1"]
+[ext_resource type="Texture2D" uid="uid://ccb332m7v42le" path="res://assets/enemy/Golem/No Armor/Golem_Run.png" id="4_7e0ku"]
+[ext_resource type="Texture2D" uid="uid://cdfarqidx3hah" path="res://assets/enemy/Golem/No Armor/Golem_AttackA_FX.png" id="4_p8saw"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="5_b8ssd"]
-[ext_resource type="Texture2D" uid="uid://m6gre2mkj71y" path="res://assets/Golem/No Armor/Golem_HitB.png" id="5_mftfl"]
-[ext_resource type="Texture2D" uid="uid://d2livx7b8vy42" path="res://assets/Golem/No Armor/Golem_DeathB.png" id="7_wqlru"]
-[ext_resource type="Texture2D" uid="uid://65jfkeieea14" path="res://assets/Golem/No Armor/Golem_AttackA.png" id="8_q652i"]
-[ext_resource type="Texture2D" uid="uid://bu727pri5c33q" path="res://assets/Golem/No Armor/Golem_AttackB_FX.png" id="9_edd01"]
-[ext_resource type="Texture2D" uid="uid://beuwfegbfmxba" path="res://assets/Golem/No Armor/Golem_AttackC.png" id="10_ixjkm"]
-[ext_resource type="Texture2D" uid="uid://dhb4mnaxp1ht7" path="res://assets/Golem/No Armor/Golem_AttackC_FX.png" id="11_js3yf"]
+[ext_resource type="Texture2D" uid="uid://m6gre2mkj71y" path="res://assets/enemy/Golem/No Armor/Golem_HitB.png" id="5_mftfl"]
+[ext_resource type="Texture2D" uid="uid://d2livx7b8vy42" path="res://assets/enemy/Golem/No Armor/Golem_DeathB.png" id="7_wqlru"]
+[ext_resource type="Texture2D" uid="uid://65jfkeieea14" path="res://assets/enemy/Golem/No Armor/Golem_AttackA.png" id="8_q652i"]
+[ext_resource type="Texture2D" uid="uid://bu727pri5c33q" path="res://assets/enemy/Golem/No Armor/Golem_AttackB_FX.png" id="9_edd01"]
+[ext_resource type="Texture2D" uid="uid://beuwfegbfmxba" path="res://assets/enemy/Golem/No Armor/Golem_AttackC.png" id="10_ixjkm"]
+[ext_resource type="Texture2D" uid="uid://dhb4mnaxp1ht7" path="res://assets/enemy/Golem/No Armor/Golem_AttackC_FX.png" id="11_js3yf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8ssd"]
 radius = 15.0
@@ -71,7 +71,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("Body/Attack_FX:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -79,7 +79,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_p8saw")]
+"values": [null]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -120,8 +120,8 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_6ot14"]
 resource_name = "attack"
-length = 1.5
-step = 0.1
+length = 0.7
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -165,7 +165,7 @@ tracks/3/path = NodePath("Body/NpcSprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -177,7 +177,7 @@ tracks/4/path = NodePath("Body/Attack_FX:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.4),
+"times": PackedFloat32Array(0, 0.4, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [null, ExtResource("4_p8saw"), null]
@@ -189,7 +189,7 @@ tracks/5/path = NodePath("Body/Attack_FX:hframes")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.9),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
@@ -201,7 +201,7 @@ tracks/6/path = NodePath("Body/Attack_FX:vframes")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.9),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
@@ -213,7 +213,7 @@ tracks/7/path = NodePath("Body/Attack_FX:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"times": PackedFloat32Array(0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 0, 1, 2, 3, 4]
@@ -225,7 +225,7 @@ tracks/8/path = NodePath("Body/Attack")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -515,6 +515,54 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack_FX:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="Animation" id="Animation_vwp7a"]
 resource_name = "fall"
@@ -568,6 +616,54 @@ tracks/3/keys = {
 "update": 1,
 "values": [3]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack_FX:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="Animation" id="Animation_3dsho"]
 resource_name = "hurt"
@@ -619,6 +715,54 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack_FX:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_q652i"]
@@ -674,6 +818,168 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack_FX:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_b8ssd"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"move", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/NpcSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_pcsi1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/NpcSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/NpcSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/NpcSprite:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:vframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Attack_FX:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
 [sub_resource type="Animation" id="Animation_ukey1"]
 resource_name = "move"
@@ -728,23 +1034,53 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
-
-[sub_resource type="Animation" id="Animation_b8ssd"]
-resource_name = "jump"
-length = 0.3
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack_FX:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"move", -1, 1.0, false],
-"method": &"play"
-}]
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack_FX:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Attack_FX:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Attack_FX:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_edd01"]
@@ -763,14 +1099,14 @@ _data = {
 
 [node name="EnemyGolem" instance=ExtResource("1_fxvmg")]
 script = ExtResource("2_r71u1")
-run_speed = 200.0
+run_speed = 250.0
 firection = 50.0
 attack_range = 60.0
-chase_range = 120.0
+chase_range = 400.0
 attack_colddown = 1.0
 
 [node name="Body" parent="." index="0"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 
 [node name="NpcSprite" parent="Body" index="0"]
 scale = Vector2(1.1, 1.1)
@@ -778,7 +1114,6 @@ texture = ExtResource("3_pcsi1")
 hframes = 4
 
 [node name="Attack_FX" type="Sprite2D" parent="Body" index="1"]
-texture = ExtResource("4_p8saw")
 hframes = 3
 vframes = 2
 frame = 5
@@ -787,7 +1122,7 @@ frame = 5
 unique_name_in_owner = true
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
 position = Vector2(22.6667, 2)
@@ -796,7 +1131,9 @@ debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
 
 [node name="FindPlayerarea" type="Area2D" parent="Body" index="3"]
 unique_name_in_owner = true
+collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/FindPlayerarea" index="0"]
 polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 103.333, 22, 103.333, -20.6667)
@@ -806,10 +1143,7 @@ unique_name_in_owner = true
 position = Vector2(26.6667, 0)
 
 [node name="Health" parent="." index="1"]
-visible = true
-position = Vector2(-24, -19)
 max_hp = 30.0
-can_show = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 4)

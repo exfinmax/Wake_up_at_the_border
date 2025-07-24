@@ -26,6 +26,7 @@ var current_branch_index = 0
 
 
 func _ready() -> void:
+	add_to_group("NPC")
 	npc_sprite.texture = sprite
 	body.scale = custom_scale
 	dialog_resource.load_from_json("res://Resource/dialogue/dialogue_data.json")

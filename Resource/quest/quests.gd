@@ -29,6 +29,9 @@ func complete_objective(objective_id: String, quantity: int = 1):
 					objective.is_completed = true
 			elif objective.target_type == "talk_to":
 				objective.is_completed = true
+			elif objective.target_type == "fight_with":
+				if objective.collected_quantity >= objective.required_quantity:
+					objective.is_completed = true 
 			break
 	
 	if is_completed():

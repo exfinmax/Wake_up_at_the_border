@@ -1,25 +1,98 @@
-[gd_scene format=3 uid="uid://bqitpnqnd3gci"]
+[gd_scene load_steps=10 format=3 uid="uid://bafp85bxucng8"]
 
-[node name="Stage_3" type="Node2D"]
+[ext_resource type="Script" uid="uid://cm05618lkllia" path="res://scenes/stages/stage_3.gd" id="1_vhn46"]
+[ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/stages/parallax_background.tscn" id="2_geiyi"]
+[ext_resource type="Texture2D" uid="uid://c7n1ddbpoyt8g" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Parallax Cave/BG.png" id="3_vhn46"]
+[ext_resource type="Texture2D" uid="uid://bs35csaaqshrn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Parallax Cave/4.png" id="4_msdmy"]
+[ext_resource type="Texture2D" uid="uid://cv3j6v3pfyhee" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Parallax Cave/3.png" id="5_2eaks"]
+[ext_resource type="Texture2D" uid="uid://bkrimikribueq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Parallax Cave/2.png" id="6_t43ag"]
+[ext_resource type="Texture2D" uid="uid://dvsntv8dynpf4" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Parallax Cave/1.png" id="7_x8n2e"]
+[ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="8_vhn46"]
 
-[node name="Chaser" type="Node2D" parent="."]
-position = Vector2(100, 100)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msdmy"]
+size = Vector2(3988, 20)
 
-[node name="PlayerStart" type="Node2D" parent="."]
-position = Vector2(50, 100)
+[node name="Stage_2" type="Node2D"]
+script = ExtResource("1_vhn46")
 
-[node name="Gates" type="Node2D" parent="."]
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_geiyi")]
 
-[node name="Gate1" type="Sprite2D" parent="Gates"]
-position = Vector2(900, 200)
+[node name="SkyLayer" parent="ParallaxBackground" index="0"]
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Switches" type="Node2D" parent="."]
+[node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
+texture = ExtResource("3_vhn46")
 
-[node name="Switch1" type="Sprite2D" parent="Switches"]
-position = Vector2(300, 400)
+[node name="SunLayer" parent="ParallaxBackground" index="1"]
+motion_mirroring = Vector2(1920, 0)
 
-[node name="Switch2" type="Sprite2D" parent="Switches"]
-position = Vector2(500, 350)
+[node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
+texture = ExtResource("4_msdmy")
 
-[node name="Switch3" type="Sprite2D" parent="Switches"]
-position = Vector2(700, 300)
+[node name="CloudsLayer" parent="ParallaxBackground" index="2"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
+texture = ExtResource("5_2eaks")
+
+[node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
+texture = ExtResource("6_t43ag")
+
+[node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="GroundLayer" parent="ParallaxBackground" index="5"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
+texture = ExtResource("7_x8n2e")
+
+[node name="DreamPlatforms" type="Node2D" parent="."]
+
+[node name="DreamPlatform1" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(200, 400)
+
+[node name="DreamPlatform2" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(400, 350)
+
+[node name="Key" type="Sprite2D" parent="DreamPlatforms"]
+position = Vector2(600, 300)
+
+[node name="RealPlatforms" type="Node2D" parent="."]
+
+[node name="RealPlatform1" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(300, 500)
+
+[node name="RealPlatform2" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(500, 450)
+
+[node name="Door" type="Sprite2D" parent="RealPlatforms"]
+position = Vector2(800, 250)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SwitchButton" type="Node2D" parent="."]
+position = Vector2(100, 200)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-40, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1984, 1080)
+shape = SubResource("RectangleShape2D_msdmy")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(43, -68)
+scale = Vector2(4.00948, 0.680976)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1984, 1080)
+shape = SubResource("RectangleShape2D_msdmy")
+
+[node name="Player" parent="." instance=ExtResource("8_vhn46")]
+position = Vector2(47, 615)
+
+[editable path="ParallaxBackground"]

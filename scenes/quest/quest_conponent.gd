@@ -5,8 +5,7 @@
 extends Node2D
 
 
-@onready var icon: TextureRect = %Icon
-@onready var amount: Label = %Amount
+
 @onready var title: Label = %Title
 @onready var objectives: VBoxContainer = %Objectives
 @onready var quest_manager: Node2D = %QuestManager
@@ -14,7 +13,7 @@ extends Node2D
 
 
 var selected_quest: Quest = null
-var coin_amount:int = 0
+
 
 func _ready() -> void:
 	
@@ -50,8 +49,11 @@ func check_quest_objectives(target_id: String, target_type: String, quantity: in
 		
 func handle_quest_completed(quest: Quest):
 	for reward in quest.rewards:
-		if reward.reward_type == "coins":
-			coin_amount += reward.reward_amount
+		if reward.reward_type == "energy":
+			Global.player.max_energy += 10
+			Global.player.energy_progress_bar.max_value = Global.player.max_energy
+		if reward.reward_type == "unlock_hp":
+			Global.player.health_component.can_recover_hp = true
 	update_quest_tracker(quest)
 	quest_manager.update_quest(quest.quest_id, "completed")
 
@@ -68,6 +70,8 @@ func update_quest_tracker(quest: Quest):
 		for objective in quest.objectives:
 			var label = Label.new()
 			label.add_theme_font_size_override("font_size", 20)
+			label.custom_minimum_size.x = 300.0
+			label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 			label.text = objective.description
 			
 			if objective.is_completed:

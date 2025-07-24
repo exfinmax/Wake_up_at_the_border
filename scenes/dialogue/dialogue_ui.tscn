@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://do5neb8tjv0g2"]
+[gd_scene load_steps=3 format=3 uid="uid://do5neb8tjv0g2"]
 
 [ext_resource type="Script" uid="uid://qra3my536wc2" path="res://scenes/dialogue/dialogue_ui.gd" id="1_jdtl4"]
-[ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://assets/Fonts/Schrödinger.ttf" id="1_olrts"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdtl4"]
 bg_color = Color(0, 0, 0, 1)
@@ -55,7 +54,6 @@ theme_override_constants/separation = 15
 
 [node name="Speaker" type="Label" parent="CanvasLayer/Panel/DialogBox"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_olrts")
 theme_override_font_sizes/font_size = 20
 text = "NPC Name"
 

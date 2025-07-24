@@ -1,6 +1,108 @@
-[gd_scene format=3 uid="uid://bjw1pph41n6q4"]
+[gd_scene load_steps=19 format=3 uid="uid://bjw1pph41n6q4"]
+
+[ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/stages/parallax_background.tscn" id="1_bg"]
+[ext_resource type="Script" uid="uid://ca3l8l30y2awb" path="res://scenes/stages/stage_1.gd" id="1_relhn"]
+[ext_resource type="Texture2D" uid="uid://botl0scte8k16" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/1.png" id="3_1tge3"]
+[ext_resource type="Texture2D" uid="uid://cj8bkfe1vrd6a" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/2.png" id="4_relhn"]
+[ext_resource type="Texture2D" uid="uid://cmy6lald3feqk" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/3.png" id="5_bjuw2"]
+[ext_resource type="Texture2D" uid="uid://cugmrupslietm" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/4.png" id="6_mm8bn"]
+[ext_resource type="Texture2D" uid="uid://c2x8d653dr1qh" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/5.png" id="7_f2dxg"]
+[ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="8_relhn"]
+[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="9_qm7fq"]
+[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="10_emlwg"]
+[ext_resource type="Script" uid="uid://d3d2ro25cssre" path="res://Resource/quest/objectives.gd" id="11_eda8h"]
+[ext_resource type="Script" uid="uid://dhj536scdleo3" path="res://Resource/quest/rewards.gd" id="12_p4glm"]
+[ext_resource type="PackedScene" uid="uid://dat7kkan4quhg" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.tscn" id="13_emlwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjuw2"]
+size = Vector2(1118, 20)
+
+[sub_resource type="Resource" id="Resource_cg2gp"]
+script = ExtResource("11_eda8h")
+id = "ob_1"
+description = "测试中文显示，顺便测试无Rewards可行性。"
+target_id = "npc_1"
+target_type = "talk_to"
+objective_dialog = "什么赢不了，我听不懂！！！"
+required_quantity = 0
+collected_quantity = 0
+is_completed = false
+metadata/_custom_type_script = "uid://d3d2ro25cssre"
+
+[sub_resource type="Resource" id="Resource_8pii3"]
+script = ExtResource("12_p4glm")
+reward_type = "energy"
+reward_amount = 1
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_y43tq"]
+script = ExtResource("12_p4glm")
+reward_type = "unlock_hp"
+reward_amount = 1
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_3xsfp"]
+script = ExtResource("10_emlwg")
+quest_id = "quest_1"
+quest_name = "中文任务一"
+quest_description = "请把弟弟消灭，因为弟弟是噶比"
+state = "not_started"
+unlock_id = "npc_1_1"
+objectives = Array[ExtResource("11_eda8h")]([SubResource("Resource_cg2gp")])
+rewards = Array[ExtResource("12_p4glm")]([SubResource("Resource_8pii3"), SubResource("Resource_y43tq")])
+metadata/_custom_type_script = "uid://bfo61evwd64sn"
 
 [node name="Stage_1" type="Node2D"]
+script = ExtResource("1_relhn")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_bg")]
+
+[node name="SkyLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.1, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("3_1tge3")
+
+[node name="SunLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("4_relhn")
+
+[node name="CloudsLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(0.3, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("5_bjuw2")
+
+[node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
+motion_scale = Vector2(0.6, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("6_mm8bn")
+
+[node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
+motion_scale = Vector2(0.8, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/TreesFrontLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("7_f2dxg")
+
+[node name="GroundLayer" parent="ParallaxBackground" index="5"]
+motion_scale = Vector2(1, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
 
 [node name="Label_Move" type="Label" parent="."]
 offset_left = 50.0
@@ -21,7 +123,7 @@ offset_left = 50.0
 offset_top = 700.0
 offset_right = 50.0
 offset_bottom = 700.0
-text = "靠近NPC按E键对话"
+text = "靠近NPC按J键对话"
 
 [node name="TorchPieces" type="Node2D" parent="."]
 
@@ -37,8 +139,29 @@ position = Vector2(700, 300)
 [node name="Fog" type="Sprite2D" parent="."]
 position = Vector2(400, 300)
 
-[node name="NPC" type="Node2D" parent="."]
-position = Vector2(200, 500)
-
 [node name="Exit" type="Node2D" parent="."]
 position = Vector2(900, 200)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-783, -319)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(549, 1080)
+shape = SubResource("RectangleShape2D_bjuw2")
+
+[node name="Player" parent="." instance=ExtResource("8_relhn")]
+position = Vector2(234, 634)
+can_defend = false
+can_fly_kick = false
+
+[node name="Npc" parent="." instance=ExtResource("9_qm7fq")]
+position = Vector2(-129, 706)
+npc_name = "作者"
+current_dia_state = "dia_1"
+custom_scale = Vector2(2, 2)
+quests = Array[ExtResource("10_emlwg")]([SubResource("Resource_3xsfp")])
+
+[node name="EnemyGolem" parent="." instance=ExtResource("13_emlwg")]
+position = Vector2(-377, 163)
+
+[editable path="ParallaxBackground"]

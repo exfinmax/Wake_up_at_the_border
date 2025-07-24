@@ -12,10 +12,10 @@ var type : Dictionary
 func _init() -> void:
 	# 初始化屏幕类型字典，将屏幕类型与对应的预加载场景关联
 	type = {
-		TheGame.ScreenType.MAIN_MENU: preload("res://scenes/game/screens/main_menu.tscn"),
-		TheGame.ScreenType.STAGE_SELECTION: preload("res://scenes/game/screens/main_menu.tscn"), 
-		TheGame.ScreenType.IN_GAME: preload("res://scenes/game/screens/world_screen.tscn"),
+		TheGame.ScreenType.MAIN_MENU: preload("res://scenes/game/screens/main_menu.tscn"), 
+		TheGame.ScreenType.IN_GAME: preload("res://scenes/game/screens/WorldScreen.tscn"),
 		TheGame.ScreenType.SETTING: preload("res://scenes/game/screens/main_menu.tscn"),
+		TheGame.ScreenType.THE_END: preload("res://scenes/game/screens/TheEnd.tscn"),
 	}
 
 # 根据屏幕类型获取一个新的屏幕实例

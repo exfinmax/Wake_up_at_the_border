@@ -17,14 +17,11 @@ func _enter_tree() -> void:
 	elif npc.velocity.y < 0:
 		animation.play("jump")
 
-func _physics_process(_delta: float) -> void:
-	#if check_ground():
-	transfrom_state(BaseNpc.State.MOVE)
+func _process(_delta: float) -> void:
+	if npc.velocity.y == 0:
+		transfrom_state(BaseNpc.State.MOVE)
 
-#func check_ground() -> bool:
-	#if npc.velocity.y == 0 && is_fake_ground:
-		#time_since_ground = Time.get_ticks_msec()
-		#is_fake_ground = false
+
 	
 		
 	

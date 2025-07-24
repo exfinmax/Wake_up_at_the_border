@@ -27,7 +27,7 @@ region = Rect2(25, 15, 14, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1i2mj"]
 size = Vector2(20, 48)
 
-[node name="Npc" groups=["NPC"] instance=ExtResource("1_45x13")]
+[node name="Npc" instance=ExtResource("1_45x13")]
 script = ExtResource("2_y35i5")
 npc_id = "npc_1"
 npc_name = "Origin"
@@ -37,9 +37,9 @@ custom_scale = Vector2(0, 0)
 dia_texture = SubResource("AtlasTexture_bqx6u")
 dialog_resource = SubResource("Resource_1i2mj")
 quests = Array[ExtResource("3_1i2mj")]([])
+type = 1
 walk_speed = 0.0
 run_speed = 0.0
-type = 1
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(2, 2)

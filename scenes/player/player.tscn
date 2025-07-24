@@ -1,11 +1,13 @@
-[gd_scene load_steps=87 format=3 uid="uid://ckoi2bs7alwus"]
+[gd_scene load_steps=108 format=3 uid="uid://ckoi2bs7alwus"]
 
 [ext_resource type="Script" uid="uid://cbct8021jfb8r" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://byof4kcnyimfk" path="res://assets/adventurer-v1.5-Sheet.png" id="2_0owmy"]
 [ext_resource type="Texture2D" uid="uid://c3tq5bow46bs8" path="res://assets/adventurer-hand-combat-Sheet.png" id="3_qek5x"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_qek5x"]
+[ext_resource type="Texture2D" uid="uid://dh2gmepl1v3at" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png" id="6_5gtgg"]
+[ext_resource type="Script" uid="uid://bf3poit0b5d2b" path="res://scenes/player/camera_2d.gd" id="9_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://e3s7itixn1r8" path="res://assets/white-circle.png" id="10_h17s1"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="13_gx1jg"]
-[ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://assets/Fonts/Schrödinger.ttf" id="13_myrg7"]
 [ext_resource type="PackedScene" uid="uid://covnl53pmvjrn" path="res://scenes/quest/quest_manager.tscn" id="14_fcs02"]
 [ext_resource type="PackedScene" uid="uid://ceqvp80va6ox0" path="res://scenes/quest/quest_conponent.tscn" id="15_myrg7"]
 
@@ -141,6 +143,22 @@ region = Rect2(50, 481, 50, 37)
 atlas = ExtResource("2_0owmy")
 region = Rect2(100, 481, 50, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lclul"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(200, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej2d6"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(250, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvjb1"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(300, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bysbl"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(0, 111, 50, 37)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxw46"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(50, 111, 50, 37)
@@ -148,6 +166,14 @@ region = Rect2(50, 111, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qxvo"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(100, 111, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p0jd"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(100, 148, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nf13"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(150, 148, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5q8fn"]
 atlas = ExtResource("2_0owmy")
@@ -197,6 +223,14 @@ region = Rect2(100, 74, 50, 37)
 atlas = ExtResource("2_0owmy")
 region = Rect2(150, 74, 50, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y4ya"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(0, 148, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s050l"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(50, 148, 50, 37)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t3bg"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(50, 37, 50, 37)
@@ -245,6 +279,14 @@ region = Rect2(50, 259, 50, 37)
 atlas = ExtResource("3_qek5x")
 region = Rect2(100, 259, 50, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wy34"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(100, 407, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymths"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(150, 407, 50, 37)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hir57"]
 animations = [{
 "frames": [{
@@ -271,7 +313,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_1",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -288,7 +330,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_2",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -311,7 +353,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_3",
-"speed": 10.0
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -337,21 +379,21 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6cv16")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_j4nxn")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_28m0y")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_uniwh")
 }],
 "loop": false,
 "name": &"defend",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -378,6 +420,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lclul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej2d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvjb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bysbl")
+}],
+"loop": true,
+"name": &"double_jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kxw46")
 }, {
 "duration": 1.0,
@@ -386,6 +445,17 @@ animations = [{
 "loop": true,
 "name": &"fall",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p0jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nf13")
+}],
+"loop": true,
+"name": &"fly_kick",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -440,6 +510,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0y4ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s050l")
+}],
+"loop": false,
+"name": &"pre_fly_kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2t3bg")
 }, {
 "duration": 1.0,
@@ -483,21 +564,73 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wy34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymths")
+}],
+"loop": true,
+"name": &"wall_slide",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
 size = Vector2(18, 18)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fm80t"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gtgg"]
+
+[sub_resource type="Curve" id="Curve_je7p5"]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fm80t"]
+curve = SubResource("Curve_je7p5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h17s1"]
+gravity = Vector3(0, -40, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_fm80t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fcs02"]
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_fm80t")
 
 [sub_resource type="Animation" id="Animation_0owmy"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/DefendGPU:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/KickGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ioxgp"]
 resource_name = "attack"
-length = 0.7
+length = 0.6
 step = 0.05
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -520,17 +653,41 @@ tracks/1/path = NodePath("Body/Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"check_attack"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/DefendGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KickGPU:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_cnsyf"]
 resource_name = "attack_2"
-length = 0.4
+length = 0.35
 step = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -553,17 +710,41 @@ tracks/1/path = NodePath("Body/Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.18),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"check_attack"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/DefendGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KickGPU:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_007i1"]
 resource_name = "attack_3"
-length = 0.6
+length = 0.5
 step = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -586,12 +767,36 @@ tracks/1/path = NodePath("Body/Attack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"check_attack"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/DefendGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KickGPU:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_6cv16"]
@@ -612,10 +817,34 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7072n"]
 resource_name = "defend"
-length = 0.4
+length = 0.3
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -629,6 +858,30 @@ tracks/0/keys = {
 "args": [&"defend", 1.0, false],
 "method": &"play"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gmu8b"]
@@ -647,6 +900,72 @@ tracks/0/keys = {
 "args": [&"defend_t", 1.0, false],
 "method": &"play"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "double_jump"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"double_jump", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_75vfm"]
@@ -667,6 +986,58 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4sw5w"]
+resource_name = "fly_kick"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/KickGPU:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_28m0y"]
 resource_name = "hurt"
@@ -685,6 +1056,30 @@ tracks/0/keys = {
 "args": [&"hurt", 1.0, false],
 "method": &"play"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gmlin"]
@@ -706,6 +1101,30 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "jump"
@@ -724,6 +1143,30 @@ tracks/0/keys = {
 "args": [&"jump", 1.0, false],
 "method": &"play"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_p47bc"]
@@ -745,6 +1188,30 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_lvxji"]
 resource_name = "walk"
@@ -764,6 +1231,30 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75vfm"]
 _data = {
@@ -774,7 +1265,9 @@ _data = {
 &"death": SubResource("Animation_6cv16"),
 &"defend": SubResource("Animation_7072n"),
 &"defend_t": SubResource("Animation_gmu8b"),
+&"double_jump": SubResource("Animation_qek5x"),
 &"fall": SubResource("Animation_75vfm"),
+&"fly_kick": SubResource("Animation_4sw5w"),
 &"hurt": SubResource("Animation_28m0y"),
 &"idle": SubResource("Animation_gmlin"),
 &"jump": SubResource("Animation_dovo2"),
@@ -785,11 +1278,32 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(27, 57)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kssj8"]
+atlas = ExtResource("6_5gtgg")
+region = Rect2(307, 6, 58, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lfxt"]
+atlas = ExtResource("6_5gtgg")
+region = Rect2(308, 135, 56, 2)
+margin = Rect2(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3chqh"]
+atlas = ExtResource("6_5gtgg")
+region = Rect2(307, 21, 58, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwfqx"]
+atlas = ExtResource("6_5gtgg")
+region = Rect2(308, 118, 56, 4)
+margin = Rect2(1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_8afob")
 max_energy = 10.0
 energy_recover_speed = 0.5
+can_defend = true
+can_double_jump = true
+can_fly_kick = true
 acceleration = 20.0
 friction = 20.0
 walk_speed = 133.3
@@ -803,9 +1317,9 @@ scale = Vector2(2.3, 2.3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_hir57")
-animation = &"attack_1"
+animation = &"defend"
 autoplay = "idle"
-frame = 6
+frame = 3
 frame_progress = 1.0
 
 [node name="InteractArea" type="Area2D" parent="Body"]
@@ -817,22 +1331,35 @@ collision_mask = 4
 position = Vector2(21.3043, -14.3478)
 shape = SubResource("RectangleShape2D_fm80t")
 
-[node name="DefendArea" type="Area2D" parent="Body"]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 8
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DefendArea"]
-position = Vector2(13.913, -15.2174)
-shape = SubResource("CircleShape2D_fm80t")
-
 [node name="Attack" parent="Body" instance=ExtResource("4_qek5x")]
 unique_name_in_owner = true
+
+[node name="AttackArea" parent="Body/Attack" index="0"]
+collision_mask = 4
 
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
 position = Vector2(21.7391, -14.3478)
 shape = SubResource("RectangleShape2D_5gtgg")
+
+[node name="KickGPU" type="GPUParticles2D" parent="Body"]
+modulate = Color(1, 1, 0.0509804, 0.454902)
+position = Vector2(-7.82609, -25.2174)
+scale = Vector2(0.434783, 0.434783)
+emitting = false
+amount = 7
+texture = ExtResource("10_h17s1")
+process_material = SubResource("ParticleProcessMaterial_h17s1")
+
+[node name="DefendGPU" type="GPUParticles2D" parent="Body"]
+modulate = Color(1, 0.25098, 1, 0.486275)
+position = Vector2(16.087, -15.2174)
+rotation = 1.27409
+scale = Vector2(0.434783, 0.434783)
+skew = -0.961676
+emitting = false
+amount = 3
+texture = ExtResource("10_h17s1")
+process_material = SubResource("ParticleProcessMaterial_fcs02")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -847,50 +1374,13 @@ debug_color = Color(0.94472, 0.114976, 0.515016, 0.42)
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="Hud"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -216.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 116.0
-grow_horizontal = 0
-color = Color(0.141176, 0.141176, 0.141176, 0.788235)
-
-[node name="Icon" type="TextureRect" parent="Hud/ColorRect"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 100.0
-grow_vertical = 2
-expand_mode = 2
-
-[node name="Amount" type="Label" parent="Hud/ColorRect"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -26.0
-offset_right = -19.0
-offset_bottom = 24.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("13_myrg7")
-theme_override_font_sizes/font_size = 50
-text = "6"
-
 [node name="QuestTracker" type="ColorRect" parent="Hud"]
 unique_name_in_owner = true
-offset_left = 44.0
-offset_top = 29.0
-offset_right = 344.0
-offset_bottom = 229.0
+visible = false
+offset_left = 1503.0
+offset_top = 87.0
+offset_right = 1803.0
+offset_bottom = 287.0
 color = Color(0.141176, 0.141176, 0.141176, 0.788235)
 
 [node name="Details" type="VBoxContainer" parent="Hud/QuestTracker"]
@@ -917,15 +1407,45 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="EnergyProgressBar" type="TextureProgressBar" parent="Hud"]
+unique_name_in_owner = true
+offset_left = 118.0
+offset_top = 101.0
+offset_right = 176.0
+offset_bottom = 141.0
+scale = Vector2(6, 6)
+max_value = 10.0
+step = 0.01
+value = 10.0
+texture_under = SubResource("AtlasTexture_kssj8")
+texture_progress = SubResource("AtlasTexture_8lfxt")
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="Hud"]
+unique_name_in_owner = true
+offset_left = 118.0
+offset_top = 55.0
+offset_right = 176.0
+offset_bottom = 95.0
+scale = Vector2(6, 6)
+step = 0.01
+value = 100.0
+texture_under = SubResource("AtlasTexture_3chqh")
+texture_progress = SubResource("AtlasTexture_pwfqx")
+
 [node name="Health" parent="." instance=ExtResource("13_gx1jg")]
 unique_name_in_owner = true
-position = Vector2(-25, -80)
-can_show = true
+position = Vector2(-491, -302)
+scale = Vector2(4, 4)
+hp_recover_speed = 5.0
 
 [node name="QuestManager" parent="." instance=ExtResource("14_fcs02")]
 unique_name_in_owner = true
 
 [node name="QuestConponent" parent="." instance=ExtResource("15_myrg7")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.6, 1.6)
+script = ExtResource("9_5gtgg")
 
 [editable path="Body/Attack"]
 [editable path="Health"]

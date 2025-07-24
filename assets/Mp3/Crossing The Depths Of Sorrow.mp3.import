@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6vndsifhijav"
+path="res://.godot/imported/Crossing The Depths Of Sorrow.mp3-05dd6ac9dfb411d94f52e1e0d053ee89.mp3str"
+
+[deps]
+
+source_file="res://assets/Mp3/Crossing The Depths Of Sorrow.mp3"
+dest_files=["res://.godot/imported/Crossing The Depths Of Sorrow.mp3-05dd6ac9dfb411d94f52e1e0d053ee89.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://g7rufqr6nph4"]
+[gd_scene load_steps=3 format=3 uid="uid://g7rufqr6nph4"]
 
 [ext_resource type="Script" uid="uid://8k8gmi4twr86" path="res://scenes/game/screens/main_menu.gd" id="1_e4g4o"]
+[ext_resource type="Theme" uid="uid://df1nf1e140opq" path="res://tres/new_theme.tres" id="2_17rd2"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_e4g4o")
@@ -12,3 +13,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -408.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_17rd2")

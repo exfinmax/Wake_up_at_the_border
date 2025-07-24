@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d77a2tteqgxt"
+path="res://.godot/imported/Soaring In Ambition.mp3-236c222350da064354c5e3af82b82ffc.mp3str"
+
+[deps]
+
+source_file="res://assets/Mp3/Soaring In Ambition.mp3"
+dest_files=["res://.godot/imported/Soaring In Ambition.mp3-236c222350da064354c5e3af82b82ffc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b8d1p2nql8j7r"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="SkyLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="SkyLayer"]
+centered = false
+
+[node name="SunLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="SunLayer"]
+centered = false
+
+[node name="CloudsLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CloudsLayer"]
+centered = false
+
+[node name="TreesBackLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="TreesBackLayer"]
+centered = false
+
+[node name="TreesFrontLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="TreesFrontLayer"]
+centered = false
+
+[node name="GroundLayer" type="ParallaxLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="GroundLayer"]
+centered = false

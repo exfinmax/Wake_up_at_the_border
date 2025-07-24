@@ -13,18 +13,20 @@ var is_in_dia := false
 # 进入节点树时的初始化
 func _enter_tree() -> void:
 	# 连接交互区域的信号
+	GameEvents.dialog_end.connect(exit_dialog.bind())
 	interact_area.body_entered.connect(_on_interact_area_entered.bind())
 	interact_area.body_exited.connect(_on_interact_area_exited.bind())
 	# 播放初始动画
 	animation.play("idle")
 
 # 物理帧处理，处理输入和动画切换
-func _physics_process(delta: float) -> void:
-	_handle_movement_input(delta)
-	_update_animation()
-	# 如果y方向有速度，切换到空中状态
-	if player.velocity.y != 0:
-		transfrom_state(Player.State.AIR)
+func _process(delta: float) -> void:
+	if !is_in_dia:
+		_handle_movement_input(delta)
+		_update_animation()
+		# 如果y方向有速度，切换到空中状态
+		if player.velocity.y != 0:
+			transfrom_state(Player.State.AIR)
 
 # 处理玩家输入
 func _handle_movement_input(delta:float) -> void:
@@ -37,7 +39,7 @@ func _handle_movement_input(delta:float) -> void:
 	elif Input.is_action_just_pressed("interact") && no_npc:
 		transfrom_state(Player.State.ATTACK)
 	# 防御输入
-	elif Input.is_action_just_pressed("ui_down"):
+	elif Input.is_action_just_pressed("ui_down") && player.current_energy > 1 && player.can_defend:
 		transfrom_state(Player.State.DEFEND)
 
 # 根据速度切换动画
@@ -54,8 +56,7 @@ func _on_interact_area_entered(body: Node2D) -> void:
 	if body.is_in_group("NPC") || body.is_in_group("Item"):
 		target = body
 		no_npc = false
-	elif body.is_in_group("Enemy"):
-		target = body
+
 
 # 离开交互区域
 func _on_interact_area_exited(body: Node2D) -> void:
@@ -72,8 +73,9 @@ func _input(event: InputEvent) -> void:
 			if target:
 				# 与NPC对话
 				if target.is_in_group("NPC"):
-					target.start_dialogue()
 					is_in_dia = true
+					animation.play("idle")
+					target.start_dialogue()
 					quest_conponent.check_quest_objectives(target.npc_id, "talk_to")
 				# 拾取物品
 				if target.is_in_group("Item"):
@@ -99,3 +101,6 @@ func set_friction(delta:float) -> void:
 	# 速度很小时直接归零，防止滑动
 	if absf(player.velocity.x) < 2.0:
 		player.velocity.x = 0.0
+
+func exit_dialog() -> void:
+	is_in_dia = false

@@ -64,6 +64,7 @@ func show_dialog(speaker, text: String, options: Dictionary):
 			button.pressed.connect(_on_option_selected.bind(button))
 			button.visible = true if can_show_button else false
 			dia_options.add_child(button)
+	
 	else:
 		while true:
 			if Input.is_action_just_pressed("interact"):
@@ -77,12 +78,14 @@ func show_dialog(speaker, text: String, options: Dictionary):
 			_on_option_selected("next")
 		await get_tree().process_frame
 
+
 func _on_option_selected(option):
 	get_parent().handle_dialog_choice(option)
 
 
 func hide_dialog():
 	panel.visible = false
+	GameEvents.dialog_end.emit()
 
 
 func _on_close_button_pressed() -> void:

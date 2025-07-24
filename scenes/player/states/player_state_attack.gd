@@ -14,7 +14,7 @@ var is_animation_finished := false
 func _enter_tree() -> void:
 	_start_attack()
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	player.velocity.x = lerpf(player.velocity.x, 0, player.friction * delta)
 	change_animation_finished()
 	

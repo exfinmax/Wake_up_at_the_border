@@ -5,6 +5,20 @@
 				"branch_id": "npc_1_1",
 				"dialogs": [
 					{
+						"state": "dia_1",
+						"text": "现在是中文对话测试1",
+						"options": {
+							"next": "dia_2",
+						}
+					},
+					{
+						"state": "dia_2",
+						"text": "现在是中文对话测试2,勇者，看到前方的怪物了吗，就决定是你了，给老子上。",
+						"options": {
+							"next": "start",
+						}
+					},
+					{
 						"state": "start",
 						"text": "Hello, adventurer! What do you need?",
 						"options": {
@@ -92,12 +106,26 @@
 				"branch_id": "npc_default",
 				"dialogs": [
 					{
-						"state": "start",
-						"text": "Hey adventurer! Thanks again for helping me.",
+						"state": "dia_1",
+						"text": "现在是中文对话测试1",
 						"options": {
-							"Receive Quests": "give_quests",
-							"Say Goodbye": "exit",
-							"Bad Time": "bad_time"
+							"next": "dia_2",
+						}
+					},
+					{
+						"state": "dia_2",
+						"text": "现在是中文对话测试2,勇者，看到前方的怪物了吗，就决定是你了，给老子上。",
+						"options": {
+							"next": "start",
+						}
+					},
+					{
+						"state": "start",
+						"text": "现在是中文对话测试3",
+						"options": {
+							"中文选项": "give_quests",
+							"Say 中文选项": "exit",
+							"中文选项 Time": "bad_time"
 						}
 					},
 					{

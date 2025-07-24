@@ -14,6 +14,7 @@ func show_dialog(cur_npc, _text = "", _options = {}):
 	check_and_advance_branch()
 	var quest_dialog = cur_npc.get_quest_dialog()
 	if quest_dialog["text"] != "":
+		print("123")
 		dialogue_ui.show_dialog(cur_npc.npc_name, quest_dialog["text"], quest_dialog["options"])
 	
 	else:
@@ -23,6 +24,7 @@ func show_dialog(cur_npc, _text = "", _options = {}):
 	
 func hide_dialog():
 	dialogue_ui.hide_dialog()
+	
 	
 
 func handle_dialog_choice(option):
@@ -52,6 +54,7 @@ func handle_dialog_choice(option):
 	
 	elif next_state.begins_with("dia"):
 		dialogue_ui.can_show_button = false
+		show_dialog(npc)
 	
 	else:
 		show_dialog(npc)
@@ -85,5 +88,5 @@ func check_and_advance_branch():
 
 func advance_to_next_branch():
 	npc.set_dialog_branch(npc.current_branch_index + 1)
-	npc.set_dialog_state("start")
+	npc.set_dialog_state("dia_1")
 	show_dialog(npc)

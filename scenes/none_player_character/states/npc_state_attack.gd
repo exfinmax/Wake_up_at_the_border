@@ -9,7 +9,7 @@ extends NpcState
 # 攻击目标节点
 var target : Node2D
 # 攻击动画索引
-var index : int = 1
+var max_index : int 
 var is_attack: bool = false
 
 
@@ -23,15 +23,14 @@ var attack_combo: int = 1  # 连击计数
 func _enter_tree() -> void:
 	# 获取攻击目标并初始化状态
 	target = npc_data.target
-	if target == null:
-		_switch_to_move()
-		return
+	max_index = attack_conpoment.max_atk_index
+
 		
 
 
 
 # 物理过程更新
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if not target:
 		_switch_to_move()
 		return
@@ -46,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		_perform_attack()
 
 # 追逐目标
-func _chase_target(delta: float) -> void:
+func _chase_target(_delta: float) -> void:
 	var direction = (target.global_position - npc.global_position).normalized()
 	npc.velocity.x = direction.x * npc.run_speed
 	
@@ -64,7 +63,7 @@ func _perform_attack() -> void:
 	if attack_timer <= 0 and can_attack:
 		# 开始攻击动画
 		is_attack = true
-		animation.play("attack_" + str(attack_combo))
+		animation.play("attack_" + str(randi_range(1, max_index)))
 		attack_timer = npc.attack_colddown
 		can_attack = false
 		
