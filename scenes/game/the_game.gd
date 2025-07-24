@@ -44,18 +44,21 @@ func switch_screen(screen: ScreenType,data:ScreenData = ScreenData.new()) -> voi
 	current_screen = screen_factory.get_fresh_state(screen)
 	current_screen.set_up(self, data)
 	current_screen.state_transition_requested.connect(switch_screen.bind())
-	rand_shader_fade()
-	call_deferred("add_child", current_screen)
+	rand_shader_fade(current_screen)
+	
+	
 
-func rand_shader_fade(number: int = -1) -> void:
+func rand_shader_fade(cur_screen: Screen , number: int = -1) -> void:
 	animation_player.play("ShaderFade")
 	await animation_player.animation_finished
 	if number < 0:
-		number = randi_range(0,7)
+		number = randi_range(0,8)
 	if number == 8:
 		color_rect.set_instance_shader_parameter("fade", true)
 	else:
 		color_rect.material.set_shader_parameter("dissolve_texture", _png_cache.get(str(number)))
+	call_deferred("add_child", cur_screen)
 	animation_player.play_backwards("ShaderFade")
 	await animation_player.animation_finished
 	color_rect.set_instance_shader_parameter("fade", false)
+	

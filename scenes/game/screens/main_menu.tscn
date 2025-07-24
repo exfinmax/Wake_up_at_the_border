@@ -1,7 +1,169 @@
-[gd_scene load_steps=3 format=3 uid="uid://g7rufqr6nph4"]
+[gd_scene load_steps=15 format=3 uid="uid://g7rufqr6nph4"]
 
 [ext_resource type="Script" uid="uid://8k8gmi4twr86" path="res://scenes/game/screens/main_menu.gd" id="1_e4g4o"]
 [ext_resource type="Theme" uid="uid://df1nf1e140opq" path="res://tres/new_theme.tres" id="2_17rd2"]
+[ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="2_dmeic"]
+[ext_resource type="Texture2D" uid="uid://du3xlbhpfjjul" path="res://shader_patterns/1.png" id="4_p4kif"]
+[ext_resource type="Texture2D" uid="uid://bnhjo0i12hme6" path="res://shader_patterns/2.png" id="4_vqkmt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8rpg"]
+shader = ExtResource("2_dmeic")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mxfbi"]
+texture = ExtResource("4_p4kif")
+modulate_color = Color(1, 0.494118, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4kif"]
+texture = ExtResource("4_p4kif")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q006i"]
+texture = ExtResource("4_p4kif")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vqkmt"]
+texture = ExtResource("4_p4kif")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h8rpg"]
+texture = ExtResource("4_vqkmt")
+modulate_color = Color(1, 0.494118, 1, 1)
+
+[sub_resource type="Animation" id="Animation_vqkmt"]
+resource_name = "enter"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/V:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2049, 502), Vector2(1361, 502)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/V/Start:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/V/Load:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/V/Set:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/V/Exit:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p4kif"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/V:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2049, 502)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/V/Start:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/V/Load:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/V/Set:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/V/Exit:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxfbi"]
+_data = {
+&"RESET": SubResource("Animation_p4kif"),
+&"enter": SubResource("Animation_vqkmt")
+}
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_e4g4o")
@@ -14,15 +176,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="Control"]
+material = SubResource("ShaderMaterial_h8rpg")
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -288.0
-offset_top = -408.0
+offset_left = 129.0
+offset_top = -578.0
+offset_right = 579.0
+offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("2_17rd2")
+
+[node name="Start" type="Button" parent="Control/V"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_mxfbi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_p4kif")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q006i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vqkmt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8rpg")
+text = "入梦边界"
+
+[node name="Load" type="Button" parent="Control/V"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_mxfbi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_p4kif")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q006i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vqkmt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8rpg")
+text = "梦回边界"
+
+[node name="Set" type="Button" parent="Control/V"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_mxfbi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_p4kif")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q006i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vqkmt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8rpg")
+text = "控梦操练"
+
+[node name="Exit" type="Button" parent="Control/V"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 6
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_mxfbi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_p4kif")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q006i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vqkmt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8rpg")
+text = "梦醒入现"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mxfbi")
+}
+autoplay = "enter"

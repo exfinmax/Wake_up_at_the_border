@@ -26,6 +26,12 @@ buses/default_bus_layout="res://tres/default_bus_layout.tres"
 
 GameEvents="*res://utils/game_events.gd"
 Global="*res://utils/global.gd"
+GlobalSave="*res://utils/global_save.gd"
+MusicPlayer="*res://utils/music_player.tscn"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 

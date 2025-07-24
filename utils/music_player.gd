@@ -1,30 +1,45 @@
-extends AudioStreamPlayer
+extends Node
 
-enum Music {NONE, GAMEPLAY, MENU, STAGE_1, STAGE_2, STAGE_3, STAGE_4, STAGE_5}
+enum BUS{ MASTER , SFX , BGM }
 
-const MUSIC_MAP :Dictionary[Music, AudioStream] = {
-	Music.GAMEPLAY: null,
-	Music.MENU: null,
-	Music.STAGE_1: null,
-	Music.STAGE_2: null,
-	Music.STAGE_3: null,
-	Music.STAGE_4: null,
-	Music.STAGE_5: null,
-}
+@onready var sfx: Node = $SFX
+@onready var bgm_player: AudioStreamPlayer = $BGMPlayer
 
-var current_music := Music.NONE
+func play_sfx(name: String) -> void:
+	var player := sfx.get_node(name) as AudioStreamPlayer
+	if not player:
+		return
+	player.play()
 
 
-func _ready() -> void:
-	GameEvents.set_change.connect(on_set_change.bind())
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	bus = "Music"
+func play_bgm(stream: AudioStream) -> void:
+	if bgm_player.stream == stream and bgm_player.playing:
+		return
+	bgm_player.stream = stream
+	bgm_player.play()
+
+func setup_ui_sounds(node: Node) -> void:
+	var button := node as Button
+	if button:
+		button.pressed.connect(play_sfx.bind("UIPress"))
+		button.focus_entered.connect(play_sfx.bind("UIFocus"))
+		button.mouse_entered.connect(button.grab_focus)
 	
-func play_music(music: Music) -> void:
-	if music != current_music && MUSIC_MAP.has(music):
-		stream = MUSIC_MAP.get(music)
-		current_music = music
-		play()
+	var slider := node as Slider
+	if slider:
+		slider.value_changed.connect(play_sfx.bind("UIPress").unbind(1))
+		slider.focus_entered.connect(play_bgm.bind("UIFocus"))
+		slider.mouse_entered.connect(slider.grab_focus)
 		
-func on_set_change() -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),linear_to_db(GameEvents.setting_varrent[0] / 10.0)) 
+	for child in node.get_children():
+		setup_ui_sounds(child)
+
+
+func get_volume(bus_index: int) -> float:
+	var db := AudioServer.get_bus_volume_db(bus_index)
+	return db_to_linear(db)
+	
+	
+func set_volume(bus_index: int, v: float) -> void:
+	var db := linear_to_db(v)
+	AudioServer.set_bus_volume_db(bus_index,db)

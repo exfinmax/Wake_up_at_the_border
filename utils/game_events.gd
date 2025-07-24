@@ -14,4 +14,7 @@ signal dialog_end
 signal stage_changed(stage_name: String)  # 场景切换完成时触发
 signal stage_changing(stage_name: String) # 场景开始切换时触发
 signal stage_ready(stage_name: String)    # 新场景准备完成时触发
-signal stage_end()
+signal stage_end
+
+#设置相关信号
+signal set_change

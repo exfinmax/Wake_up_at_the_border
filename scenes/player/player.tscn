@@ -595,7 +595,7 @@ scale_min = 2.0
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_fm80t")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fcs02"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je7p5"]
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.0
@@ -1359,7 +1359,7 @@ skew = -0.961676
 emitting = false
 amount = 3
 texture = ExtResource("10_h17s1")
-process_material = SubResource("ParticleProcessMaterial_fcs02")
+process_material = SubResource("ParticleProcessMaterial_je7p5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

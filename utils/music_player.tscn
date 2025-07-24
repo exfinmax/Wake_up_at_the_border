@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlfutiqi1u8pl"]
+
+[ext_resource type="AudioStream" uid="uid://cf2qt3dw2roap" path="res://assets/SFX/07_human_atk_sword_1.wav" id="1_aidxo"]
+[ext_resource type="Script" uid="uid://bjy533fgy8gux" path="res://utils/music_player.gd" id="1_gifcd"]
+[ext_resource type="AudioStream" uid="uid://h2pwwhiivps2" path="res://assets/SFX/12_human_jump_1.wav" id="2_ra531"]
+[ext_resource type="AudioStream" uid="uid://da0ex0bfay7nn" path="res://assets/SFX/11_human_damage_2.wav" id="3_i1gqi"]
+[ext_resource type="AudioStream" uid="uid://uf6pej7y8lxt" path="res://assets/Audio/impactGlass_heavy_000.ogg" id="5_3qp3d"]
+[ext_resource type="AudioStream" uid="uid://gw0et8ywlepp" path="res://assets/Audio/impactTin_medium_000.ogg" id="6_joexm"]
+[ext_resource type="AudioStream" uid="uid://baiv25v3xh6o4" path="res://assets/Audio/footstep_grass_002.ogg" id="7_lhmdk"]
+[ext_resource type="AudioStream" uid="uid://c45gkqd5qywx0" path="res://assets/SFX/14_human_death_spin.wav" id="8_ohvg2"]
+
+[node name="MusicPlayer" type="Node"]
+process_mode = 1
+script = ExtResource("1_gifcd")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Attack" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("1_aidxo")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_ra531")
+bus = &"SFX"
+
+[node name="Damaged" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_i1gqi")
+bus = &"SFX"
+
+[node name="UIPress" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_3qp3d")
+bus = &"SFX"
+
+[node name="UIFocus" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_joexm")
+bus = &"SFX"
+
+[node name="Walk" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_lhmdk")
+bus = &"SFX"
+
+[node name="Die" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_ohvg2")
+bus = &"SFX"
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"BGM"

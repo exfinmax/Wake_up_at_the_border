@@ -14,7 +14,7 @@ func _init() -> void:
 	type = {
 		TheGame.ScreenType.MAIN_MENU: preload("res://scenes/game/screens/main_menu.tscn"), 
 		TheGame.ScreenType.IN_GAME: preload("res://scenes/game/screens/WorldScreen.tscn"),
-		TheGame.ScreenType.SETTING: preload("res://scenes/game/screens/main_menu.tscn"),
+		TheGame.ScreenType.SETTING: preload("res://scenes/game/screens/setting_screen.tscn"),
 		TheGame.ScreenType.THE_END: preload("res://scenes/game/screens/TheEnd.tscn"),
 	}
 

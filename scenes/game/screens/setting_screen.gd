@@ -1,12 +1,18 @@
 extends Screen
+class_name Setting
 
+@onready var button: Button = $MarginContainer/VBoxContainer/Button
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	button.pressed.connect(on_button_pressed.bind())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("set"):
+func on_button_pressed() -> void:
+	if screen_data.latest_screen == "MainMenu":
+		transition_state(TheGame.ScreenType.MAIN_MENU)
+	else:
 		transition_state(TheGame.ScreenType.IN_GAME)
+	
+
+
+	

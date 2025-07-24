@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://clgis77b5672s"]
+[gd_scene load_steps=10 format=3 uid="uid://clgis77b5672s"]
 
 [ext_resource type="Script" uid="uid://btkvdebs4xs71" path="res://scenes/stages/stage_2.gd" id="1_vhmg7"]
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/stages/parallax_background.tscn" id="2_x3wqt"]
-[ext_resource type="Texture2D" uid="uid://dpmaqyeuenmrc" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/1.png" id="3_llf8k"]
-[ext_resource type="Texture2D" uid="uid://bhlf8wdn5mlv3" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/2.png" id="4_roo8f"]
-[ext_resource type="Texture2D" uid="uid://b2j5xwlf462bc" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/3.png" id="5_wvjco"]
-[ext_resource type="Texture2D" uid="uid://n2k2bneny4sy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/4.png" id="6_8rshe"]
-[ext_resource type="Texture2D" uid="uid://d1a3imn4cx5fo" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/5.png" id="7_jj6c3"]
-[ext_resource type="Texture2D" uid="uid://d3iqw0tt17ojq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/Free-futuristic-city-pixel-art-backgrounds/city 4/6.png" id="8_awxa6"]
+[ext_resource type="Texture2D" uid="uid://67nvekdofelw" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-city-backgrounds-pixel-art/city 1/1.png" id="3_rkiwu"]
+[ext_resource type="Texture2D" uid="uid://cdfho61mf6hj" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-city-backgrounds-pixel-art/city 1/2.png" id="4_a8f7p"]
+[ext_resource type="Texture2D" uid="uid://crsvadmvel0qf" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-city-backgrounds-pixel-art/city 1/3.png" id="5_roo8f"]
+[ext_resource type="Texture2D" uid="uid://rfls7134ekft" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-city-backgrounds-pixel-art/city 1/4.png" id="6_wvjco"]
+[ext_resource type="Texture2D" uid="uid://btwptclqjgu2x" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-city-backgrounds-pixel-art/city 1/5.png" id="7_8rshe"]
 [ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="12_wvjco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rshe"]
@@ -20,45 +19,42 @@ script = ExtResource("1_vhmg7")
 
 [node name="SkyLayer" parent="ParallaxBackground" index="0"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
-texture = ExtResource("3_llf8k")
+texture = ExtResource("3_rkiwu")
 
 [node name="SunLayer" parent="ParallaxBackground" index="1"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
-texture = ExtResource("4_roo8f")
+texture = ExtResource("4_a8f7p")
 
 [node name="CloudsLayer" parent="ParallaxBackground" index="2"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
-texture = ExtResource("5_wvjco")
+texture = ExtResource("5_roo8f")
 
 [node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
-texture = ExtResource("6_8rshe")
+texture = ExtResource("6_wvjco")
 
 [node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesFrontLayer" index="0"]
-texture = ExtResource("7_jj6c3")
+texture = ExtResource("7_8rshe")
 
 [node name="GroundLayer" parent="ParallaxBackground" index="5"]
 scale = Vector2(3.33969, 3.34325)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
-texture = ExtResource("8_awxa6")
+motion_mirroring = Vector2(576, 0)
 
 [node name="DreamPlatforms" type="Node2D" parent="."]
 

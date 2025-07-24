@@ -71,10 +71,10 @@ func next_stage() -> void:
 		return
 		
 	var current_number = int(Global.current_stage.trim_prefix(STAGE_PREFIX))
-	var next_stage = STAGE_PREFIX + str(current_number + 1)
+	var _next_stage = STAGE_PREFIX + str(current_number + 1)
 	
-	if _stage_cache.has(next_stage):
-		change_stage(next_stage)
+	if _stage_cache.has(_next_stage):
+		change_stage(_next_stage)
 	else:
 		push_warning("No next stage available after: " + Global.current_stage)
 
