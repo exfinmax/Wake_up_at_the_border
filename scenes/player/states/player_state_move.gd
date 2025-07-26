@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		_handle_movement_input(delta)
 		_update_animation()
 		# 如果y方向有速度，切换到空中状态
-		if player.velocity.y != 0:
+		if !player.is_on_floor():
 			transfrom_state(Player.State.AIR)
 
 # 处理玩家输入

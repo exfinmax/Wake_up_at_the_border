@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseStage
 
 @export var is_dream_state: bool = true
 @onready var dream_platforms = $DreamPlatforms

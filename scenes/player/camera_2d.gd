@@ -1,11 +1,25 @@
 extends Camera2D
 
+const DURATION_SHAKE := 120
+const SHAKE_INSTANCE := 5
 
-# Called when the node enters the scene tree for the first time.
+var shake_strength: float
+var time_start_shake: float
+var is_shaking = true
+
 func _ready() -> void:
-	pass # Replace with function body.
+	shake_strength = Global.current_setting.get("Strength")
+	
+
+func _process(_delta: float) -> void:
+	if is_shaking:
+		offset = Vector2(randf_range(-SHAKE_INSTANCE * shake_strength,SHAKE_INSTANCE * shake_strength), randf_range(-SHAKE_INSTANCE * shake_strength,SHAKE_INSTANCE * shake_strength))
+		if Time.get_ticks_msec() - time_start_shake > DURATION_SHAKE:
+				is_shaking = false
+				offset = Vector2.ZERO
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func shake() -> void:
+	time_start_shake = Time.get_ticks_msec()
+	is_shaking = true
+	

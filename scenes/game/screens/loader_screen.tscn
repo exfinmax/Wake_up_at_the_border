@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7ag3vyd33hvg"]
+
+[ext_resource type="Script" uid="uid://dipctda1y8qu5" path="res://scenes/game/screens/loader_screen.gd" id="1_eqrsf"]
+[ext_resource type="Shader" uid="uid://bc8jrdnrf835l" path="res://Dissolve2d.gdshader" id="2_v2ufa"]
+[ext_resource type="Animation" uid="uid://dxr1r78uxitcq" path="res://tres/ShaderFade.tres" id="3_imcl8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22x0k"]
+shader = ExtResource("2_v2ufa")
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/inverted = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcx82"]
+_data = {
+&"ShaderFade": ExtResource("3_imcl8")
+}
+
+[node name="LoaderScreen" type="Node"]
+script = ExtResource("1_eqrsf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_22x0k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fcx82")
+}
+autoplay = "ShaderFade"

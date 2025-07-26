@@ -6,7 +6,7 @@ extends CharacterBody2D
 # 重力常量
 const GRAVITY :float = 980
 # 受伤后无敌持续时间（毫秒）
-const DURATION_BETWEEN_HURT := 1000
+const DURATION_BETWEEN_HURT := 2000
 
 # 玩家状态枚举
 enum State {
@@ -15,7 +15,8 @@ enum State {
 	AIR,
 	DEFEND,
 	HURT,
-	
+	AIR_KICK,
+	AIR_ATK,
 }
 
 # 属性导出，方便在编辑器中调整
@@ -26,6 +27,7 @@ enum State {
 @export var can_defend: bool
 @export var can_double_jump:bool
 @export var can_fly_kick:bool
+@export var can_air_atk:bool
 @export_category("Move")
 @export var acceleration: float
 @export var friction: float
@@ -47,7 +49,7 @@ var can_be_hurt : bool = true
 var can_recover_energy:bool = true
 # 是否处于防御状态
 var is_defend:bool = false
-
+var apply_gravity: bool = true
 
 # 上次受伤时间戳
 var time_since_last_hurt:= Time.get_ticks_msec()
@@ -75,7 +77,6 @@ func _ready() -> void:
 
 # 物理帧处理，处理能量恢复、摩擦、受伤判定、移动
 func _process(delta: float) -> void:
-
 	set_heading()
 	recover_energy(delta)
 	set_firction(delta)
@@ -95,8 +96,12 @@ func switch_state(state:State, data:PlayerData = PlayerData.new()) -> void:
 # 受伤处理，减少血量，记录时间，触发闪烁
 func get_hurt(current_atk:float, sourcer: Node2D) -> void:
 	var direction: Vector2i = sign(global_position - sourcer.global_position)
-	if is_defend && heading == -direction.x:
-		switch_state(State.HURT, PlayerData.build().add_body(sourcer).add_number(current_atk))
+	if is_defend && heading == -direction.x && current_energy >= 1.5:
+		current_energy -= 1.5
+		velocity.x = 100 * direction.x
+		sourcer.knock_back *= 2
+		sourcer.get_hurt(min(current_atk / 2, 20),self)
+		sourcer.knock_back /= 2
 	elif can_be_hurt:
 		can_be_hurt = false
 		health_component.change_hp(-current_atk)
@@ -141,7 +146,7 @@ func recover_energy(delta: float) -> void:
 
 # 摩擦力设置（可根据需要完善）
 func set_firction(delta:float) -> void:
-	if !is_on_floor():
+	if !is_on_floor() && apply_gravity:
 		velocity.y = velocity.y + GRAVITY * delta
 
 func _initialize_bar() -> void:
@@ -154,3 +159,46 @@ func _initialize_bar() -> void:
 func updata_bar() -> void:
 	health_progress_bar.value = health_component.current_hp
 	energy_progress_bar.value = current_energy
+
+func reload_skill() -> void:
+	can_defend = Global.player_skill[0]
+	can_double_jump = Global.player_skill[1]
+	can_air_atk = Global.player_skill[2]
+	can_fly_kick = Global.player_skill[3]
+	health_component.can_recover_hp = Global.player_skill[4]
+
+func on_save_game(save_data:Array[SavedData]):
+	var my_data :PlayerResource = PlayerResource.new()
+	
+	my_data.position = global_position
+	my_data.current_atk = attack_component.atk
+	my_data.current_energy = current_energy
+	my_data.energy_recover_speed = energy_recover_speed
+	my_data.max_energy = max_energy
+	my_data.max_hp = health_component.max_hp
+	my_data.player_skill = Global.player_skill
+	my_data.current_hp = health_component.current_hp
+	my_data.scene_path = scene_file_path
+	my_data.quests = quest_manager.quests
+	
+	save_data.append(my_data)
+
+func on_before_load_game():
+	get_parent().remove_child(self)
+	queue_free()
+
+func on_load_game(save_data:SavedData):
+	var saved_data:PlayerResource = save_data
+	
+	global_position = saved_data.position
+	attack_component.atk = saved_data.current_atk
+	current_energy = saved_data.current_energy
+	energy_recover_speed = saved_data.energy_recover_speed
+	max_energy = saved_data.max_energy
+	health_component.max_hp = saved_data.max_hp
+	Global.player_skill = saved_data.player_skill
+	health_component.current_hp = saved_data.current_hp
+	for quest in saved_data.quests.values():
+		quest_manager.add_quest(quest)
+	
+	reload_skill()

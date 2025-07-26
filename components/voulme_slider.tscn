@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ibknuo8wtsfi"]
+
+[ext_resource type="Theme" uid="uid://df1nf1e140opq" path="res://tres/new_theme.tres" id="1_8rxu8"]
+[ext_resource type="Script" uid="uid://b8ke0n06ntst" path="res://components/voulme_slider.gd" id="2_la1ir"]
+
+[node name="VoulmeSlider" type="HSlider"]
+offset_top = -2.0
+offset_right = 375.0
+offset_bottom = 14.0
+scale = Vector2(5, 5)
+theme = ExtResource("1_8rxu8")
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("2_la1ir")

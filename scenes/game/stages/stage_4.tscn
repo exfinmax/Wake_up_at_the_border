@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dnc8y5e12t413"]
 
-[ext_resource type="Script" uid="uid://0s5x1052hdb4" path="res://scenes/stages/stage_4.gd" id="1_1ak51"]
-[ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/stages/parallax_background.tscn" id="1_bg"]
+[ext_resource type="Script" uid="uid://0s5x1052hdb4" path="res://scenes/game/stages/stage_4.gd" id="1_1ak51"]
+[ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="1_bg"]
 [ext_resource type="Texture2D" uid="uid://dkwqpdimoe7ym" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/SkyLayer6.png" id="2_bg1"]
 [ext_resource type="Texture2D" uid="uid://c4lwsbjode60s" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/SunLayer5.png" id="3_bg2"]
 [ext_resource type="Texture2D" uid="uid://22jogvvbj6im" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/CloudsLayerLayer4.png" id="4_bg3"]
@@ -85,7 +85,7 @@ anchors_preset = 0
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(9, 3313)
+position = Vector2(-224, -294)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(1984, 1080)

@@ -8,7 +8,6 @@ extends NpcState
 
 # 定义受伤时的击退速度
 # 受伤时NPC会被击退，这个变量决定了击退的速度和方向
-const KNOCKBACK_VELOCITY :float = 300
 
 var direction: Vector2i
 # 进入受伤状态时调用
@@ -18,7 +17,7 @@ func _enter_tree() -> void:
 	
 	
 	direction = sign(npc.global_position - npc_data.target.global_position)
-	npc.velocity = Vector2(KNOCKBACK_VELOCITY * direction.x, -100)
+	npc.velocity = Vector2(npc.knock_back * direction.x, -100)
 	npc.body.scale.x = npc.current_scale * direction.x
 	if npc.health.is_hp_zero():
 		animation.play("death")

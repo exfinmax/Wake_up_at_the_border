@@ -50,12 +50,22 @@ func check_quest_objectives(target_id: String, target_type: String, quantity: in
 func handle_quest_completed(quest: Quest):
 	for reward in quest.rewards:
 		if reward.reward_type == "energy":
-			Global.player.max_energy += 10
+			Global.player.max_energy += reward.reward_amount
 			Global.player.energy_progress_bar.max_value = Global.player.max_energy
-		if reward.reward_type == "unlock_hp":
+		elif reward.reward_type == "energy_speed":
+			Global.player.energy_recover_speed += reward.reward_amount
+		elif reward.reward_type == "hp":
+			Global.player.max_hp += reward.reward_amount
+		elif reward.reward_type == "atk":
+			Global.player.attack_component.atk += reward.reward_amount
+		elif reward.reward_type == "skill":
+			Global.player_skill[reward.reward_amount] = true
+			Global.player.reload_skill()
+		elif reward.reward_type == "unlock_hp":
 			Global.player.health_component.can_recover_hp = true
 	update_quest_tracker(quest)
 	quest_manager.update_quest(quest.quest_id, "completed")
+	GameEvents.quest_complete.emit()
 
 
 
@@ -80,7 +90,7 @@ func update_quest_tracker(quest: Quest):
 				label.add_theme_color_override("font_color", Color(1, 0, 0))
 			
 			objectives.add_child(label)
-	
+		GameEvents.get_quest.emit()
 	else:
 		quest_tracker.visible = false
 

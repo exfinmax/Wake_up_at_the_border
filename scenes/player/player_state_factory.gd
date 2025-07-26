@@ -11,6 +11,8 @@ func _init() -> void:
 		Player.State.AIR : PlayerStateAir,
 		Player.State.DEFEND : PlayerStateDefend,
 		Player.State.HURT : PlayerStateHurt,
+		Player.State.AIR_KICK : PlayerStateAirKick,
+		Player.State.AIR_ATK : PlayerStateAirAtk
 	}
 
 # 切换状态，返回新状态实例

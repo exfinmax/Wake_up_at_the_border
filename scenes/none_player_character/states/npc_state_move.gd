@@ -12,6 +12,7 @@ var rand_change: bool = false
 func _enter_tree() -> void:
 	# 玩家进入检测区域时触发
 	player_detect_area.body_entered.connect(on_detect_player.bind())
+	set_rand_change()
 
 func _physics_process(delta: float) -> void:
 	# 物理过程，负责更新NPC的位置和状态
@@ -24,15 +25,18 @@ func _physics_process(delta: float) -> void:
 func ray_cast_detect() -> void:
 	# 射线检测，用于判断NPC是否在地面上
 	# 如果射线未碰撞到地面，或者需要随机改变方向
-	if not floor_ray_cast.is_colliding() || rand_change:
-		# 改变NPC的朝向
-		npc.heading = -npc.heading
+	
+	if (not floor_ray_cast.is_colliding()) || rand_change || wall_ray_cast.is_colliding():
 		# 停止NPC的水平速度
 		npc.velocity.x = 0
+	
+		# 改变NPC的朝向
+		npc.heading = -npc.heading
 		# 重置随机改变方向的标志
 		rand_change = false
 		# 等待一段时间后再次尝试随机改变方向
-		await get_tree().create_timer(randf_range(0.5,1)).timeout
+		
+
 
 func on_detect_player(player: Player) -> void:
 	# 当检测到玩家时触发
@@ -46,9 +50,9 @@ func set_rand_change() -> void:
 		# 生成一个0到1之间的随机数
 		var random_value = randf_range(0,1)
 		# 如果随机数大于0.8，则设置为true，否则为false
-		rand_change = true if random_value > 0.8 else false
+		rand_change = true if random_value > 0.9 else false
 		# 等待一段时间后再次尝试设置随机改变方向
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(5).timeout
 		# 递归调用自身，实现循环
 		set_rand_change()
 		

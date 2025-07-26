@@ -1,0 +1,208 @@
+[gd_scene load_steps=27 format=4 uid="uid://bjw1pph41n6q4"]
+
+[ext_resource type="Script" uid="uid://ca3l8l30y2awb" path="res://scenes/game/stages/stage_1.gd" id="1_17055"]
+[ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="2_6fxdo"]
+[ext_resource type="Texture2D" uid="uid://botl0scte8k16" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/1.png" id="3_hfx6a"]
+[ext_resource type="Texture2D" uid="uid://cj8bkfe1vrd6a" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/2.png" id="4_qqjix"]
+[ext_resource type="Texture2D" uid="uid://cmy6lald3feqk" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/3.png" id="5_6w053"]
+[ext_resource type="Texture2D" uid="uid://cugmrupslietm" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/4.png" id="6_m08fs"]
+[ext_resource type="Texture2D" uid="uid://c2x8d653dr1qh" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/5.png" id="7_xgxe4"]
+[ext_resource type="TileSet" uid="uid://b8dgg6mhle5ab" path="res://scenes/game/tilemaps/tile_map_layer1.tres" id="8_monkk"]
+[ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="8_mr2jy"]
+[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="12_17055"]
+[ext_resource type="Texture2D" uid="uid://dgl6j8y2x46f2" path="res://assets/sprites/knight.png" id="13_6fxdo"]
+[ext_resource type="PackedScene" uid="uid://dat7kkan4quhg" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.tscn" id="13_gvpeh"]
+[ext_resource type="PackedScene" uid="uid://cqxaqfgmhyp4v" path="res://scenes/none_player_character/enemy/Slime/slime.tscn" id="14_6fxdo"]
+[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="14_qqjix"]
+[ext_resource type="Script" uid="uid://d3d2ro25cssre" path="res://Resource/quest/objectives.gd" id="15_6w053"]
+[ext_resource type="Script" uid="uid://dhj536scdleo3" path="res://Resource/quest/rewards.gd" id="16_m08fs"]
+[ext_resource type="PackedScene" uid="uid://cd65tdqhbvta6" path="res://scenes/quest/QUESTITEM.tscn" id="17_m08fs"]
+[ext_resource type="Texture2D" uid="uid://l821w7nyamao" path="res://assets/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png" id="18_xgxe4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfx6a"]
+atlas = ExtResource("13_6fxdo")
+region = Rect2(9, 9, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgxe4"]
+atlas = ExtResource("13_6fxdo")
+region = Rect2(9, 9, 13, 19)
+
+[sub_resource type="Resource" id="Resource_qqjix"]
+script = ExtResource("15_6w053")
+id = "ob1"
+description = "寻找宝剑"
+target_id = ""
+target_type = "collect"
+objective_dialog = ""
+required_quantity = 1
+collected_quantity = 0
+is_completed = false
+metadata/_custom_type_script = "uid://d3d2ro25cssre"
+
+[sub_resource type="Resource" id="Resource_6w053"]
+script = ExtResource("15_6w053")
+id = "ob2"
+description = "找到后还给小骑士"
+target_id = "npc_2"
+target_type = "talk_to"
+objective_dialog = ""
+required_quantity = 0
+collected_quantity = 0
+is_completed = false
+metadata/_custom_type_script = "uid://d3d2ro25cssre"
+
+[sub_resource type="Resource" id="Resource_mr2jy"]
+script = ExtResource("16_m08fs")
+reward_type = "energy"
+reward_amount = 5
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_spwpj"]
+script = ExtResource("16_m08fs")
+reward_type = "skill"
+reward_amount = 0
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_7c6p0"]
+script = ExtResource("14_qqjix")
+quest_id = "npc_1_1"
+quest_name = "小骑士的请求"
+quest_description = "请帮助小骑士找回遗失的宝剑"
+state = "not_started"
+unlock_id = "npc_1_1"
+objectives = Array[ExtResource("15_6w053")]([SubResource("Resource_qqjix"), SubResource("Resource_6w053")])
+rewards = Array[ExtResource("16_m08fs")]([SubResource("Resource_mr2jy"), SubResource("Resource_spwpj")])
+metadata/_custom_type_script = "uid://bfo61evwd64sn"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr2jy"]
+atlas = ExtResource("18_xgxe4")
+region = Rect2(217, 28, 14, 14)
+
+[node name="Stage_1" type="Node2D"]
+script = ExtResource("1_17055")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_6fxdo")]
+
+[node name="SkyLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.1, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("3_hfx6a")
+
+[node name="SunLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("4_qqjix")
+
+[node name="CloudsLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(0.3, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("5_6w053")
+
+[node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
+motion_scale = Vector2(0.6, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("6_m08fs")
+
+[node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
+motion_scale = Vector2(0.8, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/TreesFrontLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+texture = ExtResource("7_xgxe4")
+
+[node name="GroundLayer" parent="ParallaxBackground" index="5"]
+motion_scale = Vector2(1, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
+scale = Vector2(3.3333, 3.33331)
+
+[node name="Label_Move" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 600.0
+offset_right = 50.0
+offset_bottom = 600.0
+text = "按A/D键左右移动"
+
+[node name="Label_Jump" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 650.0
+offset_right = 50.0
+offset_bottom = 650.0
+text = "按空格跳跃"
+
+[node name="Label_Interact" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 700.0
+offset_right = 50.0
+offset_bottom = 700.0
+text = "靠近NPC按J键对话"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAABABMAAAABAAYAAAABABQAAAAAAAAAAAABABUAAAAAAAEAAAABABYAAAAAAAEAAAACABMAAAABAAEAAAACABQAAAAAAAAAAAACABUAAAAAAAEAAAACABYAAAABAAEAAAADABIAAAAAAAAAAAADABMAAAAAAAEAAAADABQAAAAAAAEAAAADABUAAAAAAAEAAAADABYAAAAAAAEAAAAEABIAAAAAAAAAAAAEABMAAAAAAAEAAAAEABQAAAAAAAEAAAAEABUAAAABAAAAAAAEABYAAAAAAAEAAAAFABQAAAAGAAAAAAAFABUAAAAGAAEAAAAFABYAAAAGAAEAAAAGAA4AAAAAAAAAAAAGAA8AAAAAAAEAAAAGABQAAAAHAAAAAAAGABUAAAAIAAAAAAAGABYAAAAGAAEAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAEAAAAHAA8AAAAAAAEAAAAHABQAAAAGAAAAAAAHABUAAAAGAAEAAAAHABYAAAAGAAEAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAEAAAAIAA8AAAAAAAEAAAAIABQAAAAJAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAEAAAAJABQAAAAKAAAAAAAKAAoAAAAAAAMAAAAKAAsAAAAAAAQAAAAKAAwAAAAAAAQAAAAKAA0AAAAAAAQAAAAKAA4AAAAAAAUAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAEAAAAKABQAAAALAAAAAAALAA8AAAAJAAAAAAALABMAAAAAAAgAAAALABQAAAAGAAAAAAALABUAAAAGAAEAAAALABYAAAAGAAEAAAAMAA8AAAALAAAAAAAMABQAAAAGAAAAAAAMABUAAAAGAAEAAAAMABYAAAAGAAEAAAANAA8AAAAAAAAAAAANABAAAAAAAAEAAAAOAA4AAAAAAAAAAAAOAA8AAAAAAAEAAAAOABAAAAAAAAEAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAEAAAAPABAAAAAAAAEAAAAPABQAAAAGAAAAAAAPABUAAAAGAAEAAAAPABYAAAAGAAEAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAEAAAAQABQAAAAGAAAAAAAQABUAAAAIAAEAAAAQABYAAAAGAAEAAAARABAAAAAEAAAAAAARABEAAAAEAAEAAAASAA8AAAAIAAYAAAASABAAAAAEAAAAAAASABEAAAAEAAEAAAATAA0AAAAFAAMAAAATAA4AAAAFAAQAAAATAA8AAAAFAAUAAAATABAAAAAEAAAAAAATABEAAAAEAAEAAAATABIAAAAEAAEAAAAUABEAAAAFAAAAAAAUABIAAAAEAAEAAAAUABMAAAAEAAEAAAAVABEAAAAFAAgAAAAVABIAAAAFAAAAAAAVABMAAAAEAAEAAAAWABIAAAAEAAAAAAAWABMAAAAEAAEAAAAWABQAAAAEAAEAAAAWABUAAAAEAAEAAAAWABYAAAAEAAEAAAAXABIAAAAEAAAAAAAXABMAAAAEAAEAAAAXABQAAAAEAAEAAAAXABUAAAAFAAAAAAAXABYAAAAEAAEAAAAeAAYAAAAEAAEAAAAeAAcAAAAEAAEAAAAfAAUAAAAEAAEAAAAfAAYAAAAEAAEAAAAfAAcAAAAEAAEAAAAfAAgAAAAEAAEAAAAfAAkAAAAFAAAAAAAfAAoAAAAEAAEAAAAgAAQAAAAFAAAAAAAgAAUAAAAFAAEAAAAgAAYAAAAEAAEAAAAgAAcAAAAEAAEAAAAgAAgAAAAEAAEAAAAgAAkAAAAEAAEAAAAgAAoAAAAEAAEAAAAgAAsAAAAEAAEAAAAgABIAAAAAAAAAAAAgABMAAAABAAAAAAAgABQAAAAAAAEAAAAgABUAAAAAAAEAAAAgABYAAAAAAAEAAAAhAAkAAAAEAAAAAAAhAAoAAAAFAAAAAAAhAAsAAAAEAAEAAAAhABIAAAAAAAAAAAAhABMAAAAAAAEAAAAhABQAAAAAAAEAAAAhABUAAAAAAAEAAAAhABYAAAAAAAEAAAAiAAkAAAAEAAAAAAAiAAoAAAAEAAEAAAAiAAsAAAAEAAEAAAAiABMAAAAGAAcAAAAiABQAAAAAAAEAAAAiABUAAAABAAAAAAAiABYAAAAAAAEAAAAjAAkAAAAEAAAAAAAjAAoAAAAEAAEAAAAjABQAAAAAAAEAAAAjABUAAAAAAAEAAAAjABYAAAAAAAEAAAAkAAkAAAAEAAAAAAAkAAoAAAAEAAEAAAAkAA8AAAACAAQAAAAkABEAAAADAAcAAAAkABIAAAADAAcAAAAkABMAAAADAAcAAAAkABQAAAAAAAEAAAAkABUAAAAAAAEAAAAkABYAAAAAAAEAAAAlAAkAAAAEAAAAAAAlAAoAAAAFAAAAAAAlABQAAAAAAAEAAAAlABUAAAAAAAEAAAAlABYAAAAAAAEAAAAmAAkAAAAEAAAAAAAmAAoAAAAFAAAAAAAmABQAAAAAAAEAAAAmABUAAAAAAAEAAAAmABYAAAAAAAEAAAAnAAkAAAAEAAAAAAAnAAoAAAAEAAEAAAAnAA4AAAACAAQAAAAnABAAAAADAAgAAAAnABEAAAADAAgAAAAnABIAAAADAAgAAAAnABMAAAADAAgAAAAnABQAAAAAAAEAAAAnABUAAAAAAAEAAAAnABYAAAAAAAEAAAAoAAgAAAAEAAgAAAAoAAkAAAAEAAAAAAAoAAoAAAAEAAEAAAAoAAsAAAAEAAEAAAAoABQAAAAAAAEAAAAoABUAAAAAAAEAAAAoABYAAAAAAAEAAAApAAkAAAAEAAAAAAApAAoAAAAEAAEAAAApAAsAAAAEAAEAAAApABMAAAABAAAAAAApABQAAAAAAAEAAAApABUAAAAAAAEAAAApABYAAAAAAAEAAAAqAAoAAAAFAAEAAAAqAAsAAAAEAAEAAAAqAAwAAAAEAAEAAAAqABIAAAAAAAAAAAAqABMAAAAAAAEAAAAqABQAAAAAAAEAAAAqABUAAAAAAAEAAAAqABYAAAAAAAEAAAArAAgAAAAFAAMAAAArAAkAAAAFAAQAAAArAAoAAAAFAAUAAAArAAsAAAAEAAAAAAArAAwAAAAFAAAAAAArABIAAAAAAAAAAAArABMAAAAAAAEAAAArABQAAAAAAAEAAAArABUAAAAAAAEAAAArABYAAAAAAAEAAAAsAAsAAAAEAAAAAAAsAAwAAAAEAAEAAAAtABAAAAACAAAAAAAtABEAAAADAAEAAAAuAA4AAAACAAAAAAAuAA8AAAADAAAAAAAuABAAAAACAAEAAAAuABEAAAACAAEAAAAvAA4AAAACAAAAAAAvAA8AAAACAAEAAAAvABAAAAACAAEAAAAwAA4AAAAJAAEAAAAxAA4AAAAKAAEAAAAyAA4AAAAKAAEAAAAzAA4AAAALAAEAAAA0AAsAAAAAAAMAAAA0AAwAAAAAAAQAAAA0AA0AAAAAAAUAAAA0AA4AAAACAAAAAAA0AA8AAAACAAEAAAA1AA4AAAACAAAAAAA1AA8AAAACAAEAAAA1ABAAAAADAAAAAAA=")
+tile_set = ExtResource("8_monkk")
+
+[node name="EnemyGolem" parent="." instance=ExtResource("13_gvpeh")]
+position = Vector2(1859, 904)
+collision_mask = 1
+
+[node name="Slime" parent="." instance=ExtResource("14_6fxdo")]
+position = Vector2(670, 625)
+collision_mask = 1
+
+[node name="Slime2" parent="." instance=ExtResource("14_6fxdo")]
+position = Vector2(1652, 758)
+collision_mask = 1
+
+[node name="Slime3" parent="." instance=ExtResource("14_6fxdo")]
+position = Vector2(830, 659)
+collision_mask = 1
+
+[node name="Slime4" parent="." instance=ExtResource("14_6fxdo")]
+position = Vector2(1773, 338)
+collision_mask = 1
+
+[node name="Player" parent="." instance=ExtResource("8_mr2jy")]
+position = Vector2(211, 855)
+energy_recover_speed = 10.0
+
+[node name="Npc" parent="." instance=ExtResource("12_17055")]
+position = Vector2(132, 831)
+collision_mask = 1
+current_dia_state = "dia_1"
+sprite = SubResource("AtlasTexture_hfx6a")
+custom_scale = Vector2(3, 3)
+dia_texture = SubResource("AtlasTexture_xgxe4")
+quests = Array[ExtResource("14_qqjix")]([SubResource("Resource_7c6p0")])
+
+[node name="QuestItem" parent="." instance=ExtResource("17_m08fs")]
+position = Vector2(2567, 645)
+scale = Vector2(2, 2)
+item_id = "sward"
+item_quantity = 1
+item_icon = SubResource("AtlasTexture_mr2jy")
+
+[node name="Npc2" parent="." instance=ExtResource("12_17055")]
+position = Vector2(309, 925)
+collision_mask = 1
+npc_id = "player_1"
+npc_name = "我"
+current_dia_state = "dia_1"
+
+[editable path="ParallaxBackground"]
+[editable path="Npc"]
+[editable path="Npc/Health"]

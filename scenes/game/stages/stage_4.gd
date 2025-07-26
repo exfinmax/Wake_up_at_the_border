@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseStage
 
 @onready var memory_pieces = $MemoryPieces.get_children()
 @onready var puzzle_ui = $PuzzleUI

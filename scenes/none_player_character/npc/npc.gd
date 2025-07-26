@@ -1,10 +1,8 @@
 # NPC脚本，负责NPC的对话、任务、交互等
-
-
-
-
 class_name Npc
 extends BaseNpc
+
+
 
 @export var npc_id: String
 @export var npc_name: String
@@ -80,3 +78,44 @@ func get_quest_dialog() -> Dictionary:
 					return{"text": objective.objective_dialog, "options": {}}
 	
 	return {"text": "", "options": {}}
+
+func switch_state(state: BaseNpc.State, data:NpcData = NpcData.new()) -> void:
+	pass
+
+func on_save_game(saved_data:Array[SavedData]):
+	var my_data = NpcResource.new()
+	my_data.scene_path = scene_file_path
+	my_data.position = global_position
+	my_data.npc_id = npc_id
+	my_data.npc_name = npc_name
+	my_data.current_dia_state = current_dia_state
+	my_data.sprite = sprite
+	my_data.custom_scale = custom_scale
+	my_data.dia_texture = dia_texture
+	my_data.dialog_resource = dialog_resource
+	my_data.quests = quests
+	saved_data.append(my_data)
+
+func on_load_game(save_data:SavedData):
+	var saved_data:NpcResource = save_data
+	global_position = saved_data.position
+	npc_id = saved_data.npc_id
+	npc_name = saved_data.npc_name
+	current_dia_state = saved_data.current_dia_state
+	sprite = saved_data.sprite
+	custom_scale = saved_data.custom_scale
+	dia_texture = saved_data.dia_texture
+	dialog_resource = saved_data.dialog_resource
+	quests = saved_data.quests
+	initialzed()
+	
+
+func initialzed() -> void:
+	npc_sprite.texture = sprite
+	body.scale = custom_scale
+	dialog_resource.load_from_json("res://Resource/dialogue/dialogue_data.json")
+	dialog_manager.npc = self
+	dialog_manager.set_texture(dia_texture)
+	if current_dia_state.begins_with("dia"):
+		dialog_manager.set_button_visible()
+	quest_manager = Global.player.quest_manager

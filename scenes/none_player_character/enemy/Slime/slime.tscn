@@ -1,0 +1,179 @@
+[gd_scene load_steps=15 format=3 uid="uid://cqxaqfgmhyp4v"]
+
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_211ta"]
+[ext_resource type="Script" uid="uid://byx13rvosg7cc" path="res://scenes/none_player_character/enemy/Slime/slime.gd" id="2_yl28u"]
+[ext_resource type="Texture2D" uid="uid://dtmu21yq0h20g" path="res://assets/sprites/slime_green.png" id="3_7n2pw"]
+[ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_cfy6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hi5ie"]
+radius = 9.66663
+
+[sub_resource type="Animation" id="Animation_2upy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_dafqx"]
+resource_name = "move"
+
+[sub_resource type="Animation" id="Animation_b5eso"]
+resource_name = "death"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ru7i2"]
+resource_name = "fall"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_4otut"]
+resource_name = "hurt"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_r7njs"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_c5m0s"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_7n2pw"]
+resource_name = "attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ru7i2"]
+_data = {
+&"RESET": SubResource("Animation_2upy6"),
+&"attack_1": SubResource("Animation_dafqx"),
+&"death": SubResource("Animation_b5eso"),
+&"fall": SubResource("Animation_ru7i2"),
+&"hurt": SubResource("Animation_4otut"),
+&"idle": SubResource("Animation_r7njs"),
+&"jump": SubResource("Animation_c5m0s"),
+&"move": SubResource("Animation_7n2pw")
+}
+
+[node name="Slime" instance=ExtResource("1_211ta")]
+script = ExtResource("2_yl28u")
+type = 0
+run_speed = 250.0
+jump_speed = 0.0
+firection = 30.0
+attack_range = 10.0
+chase_range = 500.0
+attack_colddown = 1.0
+knock_back = 500.0
+
+[node name="Body" parent="." index="0"]
+scale = Vector2(3, 3)
+
+[node name="NpcSprite" parent="Body" index="0"]
+position = Vector2(0, -5)
+texture = ExtResource("3_7n2pw")
+hframes = 4
+vframes = 3
+frame = 3
+
+[node name="Attack" parent="Body" index="1" instance=ExtResource("4_cfy6w")]
+unique_name_in_owner = true
+max_atk_index = 1
+need_process = true
+
+[node name="AttackArea" parent="Body/Attack" index="0"]
+position = Vector2(-22, -2)
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
+position = Vector2(22, 2)
+shape = SubResource("CircleShape2D_hi5ie")
+debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
+
+[node name="FindPlayerarea" type="Area2D" parent="Body" index="2"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/FindPlayerarea" index="0"]
+polygon = PackedVector2Array(15.625, -7.5, 6.875, -3.125, 6.875, 5, 15.625, 10.625, 81.875, 0)
+
+[node name="WallRayCast" parent="Body" index="3"]
+target_position = Vector2(15.3333, 0.333333)
+
+[node name="FloorRayCast2D" parent="Body" index="4"]
+position = Vector2(12.3333, 0)
+
+[node name="Health" parent="." index="1"]
+max_hp = 20.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_ru7i2")
+}
+
+[editable path="Body/Attack"]
+[editable path="Health"]

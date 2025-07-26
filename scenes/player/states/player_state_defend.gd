@@ -21,5 +21,3 @@ func _process(_delta: float) -> void:
 		player.can_recover_energy = true
 		player.is_defend = false
 		transfrom_state(Player.State.MOVE)
-
-# 检查能量，决定是否进入防御

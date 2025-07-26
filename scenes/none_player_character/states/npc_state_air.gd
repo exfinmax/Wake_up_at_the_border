@@ -6,10 +6,9 @@
 class_name NpcStateAir
 extends NpcState
 
-const GROUND_TIME := 300
 
-var time_since_ground := Time.get_ticks_msec()
-var is_fake_ground :bool = true
+
+
 
 func _enter_tree() -> void:
 	if npc.velocity.y > 0:
@@ -18,7 +17,7 @@ func _enter_tree() -> void:
 		animation.play("jump")
 
 func _process(_delta: float) -> void:
-	if npc.velocity.y == 0:
+	if npc.is_on_floor():
 		transfrom_state(BaseNpc.State.MOVE)
 
 

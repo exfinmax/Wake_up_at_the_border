@@ -13,11 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://beuwfegbfmxba" path="res://assets/enemy/Golem/No Armor/Golem_AttackC.png" id="10_ixjkm"]
 [ext_resource type="Texture2D" uid="uid://dhb4mnaxp1ht7" path="res://assets/enemy/Golem/No Armor/Golem_AttackC_FX.png" id="11_js3yf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b8ssd"]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8ssd"]
+size = Vector2(35, 28)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p8saw"]
-radius = 18.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b8ssd"]
+radius = 30.0
+height = 62.0
 
 [sub_resource type="Animation" id="Animation_p8saw"]
 length = 0.001
@@ -1103,7 +1104,8 @@ run_speed = 250.0
 firection = 50.0
 attack_range = 60.0
 chase_range = 400.0
-attack_colddown = 1.0
+attack_colddown = 0.8
+knock_back = 200.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(2, 2)
@@ -1114,6 +1116,7 @@ texture = ExtResource("3_pcsi1")
 hframes = 4
 
 [node name="Attack_FX" type="Sprite2D" parent="Body" index="1"]
+texture = ExtResource("4_p8saw")
 hframes = 3
 vframes = 2
 frame = 5
@@ -1125,8 +1128,8 @@ unique_name_in_owner = true
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
-position = Vector2(22.6667, 2)
-shape = SubResource("CircleShape2D_b8ssd")
+position = Vector2(9.5, 4)
+shape = SubResource("RectangleShape2D_b8ssd")
 debug_color = Color(0.859248, 0.255459, 0.651456, 0.42)
 
 [node name="FindPlayerarea" type="Area2D" parent="Body" index="3"]
@@ -1136,18 +1139,22 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/FindPlayerarea" index="0"]
-polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 103.333, 22, 103.333, -20.6667)
+polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 101.5, 8, 195.5, 0, 101.5, -7)
 
-[node name="FloorRayCast" type="RayCast2D" parent="Body" index="4"]
-unique_name_in_owner = true
-position = Vector2(26.6667, 0)
+[node name="WallRayCast" parent="Body" index="4"]
+target_position = Vector2(21, 0.5)
+
+[node name="FloorRayCast2D" parent="Body" index="5"]
+position = Vector2(20.5, 1)
 
 [node name="Health" parent="." index="1"]
-max_hp = 30.0
+position = Vector2(-29, -32)
+hp_recover_speed = 3.0
+can_recover_hp = true
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_p8saw")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_b8ssd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 unique_name_in_owner = true

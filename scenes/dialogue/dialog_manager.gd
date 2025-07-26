@@ -10,6 +10,8 @@ extends Node2D
 var npc: Npc = null
 
 
+
+
 func show_dialog(cur_npc, _text = "", _options = {}):
 	check_and_advance_branch()
 	var quest_dialog = cur_npc.get_quest_dialog()
@@ -21,6 +23,10 @@ func show_dialog(cur_npc, _text = "", _options = {}):
 		var dialog = cur_npc.get_current_dialog()
 		if dialog:
 			dialogue_ui.show_dialog(cur_npc.npc_name, dialog["text"], dialog["options"])
+	if cur_npc.npc_name.begins_with("player"):
+		cur_npc.queue_free()
+	
+	
 	
 func hide_dialog():
 	dialogue_ui.hide_dialog()

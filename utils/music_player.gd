@@ -5,8 +5,8 @@ enum BUS{ MASTER , SFX , BGM }
 @onready var sfx: Node = $SFX
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
 
-func play_sfx(name: String) -> void:
-	var player := sfx.get_node(name) as AudioStreamPlayer
+func play_sfx(_name: String) -> void:
+	var player := sfx.get_node(_name) as AudioStreamPlayer
 	if not player:
 		return
 	player.play()
@@ -28,7 +28,7 @@ func setup_ui_sounds(node: Node) -> void:
 	var slider := node as Slider
 	if slider:
 		slider.value_changed.connect(play_sfx.bind("UIPress").unbind(1))
-		slider.focus_entered.connect(play_bgm.bind("UIFocus"))
+		slider.focus_entered.connect(play_sfx.bind("UIFocus"))
 		slider.mouse_entered.connect(slider.grab_focus)
 		
 	for child in node.get_children():

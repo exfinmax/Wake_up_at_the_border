@@ -7,14 +7,17 @@ class_name Attack
 # 最大连击数（可选）
 @export var max_atk_index: int = 3
 
+
+
 # 攻击判定区域（需在场景中绑定Area2D）
 @onready var attack_area: Area2D = $AttackArea
 @onready var sourcer: Node2D = $"../.."
 
 
 # 攻击检测信号
-signal attack_hit(target)
 
+
+@export var need_process: bool = false
 
 
 # 获取当前攻击力
@@ -26,5 +29,9 @@ func check_attack():
 	for body in attack_area.get_overlapping_bodies():
 		if body.has_method("get_hurt"):
 			body.get_hurt(get_attack_number(), sourcer)
-			emit_signal("attack_hit", body)
+
 			
+
+func _physics_process(delta: float) -> void:
+	if need_process:
+		check_attack()

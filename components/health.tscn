@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxlhooly16i4r"]
+[gd_scene load_steps=5 format=3 uid="uid://bxlhooly16i4r"]
 
 [ext_resource type="Script" uid="uid://bierqeg11gbdf" path="res://components/health.gd" id="1_crkk2"]
+[ext_resource type="Texture2D" uid="uid://dh2gmepl1v3at" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png" id="2_rxxxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6c3i"]
+atlas = ExtResource("2_rxxxd")
+region = Rect2(307, 6, 58, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ealc"]
+atlas = ExtResource("2_rxxxd")
+region = Rect2(308, 103, 56, 2)
+margin = Rect2(1, 1, 1, 1)
 
 [node name="Health" type="Node2D"]
 script = ExtResource("1_crkk2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 58.0
+offset_bottom = 40.0
+value = 100.0
+texture_under = SubResource("AtlasTexture_p6c3i")
+texture_progress = SubResource("AtlasTexture_0ealc")

@@ -1,13 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://4qel4q1de1vp"]
+[gd_scene load_steps=7 format=3 uid="uid://4qel4q1de1vp"]
 
 [ext_resource type="Script" uid="uid://c0ti04n47wuev" path="res://scenes/game/screens/setting_screen.gd" id="1_t2qv1"]
+[ext_resource type="Shader" uid="uid://bc8jrdnrf835l" path="res://Dissolve2d.gdshader" id="2_4pfs0"]
+[ext_resource type="Texture2D" uid="uid://b1ye65ypo4q42" path="res://shader_patterns/6.png" id="3_3e6w8"]
+[ext_resource type="PackedScene" uid="uid://ibknuo8wtsfi" path="res://components/voulme_slider.tscn" id="4_3e6w8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pfs0"]
+shader = ExtResource("2_4pfs0")
+shader_parameter/dissolve_texture = ExtResource("3_3e6w8")
+shader_parameter/dissolve_amount = 0.29
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/inverted = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pfs0"]
 
 [node name="SettingScreen" type="Node"]
 script = ExtResource("1_t2qv1")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_4pfs0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 192
 theme_override_constants/margin_top = 108
 theme_override_constants/margin_right = 192
@@ -20,17 +43,18 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
-text = "主菜单"
+text = "主设置"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 5
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 50
 columns = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
@@ -39,8 +63,10 @@ theme_override_font_sizes/font_size = 50
 text = "主音量"
 horizontal_alignment = 2
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="VoulmeSlider" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("4_3e6w8")]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -48,8 +74,11 @@ theme_override_font_sizes/font_size = 50
 text = "音效"
 horizontal_alignment = 2
 
-[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="VoulmeSlider2" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("4_3e6w8")]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bus = &"SFX"
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -57,8 +86,11 @@ theme_override_font_sizes/font_size = 50
 text = "音乐"
 horizontal_alignment = 2
 
-[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="VoulmeSlider3" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("4_3e6w8")]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bus = &"BGM"
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -66,14 +98,52 @@ theme_override_font_sizes/font_size = 50
 text = "相机振动"
 horizontal_alignment = 2
 
-[node name="Control4" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="StrengthSlider4" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("4_3e6w8")]
 layout_mode = 2
+bus = &"Strength"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "解锁结局"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4pfs0")
+disabled = true
+text = "结局一"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4pfs0")
+disabled = true
+text = "结局二"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4pfs0")
+disabled = true
+text = "结局三"
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "结束操练"
+text = "结束操梦"

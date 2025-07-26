@@ -7,6 +7,8 @@ const KNOCKBACK_VELOCITY :=   200  # 击退速度
 var direction: Vector2i
 
 func _enter_tree() -> void:
+	player.camera_2d.shake()
+	player.is_defend = false
 	player.can_recover_energy = false
 	_apply_knockback()
 	_play_hurt_animation()
@@ -29,10 +31,7 @@ func _apply_knockback() -> void:
 
 # 播放受伤动画
 func _play_hurt_animation() -> void:
-	if player.is_defend && player.heading == -direction.x:
-		animation.play("defend_t")
-		player_data.target.get_hurt(min(player_data.num / 2, 20),player)
-	elif health_component.is_hp_zero():
+	if health_component.is_hp_zero():
 		animation.play("death")
 		player.collision_layer = 0
 	else:
@@ -44,9 +43,6 @@ func _handle_state_transition() -> void:
 	if health_component.is_hp_zero():
 		_handle_death()
 		return
-	elif player.is_defend:
-		player.is_defend = false
-		player.current_energy -= 1
 	transfrom_state(Player.State.MOVE)
 
 # 处理死亡状态

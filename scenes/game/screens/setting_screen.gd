@@ -1,18 +1,17 @@
 extends Screen
 class_name Setting
 
-@onready var button: Button = $MarginContainer/VBoxContainer/Button
+@onready var button: Button = $MarginContainer/VBoxContainer/HBoxContainer/Button
+
+
+	
 
 func _ready() -> void:
 	button.pressed.connect(on_button_pressed.bind())
+	MusicPlayer.setup_ui_sounds(self)
 
 
 func on_button_pressed() -> void:
-	if screen_data.latest_screen == "MainMenu":
-		transition_state(TheGame.ScreenType.MAIN_MENU)
-	else:
-		transition_state(TheGame.ScreenType.IN_GAME)
-	
-
+	transition_state(TheGame.ScreenType.MAIN_MENU)
 
 	

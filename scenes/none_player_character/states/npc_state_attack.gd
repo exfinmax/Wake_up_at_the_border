@@ -91,12 +91,3 @@ func _perform_backstep() -> void:
 # 切换到移动状态
 func _switch_to_move() -> void:
 	transfrom_state(BaseNpc.State.MOVE)
-
-func ray_cast_detect() -> void:
-	# 射线检测，用于判断NPC是否在地面上
-	# 如果射线未碰撞到地面，或者需要随机改变方向
-	if not floor_ray_cast.is_colliding():
-		# 改变NPC的朝向
-		npc.heading = -npc.heading
-		# 停止NPC的水平速度
-		npc.velocity.x = 0
