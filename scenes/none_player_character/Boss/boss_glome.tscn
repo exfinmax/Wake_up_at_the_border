@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7gga2r7b6mae"]
+[gd_scene load_steps=19 format=3 uid="uid://c7gga2r7b6mae"]
 
 [ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_xj582"]
 [ext_resource type="Script" uid="uid://drvq7vij7j85" path="res://scenes/none_player_character/Boss/boss_glome.gd" id="2_w0mwf"]
 [ext_resource type="Texture2D" uid="uid://dq20jhddsk36k" path="res://assets/enemy/Golem/Armored/Golem_Armor_Idle.png" id="3_2q3yk"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="3_w0mwf"]
 [ext_resource type="Texture2D" uid="uid://kc8hr80id3n6" path="res://assets/enemy/Golem/Armored/Golem_Armor_Run.png" id="5_rhgbm"]
+[ext_resource type="Texture2D" uid="uid://njm3aurjqr5e" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackA.png" id="6_mkoc1"]
 [ext_resource type="Texture2D" uid="uid://dk4diuc3eyjja" path="res://assets/enemy/Golem/No Armor/Golem_Upgrade.png" id="6_yoikn"]
 
 [sub_resource type="Animation" id="Animation_yoikn"]
@@ -181,6 +182,54 @@ step = 0.1
 [sub_resource type="Animation" id="Animation_cf5q2"]
 resource_name = "attack_1"
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_mkoc1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/NpcSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/NpcSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/NpcSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
 
 [sub_resource type="Animation" id="Animation_m75uv"]
 resource_name = "start"
@@ -235,10 +284,20 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
+[sub_resource type="Animation" id="Animation_57s81"]
+resource_name = "attack_2"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_dg8rj"]
+resource_name = "attack_3"
+step = 0.1
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1g6nb"]
 _data = {
 &"RESET": SubResource("Animation_yoikn"),
 &"attack_1": SubResource("Animation_cf5q2"),
+&"attack_2": SubResource("Animation_57s81"),
+&"attack_3": SubResource("Animation_dg8rj"),
 &"fall": SubResource("Animation_un67g"),
 &"hurt": SubResource("Animation_1g6nb"),
 &"idle": SubResource("Animation_rhgbm"),
@@ -249,6 +308,13 @@ _data = {
 
 [node name="BossGlome" instance=ExtResource("1_xj582")]
 script = ExtResource("2_w0mwf")
+type = null
+jump_speed = null
+firection = null
+attack_range = null
+chase_range = null
+attack_colddown = null
+knock_back = null
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(4, 4)

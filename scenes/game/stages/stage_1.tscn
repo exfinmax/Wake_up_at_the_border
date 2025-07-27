@@ -218,6 +218,7 @@ collision_mask = 1
 [node name="Player" parent="." instance=ExtResource("8_mr2jy")]
 position = Vector2(211, 855)
 energy_recover_speed = 10.0
+jump_speed = 525.0
 
 [node name="Npc" parent="." instance=ExtResource("12_17055")]
 position = Vector2(132, 831)
@@ -234,6 +235,7 @@ scale = Vector2(2, 2)
 item_id = "sward"
 item_quantity = 1
 item_icon = SubResource("AtlasTexture_mr2jy")
+custom_scale = Vector2(2, 2)
 
 [node name="Npc2" parent="." instance=ExtResource("12_17055")]
 position = Vector2(309, 925)

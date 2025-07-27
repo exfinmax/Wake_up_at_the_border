@@ -3,8 +3,7 @@
 class_name Player
 extends CharacterBody2D
 
-# 重力常量
-const GRAVITY :float = 980
+
 # 受伤后无敌持续时间（毫秒）
 const DURATION_BETWEEN_HURT := 2000
 
@@ -148,7 +147,7 @@ func recover_energy(delta: float) -> void:
 # 摩擦力设置（可根据需要完善）
 func set_firction(delta:float) -> void:
 	if !is_on_floor() && apply_gravity:
-		velocity.y = velocity.y + GRAVITY * delta
+		velocity += get_gravity() * delta
 
 func _initialize_bar() -> void:
 	health_progress_bar.max_value = health_component.max_hp

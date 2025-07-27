@@ -25,14 +25,7 @@ var current_branch_index = 0
 
 func _ready() -> void:
 	add_to_group("NPC")
-	npc_sprite.texture = sprite
-	body.scale = custom_scale
-	dialog_resource.load_from_json("res://Resource/dialogue/dialogue_data.json")
-	dialog_manager.npc = self
-	dialog_manager.set_texture(dia_texture)
-	if current_dia_state.begins_with("dia"):
-		dialog_manager.set_button_visible()
-	quest_manager = Global.player.quest_manager
+	initialize()
 	print("NPC Ready, Quests loaded: ", quests.size())
 	
 	
@@ -109,10 +102,10 @@ func on_load_game(save_data:SavedData):
 	dia_texture = saved_data.dia_texture
 	dialog_resource = saved_data.dialog_resource
 	quests = saved_data.quests
-	initialzed()
+	initialize()
 	
 
-func initialzed() -> void:
+func initialize() -> void:
 	npc_sprite.texture = sprite
 	body.scale = custom_scale
 	dialog_resource.load_from_json("res://Resource/dialogue/dialogue_data.json")
