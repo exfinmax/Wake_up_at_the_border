@@ -8,3 +8,4 @@ extends SavedData
 @export var current_energy:float
 @export var energy_recover_speed:float
 @export var quests:Dictionary
+@export var jump_speed:float

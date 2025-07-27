@@ -15,7 +15,7 @@ func _enter_tree() -> void:
 	_start_attack()
 
 func _process(delta: float) -> void:
-	player.velocity.x = lerpf(player.velocity.x, 0, player.friction * delta)
+	player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta * 30)
 	change_animation_finished()
 	
 	if is_animation_finished:

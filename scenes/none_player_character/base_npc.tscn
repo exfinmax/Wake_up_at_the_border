@@ -4,12 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="3_x6jyf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tyiur"]
-radius = 19.0
-height = 50.0
+radius = 34.0
+height = 88.0
 
 [node name="BaseNpc" type="CharacterBody2D" groups=["Can_Save"]]
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("1_uubn6")
 walk_speed = 100.0
 run_speed = 300.0

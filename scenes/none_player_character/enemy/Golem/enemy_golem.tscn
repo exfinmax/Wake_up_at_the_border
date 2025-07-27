@@ -1149,7 +1149,8 @@ position = Vector2(20.5, 1)
 
 [node name="Health" parent="." index="1"]
 position = Vector2(-29, -32)
-hp_recover_speed = 3.0
+max_hp = 50.0
+hp_recover_speed = 2.5
 can_recover_hp = true
 
 [node name="CollisionShape2D" parent="." index="2"]

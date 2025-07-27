@@ -24,7 +24,7 @@ visible = false
 z_index = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 zoom = Vector2(1.6, 1.6)
 limit_bottom = 1080
+position_smoothing_enabled = true
 script = ExtResource("4_hd6rl")

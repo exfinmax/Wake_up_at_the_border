@@ -3,7 +3,7 @@ class_name BaseNpc
 extends CharacterBody2D
 
 const GRAVITY :float = 980.0
-const DURATION_BETWEEN_HURT := 1000
+
 
 enum Type {Enemy, Npc, Boss}
 enum State {
@@ -11,7 +11,8 @@ enum State {
 	AIR,
 	ATTACK,
 	HURT,
-	SPECIAL,
+	SPECIALGOLEM,
+	FINALBOSS,
 }
 
 @export_category("BaseNpc")
@@ -26,6 +27,7 @@ enum State {
 @export var chase_range: float
 @export var attack_colddown: float
 @export var knock_back: float
+@export var duration_between_hurt: float = 1000.0
 
 @onready var body: Node2D = %Body
 @onready var health: Health = %Health
@@ -39,7 +41,8 @@ var find_player_area: Area2D = null
 
 var heading :int = 1
 var state_factory := NpcStateFactory.new()
-var current_state : NpcState
+var current_state : State
+var current_state_node : NpcState
 var current_scale: float
 var current_timer: Timer = null
 
@@ -80,20 +83,21 @@ func start_blink():
 # 闪烁定时器回调，交替透明度，结束后恢复
 func _on_blink_timeout():
 	$Body.modulate.a = 1.0 if $Body.modulate.a < 1.0 else 0.5
-	if Time.get_ticks_msec() - time_since_last_hurt > DURATION_BETWEEN_HURT:
+	if Time.get_ticks_msec() - time_since_last_hurt > duration_between_hurt:
 		can_get_hurt = true
 		$Body.modulate = Color(1,1,1,1)
 		current_timer.queue_free()
 
 
 func switch_state(state:State, data:NpcData = NpcData.new()) -> void:
-	if current_state:
-		current_state.queue_free()
-	current_state = state_factory.change_state(state)
-	current_state.setup(self, animation_player,find_player_area, floor_ray_cast, wall_ray_cast, data)
-	current_state.state_change.connect(switch_state.bind())
-	current_state.name = "NpcState" + str(state)
-	call_deferred("add_child", current_state)
+	if current_state_node:
+		current_state_node.queue_free()
+	current_state = state
+	current_state_node = state_factory.change_state(state)
+	current_state_node.setup(self, animation_player,find_player_area, floor_ray_cast, wall_ray_cast, data)
+	current_state_node.state_change.connect(switch_state.bind())
+	current_state_node.name = "NpcState" + str(state)
+	call_deferred("add_child", current_state_node)
 
 
 func set_heading() -> void:

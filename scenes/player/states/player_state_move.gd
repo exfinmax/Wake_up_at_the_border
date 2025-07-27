@@ -3,15 +3,20 @@
 class_name PlayerStateMove
 extends PlayerState
 
+const DURATION:float = 120
+
 # 目标对象，玩家可以与之交互（NPC或物品）
 var target: Node2D = null
 # 是否为敌人，决定按键行为
 var no_npc := true
 # 是否正在对话中，防止重复触发
 var is_in_dia := false
+var is_in_air := false
 
+var time_since_jump:float
 # 进入节点树时的初始化
 func _enter_tree() -> void:
+	player.can_be_hurt = true
 	# 连接交互区域的信号
 	GameEvents.dialog_end.connect(exit_dialog.bind())
 	interact_area.body_entered.connect(_on_interact_area_entered.bind())
@@ -27,8 +32,11 @@ func _process(delta: float) -> void:
 		_handle_movement_input(delta)
 		_update_animation()
 		# 如果y方向有速度，切换到空中状态
-		if !player.is_on_floor():
-			transfrom_state(Player.State.AIR)
+		if player.velocity.y != 0:
+			if Time.get_ticks_msec() - time_since_jump > DURATION:
+				transfrom_state(Player.State.AIR)
+		else:
+			time_since_jump = Time.get_ticks_msec()
 
 # 处理玩家输入
 func _handle_movement_input(delta:float) -> void:
@@ -83,7 +91,8 @@ func _input(event: InputEvent) -> void:
 				if target.is_in_group("Item"):
 					if quest_conponent.is_item_needed(target.item_id):
 						quest_conponent.check_quest_objectives(target.item_id, "collection", target.item_quantity)
-						target.queue_free()
+						target.free()
+						GameEvents.quest_complete.emit()
 					else:
 						print("Item not needed for any active quest.")
 				# 停止移动

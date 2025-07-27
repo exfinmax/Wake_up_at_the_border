@@ -10,7 +10,7 @@ func _enter_tree() -> void:
 	animation.animation_finished.connect(on_animation_finished.bind())
 	current_atk = attack_component.atk
 	attack_component.attack_area.body_entered.connect(on_body_entered.bind())
-	attack_component.need_process = true
+
 
 
 func _ready() -> void:
@@ -25,10 +25,10 @@ func on_animation_finished(_name: StringName) -> void:
 	animation.play("fly_kick")
 	
 
-func on_body_entered(_body: Node2D) -> void:
+func on_body_entered(body: Node2D) -> void:
 	player.camera_2d.shake()
-	attack_component.atk = lerpf(current_atk+10, current_atk+100, total_delta)
-
+	attack_component.atk = lerpf(current_atk+20, current_atk+100, total_delta)
+	body.get_hurt(attack_component.atk, player)
 
 func _process(delta: float) -> void:
 	total_delta += delta
@@ -39,16 +39,10 @@ func _process(delta: float) -> void:
 		player.apply_gravity = true
 		transfrom_state(Player.State.MOVE)
 		
-	
-	
-
-
-
 
 
 
 func _exit_tree() -> void:
-	player.can_be_hurt = true
 	attack_component.atk = current_atk
-	attack_component.need_process = false
+
 	

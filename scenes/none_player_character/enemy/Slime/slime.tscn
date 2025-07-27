@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqxaqfgmhyp4v"]
+[gd_scene load_steps=16 format=3 uid="uid://cqxaqfgmhyp4v"]
 
 [ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_211ta"]
 [ext_resource type="Script" uid="uid://byx13rvosg7cc" path="res://scenes/none_player_character/enemy/Slime/slime.gd" id="2_yl28u"]
@@ -7,6 +7,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hi5ie"]
 radius = 9.66663
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7n2pw"]
+radius = 21.0
+height = 60.0
 
 [sub_resource type="Animation" id="Animation_2upy6"]
 length = 0.001
@@ -25,6 +29,24 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dafqx"]
 resource_name = "move"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Attack")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}, {
+"args": [],
+"method": &"check_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_b5eso"]
 resource_name = "death"
@@ -116,11 +138,9 @@ _data = {
 
 [node name="Slime" instance=ExtResource("1_211ta")]
 script = ExtResource("2_yl28u")
-type = 0
 run_speed = 250.0
-jump_speed = 0.0
 firection = 30.0
-attack_range = 10.0
+attack_range = 20.0
 chase_range = 500.0
 attack_colddown = 1.0
 knock_back = 500.0
@@ -138,7 +158,6 @@ frame = 3
 [node name="Attack" parent="Body" index="1" instance=ExtResource("4_cfy6w")]
 unique_name_in_owner = true
 max_atk_index = 1
-need_process = true
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
 position = Vector2(-22, -2)
@@ -169,6 +188,7 @@ max_hp = 20.0
 
 [node name="CollisionShape2D" parent="." index="2"]
 rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7n2pw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {

@@ -66,6 +66,7 @@ func handle_quest_completed(quest: Quest):
 	update_quest_tracker(quest)
 	quest_manager.update_quest(quest.quest_id, "completed")
 	GameEvents.quest_complete.emit()
+	
 
 
 
@@ -90,7 +91,7 @@ func update_quest_tracker(quest: Quest):
 				label.add_theme_color_override("font_color", Color(1, 0, 0))
 			
 			objectives.add_child(label)
-		GameEvents.get_quest.emit()
+			GameEvents.get_quest.emit()
 	else:
 		quest_tracker.visible = false
 

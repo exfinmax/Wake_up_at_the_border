@@ -63,13 +63,15 @@ var time_since_last_hurt:= Time.get_ticks_msec()
 @onready var quest_manager: Node2D = $QuestManager
 @onready var energy_progress_bar: TextureProgressBar = %EnergyProgressBar
 @onready var health_progress_bar: TextureProgressBar = %HealthProgressBar
-@onready var camera_2d: Camera2D = $Camera2D
+
+var camera_2d: Camera2D
 
 
 var current_timer: Timer = null
 
 # 初始化，设置全局玩家引用，初始状态为MOVE
 func _ready() -> void:
+	camera_2d = Global.camera
 	Global.player = self
 	_initialize_bar()
 	switch_state(State.MOVE)
@@ -97,7 +99,6 @@ func get_hurt(current_atk:float, sourcer: Node2D) -> void:
 	var direction: Vector2i = sign(global_position - sourcer.global_position)
 	if is_defend && heading == -direction.x && current_energy >= 1.5:
 		current_energy -= 1.5
-		velocity.x = 100 * direction.x
 		sourcer.knock_back *= 2
 		sourcer.get_hurt(min(current_atk / 2, 20),self)
 		sourcer.knock_back /= 2
@@ -148,6 +149,7 @@ func recover_energy(delta: float) -> void:
 func set_firction(delta:float) -> void:
 	if !is_on_floor() && apply_gravity:
 		velocity += get_gravity() * delta
+	
 
 func _initialize_bar() -> void:
 	health_progress_bar.max_value = health_component.max_hp
@@ -180,6 +182,7 @@ func on_save_game(save_data:Array[SavedData]):
 	my_data.current_hp = health_component.current_hp
 	my_data.scene_path = scene_file_path
 	my_data.quests = quest_manager.quests
+	my_data.jump_speed = jump_speed
 	
 	save_data.append(my_data)
 
@@ -198,6 +201,7 @@ func on_load_game(save_data:SavedData):
 	health_component.max_hp = saved_data.max_hp
 	Global.player_skill = saved_data.player_skill
 	health_component.current_hp = saved_data.current_hp
+	jump_speed = saved_data.jump_speed
 	for quest in saved_data.quests.values():
 		quest_manager.add_quest(quest)
 	

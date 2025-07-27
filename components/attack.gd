@@ -17,7 +17,6 @@ class_name Attack
 # 攻击检测信号
 
 
-@export var need_process: bool = false
 
 
 # 获取当前攻击力
@@ -31,7 +30,3 @@ func check_attack():
 			body.get_hurt(get_attack_number(), sourcer)
 
 			
-
-func _physics_process(delta: float) -> void:
-	if need_process:
-		check_attack()

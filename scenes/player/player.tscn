@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://ckoi2bs7alwus"]
+[gd_scene load_steps=116 format=3 uid="uid://ckoi2bs7alwus"]
 
 [ext_resource type="Script" uid="uid://cbct8021jfb8r" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://byof4kcnyimfk" path="res://assets/adventurer-v1.5-Sheet.png" id="2_0owmy"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dh2gmepl1v3at" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png" id="6_5gtgg"]
 [ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="6_je7p5"]
-[ext_resource type="Script" uid="uid://bf3poit0b5d2b" path="res://scenes/player/camera_2d.gd" id="9_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://e3s7itixn1r8" path="res://assets/white-circle.png" id="10_h17s1"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://covnl53pmvjrn" path="res://scenes/quest/quest_manager.tscn" id="14_fcs02"]
@@ -767,6 +766,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ioxgp"]
 resource_name = "attack"
@@ -1303,6 +1316,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_4sw5w"]
 resource_name = "fly_kick"
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1352,7 +1366,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(12.6087, -13.0435)]
+"values": [Vector2(12.1739, -3.91304)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1365,6 +1379,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_28m0y"]
@@ -1517,6 +1545,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_5miun"]
 resource_name = "in_air_atk"
 length = 0.2
+loop_mode = 1
 step = 0.166
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1579,6 +1608,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_dovo2"]
@@ -1713,6 +1756,23 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Attack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"check_attack"
+}, {
+"args": [],
+"method": &"check_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_je7p5"]
@@ -1961,6 +2021,7 @@ region = Rect2(308, 118, 56, 4)
 margin = Rect2(1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Can_Save"]]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_8afob")
 max_energy = 10.0
@@ -1982,10 +2043,8 @@ scale = Vector2(2.3, 2.3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_hir57")
-animation = &"attack_1"
+animation = &"fly_kick"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="InteractArea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
@@ -2105,18 +2164,13 @@ texture_progress = SubResource("AtlasTexture_pwfqx")
 unique_name_in_owner = true
 position = Vector2(-491, -302)
 scale = Vector2(4, 4)
-hp_recover_speed = 5.0
+hp_recover_speed = 2.5
 can_show = false
 
 [node name="QuestManager" parent="." instance=ExtResource("14_fcs02")]
 unique_name_in_owner = true
 
 [node name="QuestConponent" parent="." instance=ExtResource("15_myrg7")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.6, 1.6)
-limit_bottom = 1080
-script = ExtResource("9_5gtgg")
 
 [editable path="Body/Attack"]
 [editable path="Health"]

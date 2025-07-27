@@ -5,6 +5,7 @@ extends Node
 # （如需了解详细信息，请参考Player类）
 var player: Player = null
 var player_skill:Array = [false, false, false, false, false]
+var camera: Camera2D
 
 # 当前场景名称
 var current_stage: String = ""

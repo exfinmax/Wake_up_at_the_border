@@ -7,6 +7,7 @@ extends Node
 # 玩家相关信号
 signal player_death
 
+
 # 对话相关信号
 signal dialog_end
 signal get_quest
@@ -21,3 +22,6 @@ signal stage_end
 #设置相关信号
 signal set_change
 signal set_end
+
+signal boss_death
+signal boss_start

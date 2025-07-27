@@ -1,8 +1,4 @@
 # NPC移动状态脚本，负责NPC在地面上的行为
-
-
-
-
 class_name NpcStateMove
 extends NpcState
 
