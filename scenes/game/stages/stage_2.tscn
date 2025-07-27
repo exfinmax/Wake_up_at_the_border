@@ -12,7 +12,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rshe"]
 size = Vector2(3988, 20)
 
-[node name="Stage_2" type="Node2D"]
+[node name="Stage_2" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_otqyh")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_phgjb")]

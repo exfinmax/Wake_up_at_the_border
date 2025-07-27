@@ -70,7 +70,9 @@ func offer_quest(quest_id: String):
 	print("Quest not found or started already")
 
 func get_quest_dialog() -> Dictionary:
-	var active_quests = quest_manager.get_active_quests()
+	if quest_manager == null:
+		quest_manager = Global.player.quest_manager
+	var active_quests :Array = quest_manager.get_active_quests()
 	for quest in active_quests:
 		for objective in quest.objectives:
 			if objective.target_id == npc_id && objective.target_type == "talk_to" && not objective.is_completed:

@@ -23,3 +23,6 @@ func shake() -> void:
 	time_start_shake = Time.get_ticks_msec()
 	is_shaking = true
 	
+
+func _exit_tree() -> void:
+	enabled = false

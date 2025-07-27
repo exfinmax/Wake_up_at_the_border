@@ -1989,7 +1989,7 @@ frame_progress = 1.0
 
 [node name="InteractArea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
-collision_layer = 8
+collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/InteractArea"]

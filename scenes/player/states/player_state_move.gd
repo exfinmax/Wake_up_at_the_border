@@ -15,7 +15,9 @@ func _enter_tree() -> void:
 	# 连接交互区域的信号
 	GameEvents.dialog_end.connect(exit_dialog.bind())
 	interact_area.body_entered.connect(_on_interact_area_entered.bind())
+	interact_area.area_entered.connect(_on_interact_area_entered.bind())
 	interact_area.body_exited.connect(_on_interact_area_exited.bind())
+	interact_area.area_exited.connect(_on_interact_area_exited.bind())
 	# 播放初始动画
 	animation.play("idle")
 
@@ -52,14 +54,14 @@ func _update_animation() -> void:
 		animation.play("walk")
 
 # 交互区域检测处理
-func _on_interact_area_entered(body: Node2D) -> void:
+func _on_interact_area_entered(body) -> void:
 	if body.is_in_group("NPC") || body.is_in_group("Item"):
 		target = body
 		no_npc = false
 
 
 # 离开交互区域
-func _on_interact_area_exited(body: Node2D) -> void:
+func _on_interact_area_exited(body) -> void:
 	if body == target:
 		target = null
 		no_npc = true

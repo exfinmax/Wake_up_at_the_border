@@ -95,6 +95,7 @@ func reload_current_stage() -> void:
 		change_stage(Global.current_stage)
 
 
+
 # 获取当前场景实例
 func get_current_stage() -> Node:
 	return current_stage

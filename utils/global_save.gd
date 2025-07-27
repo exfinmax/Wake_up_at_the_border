@@ -2,10 +2,13 @@ extends Node
 
 var set_dic: Dictionary = {}
 
+signal is_load_over
+
 func _init() -> void:
-	GameEvents.stage_changed.connect(save_game)
+	GameEvents.stage_end.connect(save_game)
 	GameEvents.get_quest.connect(save_game)
 	GameEvents.quest_complete.connect(save_game)
+	GameEvents.player_death.connect(load_game)
 	GameEvents.set_end.connect(save_set)
 
 	
@@ -41,7 +44,7 @@ func load_set() -> void:
 func load_game() -> void:
 	var saved_game:SaveGame = load("user://savegame.tres")
 	
-	saved_game.current_stage = Global.current_stage
+	Global.current_stage = saved_game.current_stage
 	Global.current_screen.transition_state(TheGame.ScreenType.IN_GAME)
 	await GameEvents.stage_changed
 	get_tree().call_group("Can_Save", "on_before_load_game")
@@ -54,4 +57,17 @@ func load_game() -> void:
 		if restored_node.has_method("on_load_game"):
 			restored_node.on_load_game(item)
 	
+
+func load_stage() -> void:
+	var saved_game:SaveGame = load("user://savegame.tres")
+	get_tree().call_group("Can_Save", "on_before_load_game")
+	
+	for item in saved_game.saved_data:
+		var scene = load(item.scene_path) as PackedScene
+		var restored_node = scene.instantiate()
+		Global.current_scene.add_child(restored_node)
+		
+		if restored_node.has_method("on_load_game"):
+			restored_node.on_load_game(item)
+	is_load_over.emit()
 	

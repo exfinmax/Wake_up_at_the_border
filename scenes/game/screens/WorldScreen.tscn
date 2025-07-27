@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhdyeviq4eckd"]
+[gd_scene load_steps=6 format=3 uid="uid://dhdyeviq4eckd"]
 
 [ext_resource type="Script" uid="uid://dnv6ir3mawnns" path="res://scenes/game/screens/WorldScreen.gd" id="1_1lhqx"]
 [ext_resource type="PackedScene" uid="uid://c0nmxakl2kmdy" path="res://scenes/game/stage_organ/killzone.tscn" id="2_j5a8o"]
 [ext_resource type="PackedScene" uid="uid://bflnmqlc1cer2" path="res://components/setting_component.tscn" id="3_dfk5k"]
+[ext_resource type="Script" uid="uid://dibdf53poydqh" path="res://scenes/game/screens/camera_2d.gd" id="4_hd6rl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dfk5k"]
 
@@ -21,3 +22,9 @@ layer = 3
 [node name="SettingComponent" parent="CanvasLayer" instance=ExtResource("3_dfk5k")]
 visible = false
 z_index = 100
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(1.6, 1.6)
+limit_bottom = 1080
+script = ExtResource("4_hd6rl")

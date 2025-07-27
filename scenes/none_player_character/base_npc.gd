@@ -113,20 +113,17 @@ func initialize() -> void:
 	pass
 
 func on_save_game(saved_data:Array[SavedData]):
-	if type == Type.Enemy:
-		var my_data = SavedData.new()
-		my_data.position = global_position
-		my_data.current_hp = health.current_hp
-		my_data.scene_path = scene_file_path
-		
-		saved_data.append(my_data)
+	var my_data = SavedData.new()
+	my_data.position = global_position
+	my_data.current_hp = health.current_hp
+	my_data.scene_path = scene_file_path
+	
+	saved_data.append(my_data)
 
 func on_before_load_game():
-	if type == Type.Enemy:
-		get_parent().remove_child(self)
-		queue_free()
+	get_parent().remove_child(self)
+	queue_free()
 
 func on_load_game(saved_data:SavedData):
-	if type == Type.Enemy:
-		global_position = saved_data.position
-		health.current_hp = saved_data.current_hp
+	global_position = saved_data.position
+	health.current_hp = saved_data.current_hp

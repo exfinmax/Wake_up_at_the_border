@@ -2,8 +2,7 @@ class_name BaseStage
 extends Node
 
 
-func _ready() -> void:
-	add_to_group("Can_Save")
+
 
 func on_save_game(saved_data:Array[SavedData]):
 	

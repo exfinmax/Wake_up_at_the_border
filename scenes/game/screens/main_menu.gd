@@ -21,12 +21,17 @@ func _ready() -> void:
 		load_game.disabled = false
 
 func on_start_pressed() -> void:
+	var file_path = "user://savegame.tres"
+	var dir = DirAccess.open("user://")
+	if dir.file_exists(file_path):
+		dir.remove(file_path)
+		print("已删除")
 	transition_state(TheGame.ScreenType.IN_GAME)
 	v.visible = false
 
 func on_load_pressed() -> void:
 	GlobalSave.load_game()
-	v.visible = false
+	queue_free()
 	
 
 func on_option_pressed() -> void:

@@ -127,7 +127,8 @@ func _on_blink_timeout():
 	if Time.get_ticks_msec() - time_since_last_hurt > DURATION_BETWEEN_HURT:
 		can_be_hurt = true
 		$Body.modulate = Color(1,1,1,1)
-		current_timer.queue_free()
+		if current_timer != null: 
+			current_timer.queue_free()
 
 # 设置朝向，根据速度自动翻转
 func set_heading() -> void:

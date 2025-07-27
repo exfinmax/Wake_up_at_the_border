@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj85a1mnl1mg6" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Green/Artboard 1 copy 4.png" id="6_bg5"]
 [ext_resource type="Texture2D" uid="uid://dwxfk86jnqnk4" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Magic purple/Artboard 1 copy 5.png" id="7_bg6"]
 
-[node name="Stage_5" type="Node2D"]
+[node name="Stage_5" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_dy653")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_bg")]
