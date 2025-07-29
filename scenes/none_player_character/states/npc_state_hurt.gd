@@ -18,7 +18,7 @@ func _enter_tree() -> void:
 	
 	direction = sign(npc.global_position - npc_data.target.global_position)
 	npc.velocity = Vector2(npc.knock_back * direction.x, -100)
-	npc.body.scale.x = npc.current_scale * direction.x
+	npc.body.scale.x = npc.current_scale * -direction.x
 	if npc.health.is_hp_zero():
 		animation.play("death")
 	# 如果NPC血量未归零，则播放受伤动画
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	# 受伤动画播放完毕后，NPC停止移动
 	npc.velocity = Vector2.ZERO
 	# 受伤动画播放完毕后，隐藏血条
-	npc.heading = direction.x
+	npc.heading = -direction.x
 	
 	# 如果NPC血量归零，则销毁NPC
 	if npc.health.is_hp_zero():

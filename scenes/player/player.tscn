@@ -1,15 +1,21 @@
-[gd_scene load_steps=116 format=3 uid="uid://ckoi2bs7alwus"]
+[gd_scene load_steps=132 format=3 uid="uid://ckoi2bs7alwus"]
 
 [ext_resource type="Script" uid="uid://cbct8021jfb8r" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://byof4kcnyimfk" path="res://assets/adventurer-v1.5-Sheet.png" id="2_0owmy"]
+[ext_resource type="Shader" uid="uid://co0dpyvqkfdrh" path="res://scenes/player/player.gdshader" id="2_fm80t"]
 [ext_resource type="Texture2D" uid="uid://c3tq5bow46bs8" path="res://assets/adventurer-hand-combat-Sheet.png" id="3_qek5x"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dh2gmepl1v3at" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png" id="6_5gtgg"]
 [ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="6_je7p5"]
 [ext_resource type="Texture2D" uid="uid://e3s7itixn1r8" path="res://assets/white-circle.png" id="10_h17s1"]
+[ext_resource type="PackedScene" uid="uid://bo34bw5oxwdyo" path="res://scenes/none_player_character/Boss/boss_attack/laser/laser.tscn" id="11_je7p5"]
 [ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://covnl53pmvjrn" path="res://scenes/quest/quest_manager.tscn" id="14_fcs02"]
 [ext_resource type="PackedScene" uid="uid://ceqvp80va6ox0" path="res://scenes/quest/quest_conponent.tscn" id="15_myrg7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcs02"]
+shader = ExtResource("2_fm80t")
+shader_parameter/outline_color = Color(0.65098, 0.952941, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trum3"]
 atlas = ExtResource("2_0owmy")
@@ -91,6 +97,30 @@ region = Rect2(50, 296, 50, 37)
 atlas = ExtResource("2_0owmy")
 region = Rect2(100, 296, 50, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mf0n"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(100, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hvnv"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(150, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbmj2"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(200, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5miun"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(250, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u1tp"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(300, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq1ih"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(0, 333, 50, 37)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(0, 333, 50, 37)
@@ -126,10 +156,6 @@ region = Rect2(100, 444, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_28m0y"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(150, 444, 50, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uniwh"]
-atlas = ExtResource("2_0owmy")
-region = Rect2(200, 444, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lclul"]
 atlas = ExtResource("2_0owmy")
@@ -218,6 +244,22 @@ region = Rect2(100, 74, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1u1sw"]
 atlas = ExtResource("2_0owmy")
 region = Rect2(150, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uniwh"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(250, 444, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqsei"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(300, 444, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tffgl"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(0, 481, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8ii"]
+atlas = ExtResource("2_0owmy")
+region = Rect2(50, 481, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4sw5w"]
 atlas = ExtResource("2_0owmy")
@@ -383,6 +425,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5mf0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hvnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbmj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5miun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u1tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq1ih")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0owmy")
 }, {
 "duration": 1.0,
@@ -413,9 +478,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_28m0y")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_uniwh")
 }],
 "loop": false,
 "name": &"defend",
@@ -521,6 +583,23 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uniwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqsei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tffgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk8ii")
+}],
+"loop": true,
+"name": &"laser",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -638,9 +717,9 @@ scale_curve = SubResource("CurveTexture_fm80t")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_je7p5"]
 shader = ExtResource("6_je7p5")
 shader_parameter/shake_power = 0.4
-shader_parameter/shake_rate = 1.0
+shader_parameter/shake_rate = 0.3
 shader_parameter/shake_speed = 5.0
-shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_block_size = 30.0
 shader_parameter/shake_color_rate = 0.01
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je7p5"]
@@ -1595,7 +1674,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(12.6087, -13.0435)]
+"values": [Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1977,6 +2056,138 @@ tracks/4/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_31ki0"]
+resource_name = "dash"
+length = 0.6
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"dash", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12.6087, -13.0435)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hf5gj"]
+resource_name = "laser"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"laser", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/DefendGPU:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KickGPU:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12.6087, -13.0435)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75vfm"]
 _data = {
 &"RESET": SubResource("Animation_0owmy"),
@@ -1984,6 +2195,7 @@ _data = {
 &"attack_1": SubResource("Animation_ioxgp"),
 &"attack_2": SubResource("Animation_cnsyf"),
 &"attack_3": SubResource("Animation_007i1"),
+&"dash": SubResource("Animation_31ki0"),
 &"death": SubResource("Animation_6cv16"),
 &"defend": SubResource("Animation_7072n"),
 &"double_jump": SubResource("Animation_qek5x"),
@@ -1993,6 +2205,7 @@ _data = {
 &"idle": SubResource("Animation_gmlin"),
 &"in_air_atk": SubResource("Animation_5miun"),
 &"jump": SubResource("Animation_dovo2"),
+&"laser": SubResource("Animation_hf5gj"),
 &"pre_air_atk": SubResource("Animation_trum3"),
 &"pre_fly_kick": SubResource("Animation_je7p5"),
 &"run": SubResource("Animation_p47bc"),
@@ -2020,30 +2233,49 @@ atlas = ExtResource("6_5gtgg")
 region = Rect2(308, 118, 56, 4)
 margin = Rect2(1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugbui"]
+shader = ExtResource("6_je7p5")
+shader_parameter/shake_power = 0.5
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
+shader = ExtResource("6_je7p5")
+shader_parameter/shake_power = 0.5
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="Player" type="CharacterBody2D" groups=["Can_Save"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_8afob")
 max_energy = 10.0
 energy_recover_speed = 0.5
+knock_back = 200.0
 can_defend = true
 can_double_jump = true
 can_fly_kick = true
 can_air_atk = true
+can_laser = true
 acceleration = 20.0
 friction = 20.0
 walk_speed = 133.3
 run_speed = 400.0
-jump_speed = 500.0
+jump_speed = 525.0
 
 [node name="Body" type="Node2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(2.3, 2.3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
+material = SubResource("ShaderMaterial_fcs02")
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_hir57")
-animation = &"fly_kick"
+animation = &"defend"
 autoplay = "idle"
 
 [node name="InteractArea" type="Area2D" parent="Body"]
@@ -2078,14 +2310,11 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_h17s1")
 
 [node name="DefendGPU" type="GPUParticles2D" parent="Body"]
-modulate = Color(1, 0.25098, 1, 0.486275)
+self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_je7p5")
-position = Vector2(17.8261, -14.7826)
-rotation = 1.27409
-scale = Vector2(0.434783, 0.434783)
-skew = -0.961676
+position = Vector2(0.434783, -11.7391)
 emitting = false
-amount = 3
+amount = 2
 texture = ExtResource("10_h17s1")
 process_material = SubResource("ParticleProcessMaterial_je7p5")
 
@@ -2172,5 +2401,21 @@ unique_name_in_owner = true
 
 [node name="QuestConponent" parent="." instance=ExtResource("15_myrg7")]
 
+[node name="Laser" parent="." instance=ExtResource("11_je7p5")]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ugbui")
+position = Vector2(0, -28)
+scale = Vector2(1, 1)
+target_position = Vector2(1, 0)
+is_process_check = true
+
+[node name="Beam" parent="Laser" index="0"]
+material = SubResource("ShaderMaterial_gx1jg")
+
+[node name="Area2D" parent="Laser" index="1"]
+collision_mask = 4
+
 [editable path="Body/Attack"]
 [editable path="Health"]
+[editable path="Laser"]

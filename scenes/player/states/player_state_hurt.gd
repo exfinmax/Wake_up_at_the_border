@@ -2,7 +2,7 @@
 class_name PlayerStateHurt
 extends PlayerState
 
-const KNOCKBACK_VELOCITY :=   200  # 击退速度
+
 
 var direction: Vector2i
 
@@ -22,8 +22,9 @@ func _exit_tree() -> void:
 
 # 应用击退效果
 func _apply_knockback() -> void:
-	direction = sign(player.global_position - player_data.target.global_position)
-	player.velocity = Vector2(KNOCKBACK_VELOCITY * direction.x, -100)
+	if player_data.target != null:
+		direction = sign(player.global_position - player_data.target.global_position)
+		player.velocity = Vector2(player.knock_back * direction.x, -100)
 
 
 # 禁用能量恢复

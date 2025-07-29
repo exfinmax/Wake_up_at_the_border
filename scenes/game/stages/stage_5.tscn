@@ -1,61 +1,147 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd37k351lv05v"]
+[gd_scene load_steps=18 format=3 uid="uid://dd37k351lv05v"]
 
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="1_bg"]
 [ext_resource type="Script" uid="uid://cr6m6pxi84nw1" path="res://scenes/game/stages/stage_5.gd" id="1_dy653"]
-[ext_resource type="Texture2D" uid="uid://bu485lxn1bec4" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Green/Artboard 1.png" id="2_bg1"]
-[ext_resource type="Texture2D" uid="uid://ba4alcei8so36" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Magic purple/Artboard 1 copy.png" id="3_bg2"]
-[ext_resource type="Texture2D" uid="uid://22jogvvbj6im" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/CloudsLayerLayer4.png" id="4_bg3"]
-[ext_resource type="Texture2D" uid="uid://bjrgrhh2l1g4n" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Green/Artboard 1 copy 3.png" id="5_bg4"]
-[ext_resource type="Texture2D" uid="uid://cj85a1mnl1mg6" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Green/Artboard 1 copy 4.png" id="6_bg5"]
-[ext_resource type="Texture2D" uid="uid://dwxfk86jnqnk4" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/forest/Magic purple/Artboard 1 copy 5.png" id="7_bg6"]
+[ext_resource type="AudioStream" uid="uid://cwwqft2yt6s1c" path="res://assets/Mp3/2. Shadowforge Convergence.mp3" id="2_n3ypn"]
+[ext_resource type="Texture2D" uid="uid://dwtiidtrhighx" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0011_0.png" id="3_64wnm"]
+[ext_resource type="Texture2D" uid="uid://cxqs3j78oh7qy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0010_1.png" id="4_n3ypn"]
+[ext_resource type="Texture2D" uid="uid://cmjpx8hv14fml" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0009_2.png" id="5_tiqhl"]
+[ext_resource type="Texture2D" uid="uid://b7po2oykukumk" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0008_3.png" id="6_gpekr"]
+[ext_resource type="Texture2D" uid="uid://dp7uxq2fus5kf" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0007_Lights.png" id="7_yicov"]
+[ext_resource type="Texture2D" uid="uid://xdh2pjkfo5qc" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0006_4.png" id="8_6a5gs"]
+[ext_resource type="Texture2D" uid="uid://ww25vh6h6mrc" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0005_5.png" id="9_266d1"]
+[ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="9_krcsg"]
+[ext_resource type="PackedScene" uid="uid://chmu1ki42ga8i" path="res://scenes/none_player_character/Boss/dream_boss.tscn" id="10_k5hb3"]
+[ext_resource type="Texture2D" uid="uid://beiuhvwfh7365" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0004_Lights.png" id="10_ndma3"]
+[ext_resource type="Texture2D" uid="uid://2mocn0qdquqb" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0003_6.png" id="11_urpod"]
+[ext_resource type="Texture2D" uid="uid://r5lbbvb86s1f" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0002_7.png" id="12_tgyi6"]
+[ext_resource type="Texture2D" uid="uid://t38djpbusmq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0001_8.png" id="13_8s5el"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c850b"]
+size = Vector2(4403.49, 13.7388)
 
 [node name="Stage_5" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_dy653")
+stream = ExtResource("2_n3ypn")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_bg")]
 
 [node name="SkyLayer" parent="ParallaxBackground" index="0"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
-modulate = Color(0.6, 0.6, 0.8, 1)
-texture = ExtResource("2_bg1")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("3_64wnm")
 
 [node name="SunLayer" parent="ParallaxBackground" index="1"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
-modulate = Color(0.6, 0.6, 0.8, 1)
-texture = ExtResource("3_bg2")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("4_n3ypn")
 
 [node name="CloudsLayer" parent="ParallaxBackground" index="2"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
-modulate = Color(0.7, 0.7, 0.9, 1)
-scale = Vector2(2, 2)
-texture = ExtResource("4_bg3")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("5_tiqhl")
 
 [node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
-modulate = Color(0.5, 0.5, 0.7, 1)
-texture = ExtResource("5_bg4")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("6_gpekr")
 
 [node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesFrontLayer" index="0"]
-modulate = Color(0.4, 0.4, 0.6, 1)
-texture = ExtResource("6_bg5")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("7_yicov")
 
 [node name="GroundLayer" parent="ParallaxBackground" index="5"]
-motion_mirroring = Vector2(1920, 0)
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("8_6a5gs")
+
+[node name="GroundLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer2"]
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("9_266d1")
+centered = false
+
+[node name="GroundLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer3"]
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("10_ndma3")
+centered = false
+
+[node name="GroundLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer4"]
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("11_urpod")
+centered = false
+
+[node name="GroundLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer5"]
 modulate = Color(0.3, 0.3, 0.5, 1)
-texture = ExtResource("7_bg6")
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("12_tgyi6")
+centered = false
+
+[node name="GroundLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer6"]
+modulate = Color(0.3, 0.3, 0.5, 1)
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("13_8s5el")
+centered = false
+
+[node name="GroundLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 0.439216, 1, 1)
+scale = Vector2(1.166, 1.166)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/GroundLayer7"]
+modulate = Color(0.3, 0.3, 0.5, 1)
+scale = Vector2(1.166, 1.166)
+texture = ExtResource("12_tgyi6")
+centered = false
 
 [node name="Boss" type="Node2D" parent="."]
 position = Vector2(600, 300)
@@ -64,4 +150,33 @@ position = Vector2(600, 300)
 
 [node name="Endings" type="Node2D" parent="."]
 
+[node name="Player" parent="." instance=ExtResource("9_krcsg")]
+position = Vector2(607, 739)
+max_energy = 20.0
+energy_recover_speed = 2.5
+
+[node name="Attack" parent="Player/Body" index="2"]
+atk = 25.0
+
+[node name="Health" parent="Player" index="4"]
+max_hp = 250.0
+hp_recover_speed = 3.0
+can_recover_hp = true
+
+[node name="Dream_Boss" parent="." instance=ExtResource("10_k5hb3")]
+position = Vector2(1051, 843)
+attack_colddown = 1.5
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(28, 267)
+scale = Vector2(4.00948, 0.680976)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1776.25, 1076.87)
+shape = SubResource("RectangleShape2D_c850b")
+
 [editable path="ParallaxBackground"]
+[editable path="Player"]
+[editable path="Player/Body/Attack"]
+[editable path="Player/Health"]
+[editable path="Player/Laser"]

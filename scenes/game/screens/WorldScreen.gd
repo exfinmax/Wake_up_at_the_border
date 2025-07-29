@@ -60,7 +60,6 @@ func change_stage(stage_name: String) -> void:
 	# 实例化新场景
 	
 	current_stage = stage_scene.instantiate()
-	GameEvents.stage_ready.emit(stage_name)
 	Global.current_scene = current_stage
 	add_child(current_stage)
 	
@@ -68,7 +67,6 @@ func change_stage(stage_name: String) -> void:
 	Global.current_stage = stage_name
 	
 	# 发送信号
-	
 	GameEvents.stage_changed.emit()
 	_is_transitioning = false
 
@@ -85,6 +83,7 @@ func next_stage() -> void:
 	
 	if _stage_cache.has(_next_stage):
 		change_stage(_next_stage)
+		
 		Global.loader_screen.is_lode_down = true
 	else:
 		transition_state(TheGame.ScreenType.THE_END)

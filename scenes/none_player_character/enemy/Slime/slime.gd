@@ -16,7 +16,6 @@ const DIR :Dictionary = {
 @onready var npc_sprite: Sprite2D = $Body/NpcSprite
 
 func _ready() -> void:
-	self.add_to_group("Enemy")
 	var self_type = randi_range(0,1) as SlimeType
 	npc_sprite.texture = DIR.get(self_type)
 	super._ready()
@@ -24,6 +23,7 @@ func _ready() -> void:
 func initialize() -> void:
 	animation_player = animation
 	find_player_area = find_playerarea
+	self.add_to_group("Enemy")
 
 
 	

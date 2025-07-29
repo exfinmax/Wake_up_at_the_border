@@ -5,7 +5,7 @@ var set_dic: Dictionary = {}
 
 
 func _init() -> void:
-	GameEvents.stage_end.connect(save_game)
+	GameEvents.stage_ready.connect(save_game)
 	GameEvents.get_quest.connect(save_game)
 	GameEvents.quest_complete.connect(save_game)
 	GameEvents.player_death.connect(load_game)
@@ -21,15 +21,21 @@ func save_set() -> void:
 	file.close()
 
 func save_game():
-	var save_game:SaveGame = SaveGame.new()
+	var file_path = "user://savegame.tres"
+	var dir = DirAccess.open("user://")
+	if dir.file_exists(file_path):
+		dir.remove(file_path)
+		print("已删除")
+	var saved_game:SaveGame = SaveGame.new()
 	
-	save_game.current_stage = Global.current_stage
+	saved_game.current_stage = Global.current_stage
 	
 	var saved_data:Array[SavedData] = []
 	get_tree().call_group("Can_Save", "on_save_game", saved_data)
-	save_game.saved_data = saved_data
+	saved_game.saved_data = saved_data
 	
-	ResourceSaver.save(save_game, "user://savegame.tres")
+	ResourceSaver.save(saved_game, "user://savegame.tres")
+	print("已存档")
 
 
 
@@ -38,25 +44,26 @@ func load_set() -> void:
 	if file != null:
 		Global.current_setting = file.get_var()
 	
-	
+
 
 
 func load_game() -> void:
 	var saved_game:SaveGame = load("user://savegame.tres")
-
-	Global.current_stage = saved_game.current_stage
-	Global.current_screen.transition_state(TheGame.ScreenType.IN_GAME)
-	await GameEvents.stage_changed
-	get_tree().call_group("Can_Save", "on_before_load_game")
-	
-	for item in saved_game.saved_data:
-		var scene = load(item.scene_path) as PackedScene
-		var restored_node = scene.instantiate()
-		Global.current_scene.add_child(restored_node)
+	if saved_game != null:
+		Global.current_stage = saved_game.current_stage
+		Global.current_screen.transition_state(TheGame.ScreenType.IN_GAME)
+		await GameEvents.stage_changed
+		get_tree().call_group("Can_Save", "on_before_load_game")
 		
-		if restored_node.has_method("on_load_game"):
-			restored_node.on_load_game(item)
-	
+		for item in saved_game.saved_data:
+			var scene = load(item.scene_path) as PackedScene
+			var restored_node = scene.instantiate()
+			Global.current_scene.add_child(restored_node)
+			
+			if restored_node.has_method("on_load_game"):
+				restored_node.on_load_game(item)
+	else:
+		Global.current_screen.reload_current_stage()
 
 
 	

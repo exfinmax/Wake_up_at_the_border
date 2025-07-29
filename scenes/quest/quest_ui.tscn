@@ -72,7 +72,7 @@ layout_mode = 2
 [node name="List" type="Label" parent="CanvasLayer/Panel/Contents/Headings"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 80
 text = "Avaliable    Quest"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -80,7 +80,7 @@ vertical_alignment = 1
 [node name="Details" type="Label" parent="CanvasLayer/Panel/Contents/Headings"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 80
 text = "Quest  Details"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -105,7 +105,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(569, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
@@ -115,7 +115,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(569, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.403922, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 50
 text = "Description"
 autowrap_mode = 1
 

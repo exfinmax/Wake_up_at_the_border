@@ -74,7 +74,7 @@ func get_quest_dialog() -> Dictionary:
 	
 	return {"text": "", "options": {}}
 
-func switch_state(state: BaseNpc.State, data:NpcData = NpcData.new()) -> void:
+func switch_state(_state: BaseNpc.State, _data:NpcData = NpcData.new()) -> void:
 	pass
 
 func on_save_game(saved_data:Array[SavedData]):

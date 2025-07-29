@@ -7,6 +7,8 @@ var shake_strength: float
 var time_start_shake: float
 var is_shaking := true
 var has_boss := false
+var current_shake_instance :float
+var current_shake_duration :float
 
 var player:Player
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +24,7 @@ func on_load_over() -> void:
 	player = Global.player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player != null && !has_boss:
 		global_position = player.global_position
 	

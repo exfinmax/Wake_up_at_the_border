@@ -1,11 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7gga2r7b6mae"]
+[gd_scene load_steps=39 format=3 uid="uid://c7gga2r7b6mae"]
 
 [ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_xa6ba"]
 [ext_resource type="Script" uid="uid://drvq7vij7j85" path="res://scenes/none_player_character/Boss/boss_golme.gd" id="2_h0gg0"]
 [ext_resource type="Texture2D" uid="uid://dq20jhddsk36k" path="res://assets/enemy/Golem/Armored/Golem_Armor_Idle.png" id="3_d6cn5"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_is6fn"]
 [ext_resource type="Texture2D" uid="uid://njm3aurjqr5e" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackA.png" id="5_4f386"]
-[ext_resource type="Texture2D" uid="uid://b65sa0iipu4k7" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackA_FX.png" id="6_5h8r1"]
 [ext_resource type="Texture2D" uid="uid://ugmd5ycro5vu" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackB.png" id="7_u84jm"]
 [ext_resource type="Texture2D" uid="uid://dmthyhcpjfg6e" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackC.png" id="8_kqq3f"]
 [ext_resource type="Texture2D" uid="uid://bli4jmutsynr8" path="res://assets/enemy/Golem/Armored/Golem_Armor_ArmorBreak.png" id="9_snktm"]
@@ -15,12 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://c0c63ftescm0f" path="res://assets/enemy/Golem/Armored/Golem_Armor_Ability.png" id="13_ihi1p"]
 [ext_resource type="Texture2D" uid="uid://bl242x48hu0s3" path="res://assets/enemy/Golem/Armored/Golem_Armor_Hit.png" id="14_52tpi"]
 [ext_resource type="Texture2D" uid="uid://kc8hr80id3n6" path="res://assets/enemy/Golem/Armored/Golem_Armor_Run.png" id="15_c3306"]
+[ext_resource type="Texture2D" uid="uid://55oe2h1e67vk" path="res://assets/enemy/Golem/No Armor/Golem_IdleB.png" id="15_d6cn5"]
+[ext_resource type="Texture2D" uid="uid://bptsr3uvcxd05" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/no health bar.png" id="16_h0gg0"]
 [ext_resource type="Texture2D" uid="uid://dk4diuc3eyjja" path="res://assets/enemy/Golem/No Armor/Golem_Upgrade.png" id="16_jhgoe"]
+[ext_resource type="Texture2D" uid="uid://du0lu5xsh052t" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/health.png" id="17_d6cn5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gh"]
-size = Vector2(10, 10)
+size = Vector2(3.125, 8.625)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xa6ba"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d6cn5"]
 radius = 34.0
 height = 88.0
 
@@ -77,70 +79,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/AttackFX:texture")
+tracks/4/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Body/AttackFX:hframes")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Body/AttackFX:vframes")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Body/AttackFX/Label:self_modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Body/AttackFX:frame")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -266,97 +208,6 @@ tracks/3/keys = {
 "values": [5, 6, 7, 8, 9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_0vkhm"]
-resource_name = "attack_1_fx"
-length = 1.1
-step = 0.05
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Attack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"check_attack"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/AttackFX:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [null, ExtResource("6_5h8r1")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/AttackFX:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Body/AttackFX:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Body/AttackFX/Label:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.3), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Body/AttackFX:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Body/Attack/AttackArea/CollisionShape2D:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 2)]
-}
-
 [sub_resource type="Animation" id="Animation_57s81"]
 resource_name = "attack_2"
 length = 0.8
@@ -477,6 +328,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_3"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bipv7"]
@@ -982,7 +847,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_m75uv"]
 resource_name = "start"
-length = 1.1
+length = 3.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -991,10 +856,10 @@ tracks/0/path = NodePath("Body/NpcSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.796525, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("16_jhgoe")]
+"values": [ExtResource("11_4hn21"), ExtResource("15_d6cn5"), ExtResource("16_jhgoe")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1003,10 +868,10 @@ tracks/1/path = NodePath("Body/NpcSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.796525, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [4]
+"values": [4, 4, 4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1015,10 +880,10 @@ tracks/2/path = NodePath("Body/NpcSprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.796525, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [3]
+"values": [2, 1, 3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1027,10 +892,22 @@ tracks/3/path = NodePath("Body/NpcSprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.796525, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+"values": [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/TextureProgressBar:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1g6nb"]
@@ -1038,7 +915,6 @@ _data = {
 &"RESET": SubResource("Animation_yoikn"),
 &"attack_1": SubResource("Animation_cf5q2"),
 &"attack_1_end": SubResource("Animation_412fi"),
-&"attack_1_fx": SubResource("Animation_0vkhm"),
 &"attack_2": SubResource("Animation_57s81"),
 &"attack_3": SubResource("Animation_dg8rj"),
 &"death_1": SubResource("Animation_bipv7"),
@@ -1055,13 +931,13 @@ _data = {
 &"start": SubResource("Animation_m75uv")
 }
 
-[node name="BossGolme" instance=ExtResource("1_xa6ba")]
+[node name="BossGolme" groups=["Enemy"] instance=ExtResource("1_xa6ba")]
 script = ExtResource("2_h0gg0")
+type = 2
 firection = 30.0
-attack_range = 300.0
-chase_range = 600.0
-attack_colddown = 1.0
-duration_between_hurt = 1500.0
+attack_range = 500.0
+chase_range = 10000.0
+attack_colddown = 2.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(4, 4)
@@ -1070,37 +946,25 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_d6cn5")
 hframes = 4
 
-[node name="AttackFX" type="Sprite2D" parent="Body" index="1"]
-hframes = 3
-vframes = 3
-
-[node name="Label" type="Label" parent="Body/AttackFX" index="0"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -20.75
-offset_top = -5.5
-offset_right = 19.25
-offset_bottom = 11.5
-theme_override_colors/font_color = Color(0.698039, 0, 0, 1)
-theme_override_constants/outline_size = 3
-text = "!!!!!"
-
-[node name="Attack" parent="Body" index="4" instance=ExtResource("4_is6fn")]
+[node name="Attack" parent="Body" index="3" instance=ExtResource("4_is6fn")]
+unique_name_in_owner = true
 position = Vector2(-1.25, -1.75)
 atk = 20.0
-max_atk_index = 1
+check_between = 5000.0
+increase_knock = 5.0
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
 position = Vector2(-39, -9.25)
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
-position = Vector2(38.75, 13.75)
+position = Vector2(40, 13.125)
 scale = Vector2(4, 2)
 shape = SubResource("RectangleShape2D_ip1gh")
 
 [node name="Health" parent="." index="1"]
-max_hp = 300.0
-hp_recover_speed = 2.5
+max_hp = 450.0
+hp_recover_speed = 10.0
 can_show = false
 
 [node name="TextureProgressBar" parent="Health" index="0"]
@@ -1110,14 +974,27 @@ offset_right = 41.0
 offset_bottom = 12.0
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-12, 11)
-shape = SubResource("CapsuleShape2D_xa6ba")
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_d6cn5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 &"": SubResource("AnimationLibrary_1g6nb")
 }
 autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" index="0"]
+offset_left = 725.0
+offset_top = 151.0
+offset_right = 853.0
+offset_bottom = 167.0
+scale = Vector2(8, 4)
+max_value = 450.0
+texture_under = ExtResource("16_h0gg0")
+texture_progress = ExtResource("17_d6cn5")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 

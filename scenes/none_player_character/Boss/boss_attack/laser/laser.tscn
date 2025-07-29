@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo34bw5oxwdyo"]
+
+[ext_resource type="Script" uid="uid://dnimbtvnslmyq" path="res://scenes/none_player_character/Boss/boss_attack/laser/laser.gd" id="1_pujge"]
+
+[sub_resource type="Curve" id="Curve_o6mjr"]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cb8y1"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6mjr"]
+size = Vector2(1, 30)
+
+[node name="Laser" type="RayCast2D"]
+target_position = Vector2(0, 1)
+script = ExtResource("1_pujge")
+duration = 2.0
+
+[node name="Beam" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 46)
+width_curve = SubResource("Curve_o6mjr")
+gradient = SubResource("Gradient_cb8y1")
+begin_cap_mode = 2
+end_cap_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+top_level = true
+shape = SubResource("RectangleShape2D_o6mjr")

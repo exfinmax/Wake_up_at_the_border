@@ -60,7 +60,7 @@ func show_dialog(speaker, text: String, options: Dictionary):
 		for option in options.keys():
 			var button = Button.new()
 			button.text = option
-			button.add_theme_color_override("font_size", 20)
+			button.add_theme_color_override("font_size", 30)
 			button.pressed.connect(_on_option_selected.bind(button))
 			button.visible = true if can_show_button else false
 			dia_options.add_child(button)

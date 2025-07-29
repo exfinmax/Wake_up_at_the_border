@@ -12,7 +12,6 @@ enum State {
 	ATTACK,
 	HURT,
 	SPECIALGOLEM,
-	FINALBOSS,
 }
 
 @export_category("BaseNpc")
@@ -63,9 +62,10 @@ func _process(delta: float) -> void:
 
 
 
-func get_hurt(current_atk:float, sourcer: Node2D) -> void:
+func get_hurt(current_atk:float, sourcer: Node2D, _number:int) -> void:
 	if can_get_hurt:
 		can_get_hurt = false
+		time_since_last_hurt = Time.get_ticks_msec()
 		health.change_hp(-current_atk)
 		start_blink()
 		switch_state(State.HURT, NpcData.build().add_player(sourcer))

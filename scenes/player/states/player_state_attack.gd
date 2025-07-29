@@ -31,16 +31,14 @@ func change_animation_finished() -> void:
 	change_animation_finished()
 
 # 攻击判定
-func _on_detect_area(body: Node2D) -> void:
-	if body.is_in_group("Enemy") and attack_component:
-		attack_component.check_attack()
-
 
 
 # 开始攻击
 func _start_attack() -> void:
 	animation.play("attack_1")
 	time_start_attack = Time.get_ticks_msec()
+	if attack_component.is_useful_attack:
+		player.current_energy += 1
 
 
 # 继续连击
@@ -53,6 +51,13 @@ func _continue_combo() -> void:
 	animation.play("attack_%s" % [combo_index])
 	time_start_attack = Time.get_ticks_msec()
 	is_animation_finished = false
+	if attack_component.is_useful_attack:
+		player.current_energy += 1
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_down") && player.current_energy > 1:
+		player.current_energy -= 1
+		transfrom_state(Player.State.DEFEND)
 
 
 # 结束攻击

@@ -11,7 +11,12 @@ extends BaseNpc
 
 func _ready() -> void:
 	self.add_to_group("Enemy")
-	super._ready()
+	initialize()
+	current_scale = body.scale.x
+	if Global.player:
+		switch_state(State.ATTACK,NpcData.build().add_player(Global.player))
+	else:
+		switch_state(State.MOVE)
 
 func initialize() -> void:
 	animation_player = animation

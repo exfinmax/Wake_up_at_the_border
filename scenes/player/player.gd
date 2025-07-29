@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 
 # 受伤后无敌持续时间（毫秒）
-const DURATION_BETWEEN_HURT := 2000
+const DURATION_BETWEEN_HURT := 2500
 
 # 玩家状态枚举
 enum State {
@@ -16,17 +16,21 @@ enum State {
 	HURT,
 	AIR_KICK,
 	AIR_ATK,
+	LASER,
+	DASH,
 }
 
 # 属性导出，方便在编辑器中调整
 @export_category("Attribute")
 @export var max_energy: float
 @export var energy_recover_speed: float
+@export var knock_back: float
 @export_category("Skill")
 @export var can_defend: bool
 @export var can_double_jump:bool
 @export var can_fly_kick:bool
 @export var can_air_atk:bool
+@export var can_laser:bool
 @export_category("Move")
 @export var acceleration: float
 @export var friction: float
@@ -48,6 +52,7 @@ var can_be_hurt : bool = true
 var can_recover_energy:bool = true
 # 是否处于防御状态
 var is_defend:bool = false
+var is_laser:bool = false
 var apply_gravity: bool = true
 
 # 上次受伤时间戳
@@ -63,6 +68,8 @@ var time_since_last_hurt:= Time.get_ticks_msec()
 @onready var quest_manager: Node2D = $QuestManager
 @onready var energy_progress_bar: TextureProgressBar = %EnergyProgressBar
 @onready var health_progress_bar: TextureProgressBar = %HealthProgressBar
+@onready var laser: RayCast2D = %Laser
+@onready var animated_sprite_2d: AnimatedSprite2D = $Body/AnimatedSprite2D
 
 var camera_2d: Camera2D
 
@@ -73,7 +80,7 @@ var current_timer: Timer = null
 func _ready() -> void:
 	camera_2d = Global.camera
 	Global.player = self
-	_initialize_bar()
+	_initialize_skill()
 	switch_state(State.MOVE)
 
 # 物理帧处理，处理能量恢复、摩擦、受伤判定、移动
@@ -82,6 +89,7 @@ func _process(delta: float) -> void:
 	recover_energy(delta)
 	set_firction(delta)
 	updata_bar()
+	control_shader()
 	move_and_slide()
 
 # 切换玩家状态
@@ -95,13 +103,15 @@ func switch_state(state:State, data:PlayerData = PlayerData.new()) -> void:
 	call_deferred("add_child", current_state)
 	
 # 受伤处理，减少血量，记录时间，触发闪烁
-func get_hurt(current_atk:float, sourcer: Node2D) -> void:
-	var direction: Vector2i = sign(global_position - sourcer.global_position)
-	if is_defend && heading == -direction.x && current_energy >= 1.5:
-		current_energy -= 1.5
-		sourcer.knock_back *= 2
-		sourcer.get_hurt(min(current_atk / 2, 20),self)
-		sourcer.knock_back /= 2
+func get_hurt(current_atk:float, sourcer: Node2D, lose_energy:float = 1) -> void:
+	if is_laser:
+		current_energy -= 2
+	elif is_defend && current_energy >= lose_energy:
+		current_energy -= lose_energy
+		if sourcer.is_in_group("Enemy"):
+			sourcer.knock_back *= 2
+			sourcer.get_hurt(min(current_atk / 2, 20),self ,1)
+			sourcer.knock_back /= 2
 	elif can_be_hurt:
 		can_be_hurt = false
 		health_component.change_hp(-current_atk)
@@ -132,7 +142,7 @@ func _on_blink_timeout():
 
 # 设置朝向，根据速度自动翻转
 func set_heading() -> void:
-	if !is_defend:
+	if !is_defend && !is_laser:
 		if velocity.x > 0:
 			body.scale.x = abs(body.scale.x)
 			heading = 1
@@ -151,15 +161,12 @@ func set_firction(delta:float) -> void:
 		velocity += get_gravity() * delta
 	
 
-func _initialize_bar() -> void:
-	health_progress_bar.max_value = health_component.max_hp
-	health_progress_bar.value = health_component.max_hp
-	health_component.current_hp = health_component.max_hp
-	energy_progress_bar.max_value = max_energy
-	energy_progress_bar.value = current_energy
+
 
 func updata_bar() -> void:
+	health_progress_bar.max_value = health_component.max_hp
 	health_progress_bar.value = health_component.current_hp
+	energy_progress_bar.max_value = max_energy
 	energy_progress_bar.value = current_energy
 
 func reload_skill() -> void:
@@ -168,6 +175,7 @@ func reload_skill() -> void:
 	can_air_atk = Global.player_skill[2]
 	can_fly_kick = Global.player_skill[3]
 	health_component.can_recover_hp = Global.player_skill[4]
+	can_laser = Global.player_skill[5]
 
 func on_save_game(save_data:Array[SavedData]):
 	var my_data :PlayerResource = PlayerResource.new()
@@ -206,3 +214,17 @@ func on_load_game(save_data:SavedData):
 		quest_manager.add_quest(quest)
 	
 	reload_skill()
+
+func _initialize_skill() -> void:
+	Global.player_skill[0] = can_defend
+	Global.player_skill[1] = can_double_jump
+	Global.player_skill[2] = can_air_atk
+	Global.player_skill[3] = can_fly_kick
+	Global.player_skill[4] = health_component.can_recover_hp
+	Global.player_skill[5] = can_laser
+
+func control_shader() -> void:
+	if is_defend || is_laser || !can_be_hurt:
+		animated_sprite_2d.set_instance_shader_parameter("outline_width", 0.5)
+	else:
+		animated_sprite_2d.set_instance_shader_parameter("outline_width", 0)

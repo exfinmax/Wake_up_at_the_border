@@ -7,6 +7,7 @@ extends Screen
 @onready var option: Button = %Set
 @onready var exit: Button = %Exit
 @onready var v: VBoxContainer = $Control/V
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func on_start_pressed() -> void:
 	if dir.file_exists(file_path):
 		dir.remove(file_path)
 		print("已删除")
+	Global.current_stage = "stage_1"
 	transition_state(TheGame.ScreenType.IN_GAME)
 	v.visible = false
 
@@ -43,3 +45,8 @@ func on_exit_pressed() -> void:
 	get_tree().quit()
 	v.visible = false
 	
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	await get_tree().create_timer(0.5).timeout
+	animation_player.play("loop")

@@ -19,7 +19,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		item.texture = item_icon
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		item.texture = item_icon
 

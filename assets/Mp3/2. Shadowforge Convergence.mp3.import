@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwwqft2yt6s1c"
+path="res://.godot/imported/2. Shadowforge Convergence.mp3-5122c5f0ba43c13387aab647b194a2dc.mp3str"
+
+[deps]
+
+source_file="res://assets/Mp3/2. Shadowforge Convergence.mp3"
+dest_files=["res://.godot/imported/2. Shadowforge Convergence.mp3-5122c5f0ba43c13387aab647b194a2dc.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

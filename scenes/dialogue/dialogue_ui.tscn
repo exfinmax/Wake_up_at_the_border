@@ -54,7 +54,7 @@ theme_override_constants/separation = 15
 
 [node name="Speaker" type="Label" parent="CanvasLayer/Panel/DialogBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 50
 text = "NPC Name"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/DialogBox"]
@@ -77,7 +77,7 @@ custom_minimum_size = Vector2(893, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 40
 text = "Text"
 horizontal_alignment = 1
 vertical_alignment = 1

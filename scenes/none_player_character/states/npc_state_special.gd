@@ -18,7 +18,7 @@ var attack_combo: int = 1  # 连击计数
 func _enter_tree() -> void:
 	# 获取攻击目标并初始化状态
 	target = npc_data.target
-	max_index = 2
+	max_index = attack_conpoment.max_atk_index
 
 	
 
@@ -43,8 +43,12 @@ func _chase_target(_delta: float) -> void:
 	
 	if abs(npc.velocity.x) > 0:
 		animation.play("move")
-	
-	# 如果距离过远，切换到移动状态
+		if randf_range(0,1) > 0.99:
+			npc.velocity.x = 0
+			animation.play("attack_2")
+			set_process(false)
+			await animation.animation_finished
+			set_process(true)
 
 
 # 执行攻击
@@ -54,7 +58,10 @@ func _perform_attack() -> void:
 	if attack_timer <= 0 and can_attack:
 		# 开始攻击动画
 		is_attack = true
-		animation.play("attack_" + str(rand_index()))
+		if attack_conpoment.max_atk_index > 2:
+			animation.play("attack_" + rand_index())
+		else:
+			animation.play("attack_" + rand_index_2())
 		attack_timer = npc.attack_colddown
 		can_attack = false
 		
@@ -67,9 +74,18 @@ func _perform_attack() -> void:
 		is_attack = false
 		can_attack = true
 
-func rand_index() -> int:
-	var number = randi_range(0,3)
-	if number < 3:
-		return 1
+func rand_index() -> String:
+	var number = randi_range(0,9)
+	if number < 5:
+		return "1"
+	elif number < 8:
+		return "3"
 	else:
-		return 2
+		return "2"
+
+func rand_index_2() -> String:
+	var number = randi_range(0,9)
+	if number < 7:
+		return "1"
+	else:
+		return "2"

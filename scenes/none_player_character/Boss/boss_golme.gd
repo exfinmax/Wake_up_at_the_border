@@ -4,67 +4,101 @@ extends BaseNpc
 
 
 const EnemyGolem = preload("res://scenes/none_player_character/enemy/Golem/enemy_golem.tscn")
+const ATTACK_1 = preload("res://scenes/none_player_character/Boss/boss_attack/attack_1.tscn")
+const ATTACK_3 = preload("res://scenes/none_player_character/Boss/boss_attack/attack_3.tscn")
+
 
 @onready var attack: Attack = $Body/Attack
-@onready var attack_fx: Sprite2D = $Body/AttackFX
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var health_progress_bar: TextureProgressBar = $CanvasLayer/TextureProgressBar
 
 var player:Player
 var is_first_low :bool = false
-var is_death:bool = false
+var is_defend:bool = false
 var death_index:int = 1
 
 func _ready() -> void:
+	animation.play("start")
+	MusicPlayer.play_bgm(preload("res://assets/Mp3/FEARMONGER.mp3"))
 	player = Global.player
+	_initialize_bar()
 	initialize()
 	current_scale = body.scale.x
 	
 
 
-func get_hurt(current_atk:float, sourcer: Node2D) -> void:
+func get_hurt(current_atk:float, _sourcer: Node2D, _number: int) -> void:
 	if can_get_hurt:
-		can_get_hurt = false
-		health.change_hp(-current_atk)
-		start_blink()
+		if !is_defend:
+			can_get_hurt = false
+			time_since_last_hurt = Time.get_ticks_msec()
+			health.change_hp(-current_atk)
+			start_blink()
+				
+		else:
+			can_get_hurt = false
+			time_since_last_hurt = Time.get_ticks_msec()
+			start_blink()
+			health.change_hp(-current_atk / 2)
+			rand_attack()
+	if health.is_hp_zero() && is_first_low:
+		health.can_recover_hp = false
+		health.current_hp = 0
+		death()
+		if current_state_node != null:
+			current_state_node.queue_free()
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	updata_bar()
 	control_hp()
-	if health.is_hp_zero() && !is_death:
-		health.can_recover_hp = false
-		current_state_node.queue_free()
-		is_death = true
-		death()
+	
 
 func control_hp() -> void:
-	if health.current_hp < 50 && !is_first_low:
+	if health.current_hp < 60 && !is_first_low:
 		is_first_low = true
 		health.can_recover_hp = true
-	elif is_first_low && health.current_hp > 120:
+		defend()
+	elif is_first_low && health.current_hp > 200 && is_defend:
 		health.can_recover_hp = false
+		is_defend = false
+		animation.play("defend_over")
+		await animation.animation_finished
+		switch_state(State.SPECIALGOLEM, NpcData.build().add_player(player))
 
 func initialize() -> void:
 	animation_player = animation
 
 func attack_1() -> void:
-	for i in randi_range(1,3):
-		attack.global_position = player.global_position
-		attack_fx.global_position = player.global_position - Vector2(0, 30)
-		animation.play("attack_1_fx")
-		await animation.animation_finished
+	for i in randi_range(2,4):
+		var attack_1 = ATTACK_1.instantiate()
+		attack_1.global_position = player.global_position - Vector2(0, 50)
+		get_parent().add_child(attack_1)
+		await get_tree().create_timer(0.6).timeout
 	animation.play("attack_1_end")
+	
+	
+	
 
 func attack_2() -> void:
 	var golem = EnemyGolem.instantiate()
-	golem.global_position = player.global_position - Vector2(0, 320)
+	golem.global_position = player.global_position - Vector2(0, 600)
+	golem.chase_range = 1000
 	golem.switch_state(State.ATTACK,NpcData.build().add_player(player))
-	get_parent().add_child(golem)
+	get_parent().call_deferred("add_child", golem)
 
 func attack_3() -> void:
-	pass
+	for i in randi_range(3,5):
+		var attack_3 = ATTACK_3.instantiate()
+		attack_3.set_velocity(player.global_position)
+		attack_3.global_position = self.global_position - Vector2(randf_range(-100, 100), 70)
+		get_parent().call_deferred("add_child", attack_3)
+	
 
 func defend() -> void:
-	pass
+	current_state_node.queue_free()
+	is_defend = true
+	animation.play("defend")
 
 func death() -> void:
 	animation.play("death_1")
@@ -74,12 +108,35 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "start":
 		switch_state(State.SPECIALGOLEM, NpcData.build().add_player(player))
 	elif anim_name.begins_with("death"):
-		death_index += 1
+		death_index = clampi(death_index + 1, 2, 4)
 		animation.play("death_%s" % str(death_index))
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("1"):
-		animation.play("start")
+func set_heading() -> void:
+	var direction := (player.global_position - global_position).normalized()
+	if direction.x > 0:
+		body.scale.x = current_scale
+	else:
+		body.scale.x = -current_scale
+
+func rand_attack() -> void:
+	var number = randi_range(0,9)
+	if number < 5:
+		attack_2()
+	elif number < 8:
+		attack_1()
+	else:
+		attack_3()
+
+
+func _initialize_bar() -> void:
+	health_progress_bar.max_value = health.max_hp
+	health_progress_bar.value = health.max_hp
+
+
+
+func updata_bar() -> void:
+	health_progress_bar.value = health.current_hp
+
 
 func _exit_tree() -> void:
 	GameEvents.boss_death.emit()

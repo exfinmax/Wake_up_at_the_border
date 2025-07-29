@@ -20,7 +20,6 @@ func _init() -> void:
 		BaseNpc.State.AIR : NpcStateAir,
 		BaseNpc.State.HURT : NpcStateHurt,
 		BaseNpc.State.SPECIALGOLEM : NpcStateSpecialGolem,
-		BaseNpc.State.FINALBOSS : NpcStateSpecialGolem,
 	}
 
 # 切换NPC状态的函数

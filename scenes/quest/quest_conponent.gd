@@ -53,7 +53,7 @@ func handle_quest_completed(quest: Quest):
 			Global.player.max_energy += reward.reward_amount
 			Global.player.energy_progress_bar.max_value = Global.player.max_energy
 		elif reward.reward_type == "energy_speed":
-			Global.player.energy_recover_speed += reward.reward_amount
+			Global.player.energy_recover_speed += reward.reward_amount / 2.0
 		elif reward.reward_type == "hp":
 			Global.player.max_hp += reward.reward_amount
 		elif reward.reward_type == "atk":
@@ -80,7 +80,7 @@ func update_quest_tracker(quest: Quest):
 		
 		for objective in quest.objectives:
 			var label = Label.new()
-			label.add_theme_font_size_override("font_size", 20)
+			label.add_theme_font_size_override("font_size", 40)
 			label.custom_minimum_size.x = 300.0
 			label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 			label.text = objective.description

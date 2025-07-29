@@ -41,7 +41,7 @@ func update_quest_list():
 	else:
 		for quest in active_quests:
 			var button = Button.new()
-			button.add_theme_font_size_override("font_size", 20)
+			button.add_theme_font_size_override("font_size", 40)
 			button.text = quest.quest_name
 			button.pressed.connect(_on_quest_selected.bind(quest))
 			quest_list.add_child(button)
@@ -59,7 +59,7 @@ func _on_quest_selected(quest: Quest):
 	
 	for objective in quest.objectives:
 		var label = Label.new()
-		label.add_theme_font_size_override("font_size", 20)
+		label.add_theme_font_size_override("font_size", 40)
 		if objective.target_type == "collection":
 			label.text = objective.description + "(" + str(objective.collected_quantity) + "/" + str(objective.required_quantity) + ")"
 		else:
@@ -77,7 +77,7 @@ func _on_quest_selected(quest: Quest):
 	
 	for reward in quest.rewards:
 		var label = Label.new()
-		label.add_theme_font_size_override("font_size", 20)
+		label.add_theme_font_size_override("font_size", 40)
 		label.add_theme_color_override("font_color", Color(0, 0.84, 0))
 		label.text = "Rewards: " + reward.reward_type.capitalize() + ": " + str(reward.reward_amount)
 		quest_rewards.add_child(label)
