@@ -1,6 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://c7gga2r7b6mae"]
+[gd_scene load_steps=40 format=3 uid="uid://c7gga2r7b6mae"]
 
-[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_xa6ba"]
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_enemy.tscn" id="1_xa6ba"]
 [ext_resource type="Script" uid="uid://drvq7vij7j85" path="res://scenes/none_player_character/Boss/boss_golme.gd" id="2_h0gg0"]
 [ext_resource type="Texture2D" uid="uid://dq20jhddsk36k" path="res://assets/enemy/Golem/Armored/Golem_Armor_Idle.png" id="3_d6cn5"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_is6fn"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bptsr3uvcxd05" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/no health bar.png" id="16_h0gg0"]
 [ext_resource type="Texture2D" uid="uid://dk4diuc3eyjja" path="res://assets/enemy/Golem/No Armor/Golem_Upgrade.png" id="16_jhgoe"]
 [ext_resource type="Texture2D" uid="uid://du0lu5xsh052t" path="res://assets/Legacy-Fantasy - High Forest 2.3/HUD/health.png" id="17_d6cn5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4f386"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gh"]
 size = Vector2(3.125, 8.625)
@@ -937,12 +939,15 @@ type = 2
 firection = 30.0
 attack_range = 500.0
 chase_range = 10000.0
-attack_colddown = 2.0
+attack_colddown = 1.6
+knock_back = 200.0
+duration_between_hurt = 500.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(4, 4)
 
 [node name="NpcSprite" parent="Body" index="0"]
+material = SubResource("ShaderMaterial_4f386")
 texture = ExtResource("3_d6cn5")
 hframes = 4
 

@@ -36,9 +36,12 @@ func change_animation_finished() -> void:
 # 开始攻击
 func _start_attack() -> void:
 	animation.play("attack_1")
+	FreezeManager.frame_freeze(0.2, 0.1)
 	time_start_attack = Time.get_ticks_msec()
 	if attack_component.is_useful_attack:
 		player.current_energy += 1
+		GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+		
 
 
 # 继续连击
@@ -49,10 +52,13 @@ func _continue_combo() -> void:
 		return
 		
 	animation.play("attack_%s" % [combo_index])
+	FreezeManager.frame_freeze(0.2, 0.1)
 	time_start_attack = Time.get_ticks_msec()
 	is_animation_finished = false
 	if attack_component.is_useful_attack:
 		player.current_energy += 1
+		GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+		
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down") && player.current_energy > 1:

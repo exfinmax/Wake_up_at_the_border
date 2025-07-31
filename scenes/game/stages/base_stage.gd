@@ -7,7 +7,7 @@ var current_timer:Timer
 func _ready() -> void:
 	Global.current_stage = name
 	var timer = Timer.new()
-	timer.wait_time = 2.0
+	timer.wait_time = 1.0
 	timer.one_shot = true
 	timer.timeout.connect(on_timeout.bind())
 	add_child(timer)

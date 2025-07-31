@@ -8,7 +8,7 @@ func _enter_tree() -> void:
 	player.can_be_hurt = false
 	player.current_energy -= 6
 	player.can_recover_energy = false
-	player.velocity.y += -100
+	player.velocity.y -= 200
 	animation.play("pre_fly_kick")
 	animation.animation_finished.connect(on_animation_finished.bind())
 	current_atk = attack_component.atk
@@ -19,8 +19,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	await get_tree().create_timer(0.4).timeout
 	if player.apply_gravity == false:
-		player.velocity.x = player.run_speed * player.heading * 2.5
-		player.velocity.y = player.run_speed * 2
+		player.velocity.x = player.run_speed * player.heading * 3.3
+		player.velocity.y = player.run_speed * 2.5
 	
 
 func on_animation_finished(_name: StringName) -> void:
@@ -29,8 +29,10 @@ func on_animation_finished(_name: StringName) -> void:
 	
 
 func on_body_entered(_body: Node2D) -> void:
+	GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+	FreezeManager.frame_freeze(0.3, 0.25)
 	player.camera_2d.shake()
-	attack_component.atk = lerpf(current_atk+20, current_atk+150, total_delta)
+	attack_component.atk = lerpf(current_atk+20, current_atk+160, total_delta)
 	attack_component.check_attack()
 
 func _process(delta: float) -> void:

@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	# 物理过程，负责更新NPC的位置和状态
 	ray_cast_detect()
 	set_move_animation(delta)
+	
 	# 如果NPC在垂直方向上有速度，则切换到空中状态
 	if npc.velocity.y != 0:
 		transfrom_state(BaseNpc.State.AIR)
@@ -25,12 +26,18 @@ func ray_cast_detect() -> void:
 	if (not floor_ray_cast.is_colliding()) || rand_change || wall_ray_cast.is_colliding():
 		# 停止NPC的水平速度
 		npc.velocity.x = 0
-	
 		# 改变NPC的朝向
+		
 		npc.heading = -npc.heading
 		# 重置随机改变方向的标志
 		rand_change = false
 		# 等待一段时间后再次尝试随机改变方向
+		set_physics_process(false)
+		npc.velocity = Vector2.ZERO
+		animation.play("idle")
+		await get_tree().create_timer(randf_range(1.0, 2.0)).timeout
+		set_physics_process(true)
+		
 		
 
 
@@ -63,7 +70,7 @@ func set_move_animation(delta:float) -> void:
 		npc.velocity.x = clampf(npc.velocity.x + npc.walk_speed * delta * npc.heading, npc.heading * npc.walk_speed, 0)
 	# 如果NPC不能进行有效攻击，则根据其速度播放相应的动画
 	# 如果NPC水平速度为0，则播放待机动画
-	if npc.velocity.x == 0:
+	if abs(npc.velocity.x) < 3:
 		animation.play("idle")
 	# 如果NPC水平速度不为0，则播放移动动画
 	elif npc.velocity.x != 0:

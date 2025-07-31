@@ -8,6 +8,7 @@ extends Screen
 @onready var exit: Button = %Exit
 @onready var v: VBoxContainer = $Control/V
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var help: Button = %Help
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	load_game.pressed.connect(on_load_pressed.bind())
 	option.pressed.connect(on_option_pressed.bind())
 	exit.pressed.connect(on_exit_pressed.bind())
+	help.pressed.connect(on_help_pressed.bind())
 	MusicPlayer.setup_ui_sounds(self)
 	MusicPlayer.play_bgm(preload("res://assets/Mp3/21_loop.mp3"))
 	if ResourceLoader.exists("user://savegame.tres"):
@@ -46,6 +48,8 @@ func on_exit_pressed() -> void:
 	v.visible = false
 	
 
+func on_help_pressed() -> void:
+	transition_state(TheGame.ScreenType.HELP)
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	await get_tree().create_timer(0.5).timeout

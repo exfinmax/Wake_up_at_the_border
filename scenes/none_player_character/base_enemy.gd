@@ -5,13 +5,14 @@ extends CharacterBody2D
 const GRAVITY :float = 980.0
 
 
-enum Type {Enemy, Npc, Boss}
+enum Type {Enemy, Boss}
 enum State {
 	MOVE,
 	AIR,
 	ATTACK,
 	HURT,
-	SPECIALGOLEM,
+	SPECIAL,
+	AIR_MOVE,
 }
 
 @export_category("BaseNpc")
@@ -26,7 +27,7 @@ enum State {
 @export var chase_range: float
 @export var attack_colddown: float
 @export var knock_back: float
-@export var duration_between_hurt: float = 1000.0
+@export var duration_between_hurt: float = 200
 
 @onready var body: Node2D = %Body
 @onready var health: Health = %Health
@@ -48,6 +49,7 @@ var current_timer: Timer = null
 var time_since_last_hurt:= Time.get_ticks_msec()
 
 var can_get_hurt:bool = true
+var is_fly:bool = false
 
 func _ready() -> void:
 	initialize()
@@ -55,10 +57,9 @@ func _ready() -> void:
 	switch_state(State.MOVE)
 
 func _process(delta: float) -> void:
-	if type != Type.Npc:
-		set_heading()
-		set_firction(delta)
-		move_and_slide()
+	set_heading()
+	set_firction(delta)
+	move_and_slide()
 
 
 

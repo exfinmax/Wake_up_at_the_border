@@ -16,6 +16,7 @@ func _init() -> void:
 		TheGame.ScreenType.IN_GAME: preload("res://scenes/game/screens/WorldScreen.tscn"),
 		TheGame.ScreenType.SETTING: preload("res://scenes/game/screens/setting_screen.tscn"),
 		TheGame.ScreenType.THE_END: preload("res://scenes/game/screens/TheEnd.tscn"),
+		TheGame.ScreenType.HELP : preload("res://scenes/game/screens/HelpScreen.tscn"),
 	}
 
 # 根据屏幕类型获取一个新的屏幕实例

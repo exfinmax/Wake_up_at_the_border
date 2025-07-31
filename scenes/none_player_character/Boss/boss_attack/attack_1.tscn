@@ -1,7 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://cktgwhl240i0r"]
+[gd_scene load_steps=23 format=3 uid="uid://cktgwhl240i0r"]
 
 [ext_resource type="Texture2D" uid="uid://b65sa0iipu4k7" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackA_FX.png" id="1_adwgc"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="2_l13ao"]
+[ext_resource type="Texture2D" uid="uid://cgxb8ufdk7r8b" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_2.png" id="3_cyq0v"]
+[ext_resource type="Texture2D" uid="uid://3edau0yrov0m" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_1.png" id="4_v0tb1"]
+[ext_resource type="Texture2D" uid="uid://bxqx1dlnsugcg" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_3.png" id="5_t5icm"]
+[ext_resource type="Texture2D" uid="uid://dovl0by0480mu" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_4.png" id="6_mu37m"]
+[ext_resource type="Texture2D" uid="uid://d3gmj7fphwbn4" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_5.png" id="7_v72um"]
+[ext_resource type="Texture2D" uid="uid://hsybxqickx5m" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_6.png" id="8_iu8hc"]
+[ext_resource type="Texture2D" uid="uid://do0jai27fakeh" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_7.png" id="9_ngrko"]
+[ext_resource type="Texture2D" uid="uid://ci8y3j5s31lil" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_8.png" id="10_bh5jl"]
+[ext_resource type="Texture2D" uid="uid://l0aik10adw3p" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_9.png" id="11_03rrw"]
+[ext_resource type="Texture2D" uid="uid://d0breusk7g5vq" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_10.png" id="12_kqo2e"]
+[ext_resource type="Texture2D" uid="uid://bi70xovmrla8l" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_11.png" id="13_13okh"]
+[ext_resource type="Texture2D" uid="uid://butgr1rvod5mw" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_12.png" id="14_c6fy3"]
+[ext_resource type="Texture2D" uid="uid://dibdelcvfmwgj" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_13.png" id="15_2g4ai"]
+[ext_resource type="Texture2D" uid="uid://ccrnjf8gnouxu" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_14.png" id="16_1byx4"]
+[ext_resource type="Texture2D" uid="uid://cxtkqb2xy3pp4" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_15.png" id="17_15odi"]
+[ext_resource type="Texture2D" uid="uid://bf4qhc2ttvyr1" path="res://assets/enemy/Bringer-Of-Death/Individual Sprite/No Effect Sprites/Spell/Bringer-of-Death_Spell_16.png" id="18_j13po"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxhfq"]
 size = Vector2(30.25, 17)
@@ -68,6 +84,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pole:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, -1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("pole:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_cyq0v")]
+}
 
 [sub_resource type="Animation" id="Animation_adwgc"]
 resource_name = "start"
@@ -91,10 +131,10 @@ tracks/1/path = NodePath(".:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_adwgc"), null]
+"values": [null, ExtResource("1_adwgc"), null]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -160,6 +200,30 @@ tracks/6/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("pole:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, -1), Vector2(1.5, -1), Vector2(1.5, -1), Vector2(1e-05, -1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("pole:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_v0tb1"), ExtResource("3_cyq0v"), ExtResource("5_t5icm"), ExtResource("6_mu37m"), ExtResource("7_v72um"), ExtResource("8_iu8hc"), ExtResource("9_ngrko"), ExtResource("10_bh5jl"), ExtResource("11_03rrw"), ExtResource("12_kqo2e"), ExtResource("13_13okh"), ExtResource("14_c6fy3"), ExtResource("15_2g4ai"), ExtResource("16_1byx4"), ExtResource("17_15odi"), ExtResource("18_j13po"), ExtResource("4_v0tb1"), ExtResource("3_cyq0v"), ExtResource("5_t5icm"), ExtResource("6_mu37m"), ExtResource("7_v72um")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wxhfq"]
 _data = {
@@ -174,10 +238,10 @@ hframes = 3
 vframes = 3
 
 [node name="Label" type="Label" parent="."]
-offset_left = -20.75
-offset_top = -5.5
-offset_right = 19.25
-offset_bottom = 11.5
+offset_left = -19.5
+offset_top = -4.25
+offset_right = 20.5
+offset_bottom = 14.75
 theme_override_colors/font_color = Color(0.698039, 0, 0, 1)
 theme_override_constants/outline_size = 3
 text = "! ! ! ! !"
@@ -192,6 +256,12 @@ collision_mask = 2
 [node name="CollisionShape2D" parent="Attack/AttackArea" index="0"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_wxhfq")
+
+[node name="pole" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(2.75, 12.25)
+scale = Vector2(1.5, -1)
+texture = ExtResource("3_cyq0v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

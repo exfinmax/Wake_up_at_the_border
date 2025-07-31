@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bq4os3nmc1qc2"]
+
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_enemy.tscn" id="1_q3a1k"]
+[ext_resource type="Script" uid="uid://nealb68j1y1o" path="res://scenes/none_player_character/enemy/Bee/bee.gd" id="2_dgb2b"]
+[ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="3_1ccgm"]
+[ext_resource type="Texture2D" uid="uid://uq66xpkxabnu" path="res://assets/enemy/Small Bee/Fly/Fly-Sheet.png" id="3_vrws2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrws2"]
+radius = 91.3333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8cap"]
+radius = 15.0333
+
+[sub_resource type="Animation" id="Animation_vrws2"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8cap"]
+_data = {
+&"idle": SubResource("Animation_vrws2")
+}
+
+[node name="Bee" instance=ExtResource("1_q3a1k")]
+script = ExtResource("2_dgb2b")
+walk_speed = 0.0
+run_speed = 0.0
+attack_range = 30.0
+
+[node name="Body" parent="." index="0"]
+scale = Vector2(-1, 1)
+
+[node name="NpcSprite" parent="Body" index="0"]
+texture = ExtResource("3_vrws2")
+hframes = 4
+
+[node name="WallRayCast" parent="Body" index="1"]
+target_position = Vector2(0, 0)
+
+[node name="FloorRayCast2D" parent="Body" index="2"]
+target_position = Vector2(0, 0)
+
+[node name="FindPlayerarea" type="Area2D" parent="Body" index="3"]
+unique_name_in_owner = true
+position = Vector2(-14.75, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FindPlayerarea" index="0"]
+position = Vector2(14.4167, 0)
+shape = SubResource("CircleShape2D_vrws2")
+debug_color = Color(0.913911, 0.161752, 0.602458, 0.42)
+
+[node name="Attack" parent="Body" index="4" instance=ExtResource("3_1ccgm")]
+unique_name_in_owner = true
+atk = 20.0
+max_atk_index = 1
+
+[node name="AttackArea" parent="Body/Attack" index="0"]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Body/Attack/AttackArea" index="0"]
+position = Vector2(-4, 7)
+shape = SubResource("CircleShape2D_u8cap")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, -6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_u8cap")
+}
+
+[editable path="Body/Attack"]
+[editable path="Health"]

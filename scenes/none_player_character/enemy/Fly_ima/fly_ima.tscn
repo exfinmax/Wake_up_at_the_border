@@ -1,0 +1,211 @@
+[gd_scene load_steps=13 format=3 uid="uid://d234awlfrqfmh"]
+
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_enemy.tscn" id="1_6574n"]
+[ext_resource type="Texture2D" uid="uid://bl3rq2n2s713t" path="res://assets/enemy/Flying Imp/Flying_Imp_spritesheet.png" id="2_cby1j"]
+[ext_resource type="Script" uid="uid://cjh1smacnwy2h" path="res://scenes/none_player_character/enemy/Fly_ima/fly_ima.gd" id="2_d6y23"]
+[ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="4_45qba"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6y23"]
+radius = 71.0
+
+[sub_resource type="Animation" id="Animation_pc483"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_xxqcn"]
+resource_name = "attack"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_ball"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wmpum"]
+resource_name = "death"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+}
+
+[sub_resource type="Animation" id="Animation_d6y23"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_lclhp"]
+resource_name = "hurt"
+
+[sub_resource type="Animation" id="Animation_45qba"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/NpcSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_cby1j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/NpcSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/NpcSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/NpcSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xxqcn"]
+_data = {
+&"RESET": SubResource("Animation_pc483"),
+&"attack": SubResource("Animation_xxqcn"),
+&"death": SubResource("Animation_wmpum"),
+&"fly": SubResource("Animation_d6y23"),
+&"hurt": SubResource("Animation_lclhp"),
+&"idle": SubResource("Animation_45qba")
+}
+
+[node name="FlyIma" instance=ExtResource("1_6574n")]
+motion_mode = 1
+script = ExtResource("2_d6y23")
+run_speed = 450.0
+firection = 400.0
+attack_range = 200.0
+attack_colddown = 1.0
+knock_back = 300.0
+
+[node name="Body" parent="." index="0"]
+scale = Vector2(3, 3)
+
+[node name="NpcSprite" parent="Body" index="0"]
+texture = ExtResource("2_cby1j")
+hframes = 10
+vframes = 4
+frame = 1
+
+[node name="FindPlayerarea" type="Area2D" parent="Body" index="3"]
+unique_name_in_owner = true
+position = Vector2(-14.75, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FindPlayerarea" index="0"]
+position = Vector2(14.4167, 0)
+shape = SubResource("CircleShape2D_d6y23")
+debug_color = Color(0.913911, 0.161752, 0.602458, 0.42)
+
+[node name="Attack" parent="Body" index="4" instance=ExtResource("4_45qba")]
+unique_name_in_owner = true
+max_atk_index = 1
+
+[node name="AttackArea" parent="Body/Attack" index="0"]
+collision_mask = 2
+
+[node name="TextureProgressBar" parent="Health" index="0"]
+offset_left = 1.0
+offset_top = -13.0
+offset_right = 59.0
+offset_bottom = 27.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -7)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_xxqcn")
+}
+autoplay = "idle"
+
+[editable path="Body/Attack"]
+[editable path="Health"]

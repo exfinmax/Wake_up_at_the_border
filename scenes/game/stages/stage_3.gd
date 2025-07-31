@@ -5,7 +5,12 @@ const Music := preload("res://assets/Mp3/Dreamer's Domain.mp3")
 
 @onready var area_2d: Area2D = $Area2D
 @onready var spawn_point: Node2D = $SpawnPoint
+@onready var hidden: TileMapLayer = $TileMapLayer/hidden
 
+
+func _ready() -> void:
+	super._ready()
+	GameEvents.boss_death.connect(on_boss_death.bind())
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -13,4 +18,6 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	boss.global_position = spawn_point.global_position
 	call_deferred("add_child", boss)
 	area_2d.queue_free()
-	
+
+func on_boss_death() -> void:
+	hidden.queue_free()

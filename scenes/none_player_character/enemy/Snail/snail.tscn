@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cj4o0xdl447rp"]
 
-[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_abjy8"]
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_enemy.tscn" id="1_abjy8"]
 [ext_resource type="Texture2D" uid="uid://vx5q8gqxs8f0" path="res://assets/enemy/Snail/walk-Sheet.png" id="2_p3v20"]
 [ext_resource type="Script" uid="uid://d3twr6kj5fmfs" path="res://scenes/none_player_character/enemy/Snail/snail.gd" id="2_wxksc"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="3_p3v20"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wxksc"]
 radius = 26.0
-height = 52.0
+height = 66.0
 
 [sub_resource type="Animation" id="Animation_wxksc"]
 length = 0.001
@@ -362,6 +362,7 @@ hframes = 8
 
 [node name="WallRayCast" parent="Body" index="1"]
 scale = Vector2(-1, -1)
+target_position = Vector2(18.5, 1)
 
 [node name="FloorRayCast2D" parent="Body" index="2"]
 position = Vector2(-20, 11.5)
@@ -400,7 +401,7 @@ offset_right = 55.0
 offset_bottom = 10.0
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, -21)
+position = Vector2(-2, -24)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wxksc")
 

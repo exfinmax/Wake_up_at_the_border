@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dd37k351lv05v"]
+[gd_scene load_steps=20 format=3 uid="uid://dd37k351lv05v"]
 
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="1_bg"]
 [ext_resource type="Script" uid="uid://cr6m6pxi84nw1" path="res://scenes/game/stages/stage_5.gd" id="1_dy653"]
@@ -16,9 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://2mocn0qdquqb" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0003_6.png" id="11_urpod"]
 [ext_resource type="Texture2D" uid="uid://r5lbbvb86s1f" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0002_7.png" id="12_tgyi6"]
 [ext_resource type="Texture2D" uid="uid://t38djpbusmq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0001_8.png" id="13_8s5el"]
+[ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="17_tiqhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c850b"]
 size = Vector2(4403.49, 13.7388)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpekr"]
+shader = ExtResource("17_tiqhl")
+shader_parameter/shake_power = 1.0
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="Stage_5" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_dy653")
@@ -154,13 +163,19 @@ position = Vector2(600, 300)
 position = Vector2(607, 739)
 max_energy = 20.0
 energy_recover_speed = 2.5
+can_defend = true
+can_double_jump = true
+can_fly_kick = true
+can_air_atk = true
+can_laser = true
+can_dash = true
 
-[node name="Attack" parent="Player/Body" index="2"]
+[node name="Attack" parent="Player/Body" index="3"]
 atk = 25.0
 
 [node name="Health" parent="Player" index="4"]
 max_hp = 250.0
-hp_recover_speed = 3.0
+hp_recover_speed = 4.0
 can_recover_hp = true
 
 [node name="Dream_Boss" parent="." instance=ExtResource("10_k5hb3")]
@@ -174,6 +189,38 @@ scale = Vector2(4.00948, 0.680976)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(1776.25, 1076.87)
 shape = SubResource("RectangleShape2D_c850b")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(710, 267)
+rotation = 1.5708
+scale = Vector2(4.00948, 0.680976)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(1776.25, 1076.87)
+shape = SubResource("RectangleShape2D_c850b")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(3261, 245)
+rotation = 1.5708
+scale = Vector2(4.00948, 0.680976)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(1776.25, 1076.87)
+shape = SubResource("RectangleShape2D_c850b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gpekr")
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = -1944.0
+offset_right = -24.0
+offset_bottom = 1080.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gpekr")
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = 2528.0
+offset_right = 4448.0
+offset_bottom = 1080.0
 
 [editable path="ParallaxBackground"]
 [editable path="Player"]

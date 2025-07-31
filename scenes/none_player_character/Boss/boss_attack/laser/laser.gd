@@ -36,8 +36,6 @@ func init(config: Dictionary) -> void:
 	
 
 func _ready() -> void:
-	set_is_casting(true)
-	collision_shape_2d.rotation = collision_shape_2d.position.angle_to_point(target_position)
 	area_2d.body_entered.connect(on_body_entered.bind())
 	
 
@@ -49,7 +47,7 @@ func set_is_casting(new_status: bool) -> void:
 	is_casting = new_status
 	
 	if is_casting:
-		
+		collision_shape_2d.rotation = collision_shape_2d.position.angle_to_point(target_position)
 		set_line_point(0, target_position)
 		set_line_point(1, target_position)
 		
@@ -74,12 +72,13 @@ func _process(delta: float) -> void:
 		
 		if is_casting:
 			pulse_time += delta
+			collision_shape_2d.rotation = collision_shape_2d.position.angle_to_point(target_position)
 			collision_shape_2d.shape.size.x = target_position.y
 			target_position = target_position.move_toward(target_position.normalized() * max_length, cast_speed * delta)
 		if body_in_shape:
 			for body in current_body:
 				if body != null && body.has_method("get_hurt"):
-					body.get_hurt(30, self, 5)
+					body.get_hurt(40, self, 3)
 		if pulse_time > duration * 1.5:
 			pulse_time = 0
 			disappear()
@@ -131,7 +130,7 @@ func on_body_entered(body: Node2D) -> void:
 		current_body.append(body)
 	
 	if body.has_method("get_hurt"):
-		body.get_hurt(20, self, 5)
-	await get_tree().create_timer(duration - pulse_time).timeout
+		body.get_hurt(15, self, 3)
+	await get_tree().create_timer(duration).timeout
 	disappear()
 	

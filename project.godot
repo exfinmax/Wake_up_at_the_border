@@ -28,6 +28,7 @@ GameEvents="*res://utils/game_events.gd"
 Global="*res://utils/global.gd"
 GlobalSave="*res://utils/global_save.gd"
 MusicPlayer="*res://utils/music_player.tscn"
+FreezeManager="*res://utils/FreezeManager.gd"
 
 [debug]
 
@@ -148,3 +149,4 @@ set={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true

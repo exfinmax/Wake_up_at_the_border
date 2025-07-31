@@ -9,6 +9,7 @@ enum ScreenType {
 	MAIN_MENU,
 	SETTING,
 	THE_END,
+	HELP,
 }
 
 var current_screen : Screen = null

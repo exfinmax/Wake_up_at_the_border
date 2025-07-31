@@ -1,18 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://blq5m6ptshit8"]
 
-[ext_resource type="Script" uid="uid://3sewjevushw8" path="res://scenes/none_player_character/base_npc.gd" id="1_uubn6"]
-[ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="3_x6jyf"]
+[ext_resource type="Script" uid="uid://3sewjevushw8" path="res://scenes/none_player_character/base_enemy.gd" id="1_psi6o"]
+[ext_resource type="PackedScene" uid="uid://bxlhooly16i4r" path="res://components/health.tscn" id="2_plgax"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tyiur"]
 radius = 16.0
-height = 72.0
+height = 34.0
 
-[node name="BaseNpc" type="CharacterBody2D" groups=["Can_Save"]]
+[node name="BaseEnemy" type="CharacterBody2D" groups=["Can_Save"]]
 collision_layer = 4
-script = ExtResource("1_uubn6")
+script = ExtResource("1_psi6o")
 walk_speed = 100.0
 run_speed = 300.0
-duration_between_hurt = 200.0
 
 [node name="Body" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -26,7 +25,7 @@ target_position = Vector2(30, 0)
 [node name="FloorRayCast2D" type="RayCast2D" parent="Body"]
 unique_name_in_owner = true
 
-[node name="Health" parent="." instance=ExtResource("3_x6jyf")]
+[node name="Health" parent="." instance=ExtResource("2_plgax")]
 unique_name_in_owner = true
 position = Vector2(-26, -26)
 

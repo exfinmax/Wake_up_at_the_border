@@ -1,5 +1,5 @@
 # NPC特殊状态脚本，负责NPC特殊行为
-class_name NpcStateSpecialGolem
+class_name NpcStateSpecial
 extends NpcState
 
 var target : Node2D
@@ -29,9 +29,9 @@ func _process(delta: float) -> void:
 	if !is_attack:
 		attack_timer -= delta
 
-	var distance = npc.global_position.distance_to(target.global_position)
+	var distance = npc.global_position.distance_squared_to(target.global_position)
 	
-	if distance > npc.attack_range && !is_attack:
+	if distance > (npc.attack_range * npc.attack_range) && !is_attack:
 		_chase_target(delta)
 	else:
 		_perform_attack()
@@ -45,7 +45,10 @@ func _chase_target(_delta: float) -> void:
 		animation.play("move")
 		if randf_range(0,1) > 0.99:
 			npc.velocity.x = 0
-			animation.play("attack_2")
+			if attack_conpoment.max_atk_index > 2:
+				animation.play("attack_" + rand_index())
+			else:
+				animation.play("attack_2")
 			set_process(false)
 			await animation.animation_finished
 			set_process(true)

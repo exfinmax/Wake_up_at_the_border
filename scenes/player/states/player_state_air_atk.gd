@@ -5,7 +5,7 @@ var current_atk: float
 var total_delta:float
 
 func _enter_tree() -> void:
-	player.current_energy -= 5
+	player.current_energy -= 4
 	player.can_recover_energy = false
 	player.velocity.y -= 100
 	animation.play("pre_air_atk")
@@ -18,6 +18,8 @@ func on_animation_finished(_name: StringName) -> void:
 	animation.play("in_air_atk")
 
 func on_body_entered(_body: Node2D) -> void:
+	GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+	FreezeManager.frame_freeze(0.2, 0.15)
 	player.camera_2d.shake()
 	attack_component.atk = lerpf(current_atk, current_atk+50, total_delta)
 

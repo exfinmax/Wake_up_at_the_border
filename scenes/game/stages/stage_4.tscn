@@ -102,5 +102,23 @@ shape = SubResource("RectangleShape2D_1ak51")
 
 [node name="Player" parent="." instance=ExtResource("9_pbn5s")]
 position = Vector2(197, 730)
+max_energy = 18.0
+energy_recover_speed = 2.0
+can_defend = true
+can_double_jump = true
+can_air_atk = true
+can_dash = true
+
+[node name="Attack" parent="Player/Body" index="3"]
+atk = 15.0
+
+[node name="Health" parent="Player" index="4"]
+max_hp = 150.0
+hp_recover_speed = 1.0
+can_recover_hp = true
 
 [editable path="ParallaxBackground"]
+[editable path="Player"]
+[editable path="Player/Body/Attack"]
+[editable path="Player/Health"]
+[editable path="Player/Laser"]

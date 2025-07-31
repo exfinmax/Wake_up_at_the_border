@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv38watryvvlr"]
+
+[ext_resource type="Texture2D" uid="uid://duqftceygyk3q" path="res://assets/enemy/Flying Imp/Flying_Imp_Projectile_spritesheet.png" id="1_dbshb"]
+[ext_resource type="Script" uid="uid://df82cke513yi1" path="res://scenes/none_player_character/enemy/Fly_ima/fire_ball.gd" id="1_pmob4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmob4"]
+atlas = ExtResource("1_dbshb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lakl"]
+atlas = ExtResource("1_dbshb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbiq6"]
+atlas = ExtResource("1_dbshb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qko0o"]
+atlas = ExtResource("1_dbshb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fyvlu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmob4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lakl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbiq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qko0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mtpw"]
+radius = 3.53553
+
+[node name="FireBall" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_pmob4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fyvlu")
+autoplay = "default"
+frame_progress = 0.419445
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_7mtpw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

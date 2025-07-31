@@ -7,11 +7,13 @@ var player:Player
 @onready var attack_area: Area2D = $Body/Attack/AttackArea
 @onready var health_progress_bar: TextureProgressBar = $CanvasLayer/TextureProgressBar
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var npc_sprite: Sprite2D = $Body/NpcSprite
 
 var is_miss:bool = false
 var is_first_low :bool = false
 var is_attack:bool = false
-var laser_number:int = 3
+var laser_number:int = 4
+var is_death: bool = false
 
 func _ready() -> void:
 	initialize()
@@ -24,19 +26,21 @@ func _ready() -> void:
 
 
 func attack_1() -> void:
-	for body in attack_area.get_overlapping_bodies():
-		if body.has_method("get_hurt"):
-			body.get_hurt(50, self, 10)
+	for _body in attack_area.get_overlapping_bodies():
+		if _body.has_method("get_hurt"):
+			_body.get_hurt(50, self, 8)
 
 
 func attack_2() -> void:
-	for i in range(laser_number):
+	for i in range(randi_range(1, laser_number)):
 		var laser = Laser.instantiate()
 		laser.global_position = player.global_position - Vector2(randf_range(-400, 400), randf_range(800, 1000))
-		laser.target_position = laser.global_position.direction_to(player.global_position)
 		laser.is_oneshot = true
 		get_parent().add_child(laser)
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.8).timeout
+		laser.target_position = laser.global_position.direction_to(player.global_position)
+		await get_tree().create_timer(0.2).timeout
+		laser.set_is_casting(true)
 		
 
 func control_hp() -> void:
@@ -52,7 +56,7 @@ func control_hp() -> void:
 		is_miss = false
 		animation.play("out")
 		await animation.animation_finished
-		switch_state(State.SPECIALGOLEM, NpcData.build().add_player(player))
+		switch_state(State.SPECIAL, NpcData.build().add_player(player))
 		
 
 func miss() -> void:
@@ -63,9 +67,11 @@ func miss() -> void:
 	var bossgolem = BOSSGolem.instantiate()
 	animation.play("miss")
 	is_miss = true
+	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.4).timeout
+	control_shader()
 	bossgolem.global_position = global_position - Vector2(0,200)
-	get_parent().add_child(bossgolem)
+	get_parent().call_deferred("add_child", bossgolem)
 	loop_attack_2()
 	
 	
@@ -76,24 +82,32 @@ func loop_attack_2() -> void:
 	laser.target_position = laser.global_position.direction_to(player.global_position)
 	laser.is_oneshot = true
 	get_parent().add_child(laser)
-	
-	await get_tree().create_timer(randf_range(2.0, 3.0)).timeout
+	await get_tree().create_timer(1.8).timeout
+	laser.target_position = laser.global_position.direction_to(player.global_position)
+	await get_tree().create_timer(0.2).timeout
+	laser.set_is_casting(true)
 	loop_attack_2()
 	
 
 
 
-func get_hurt(current_atk:float, _sourcer: Node2D, _number: int) -> void:
-	if can_get_hurt:
+func get_hurt(current_atk:float, _sourcer: Node2D, number: int) -> void:
+	if can_get_hurt && !is_death:
 		if !is_miss:
 			can_get_hurt = false
 			time_since_last_hurt = Time.get_ticks_msec()
+			var direction = sign(global_position - player.global_position)
+			velocity = Vector2(knock_back * number * direction.x, -100)
+			animation.play("hurt")
+			await get_tree().create_timer(0.1).timeout
 			health.change_hp(-current_atk)
 			start_blink()
-	if health.is_hp_zero() && is_first_low:
+	if health.is_hp_zero() && is_first_low && !is_death:
 		health.can_recover_hp = false
 		health.current_hp = 0
 		animation.play("miss")
+		is_death = true
+		velocity = Vector2.ZERO
 		if current_state_node != null:
 			current_state_node.queue_free()
 
@@ -122,6 +136,7 @@ func updata_bar() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("1"):
 		animation.play("start")
+		Global.camera.shake(3)
 	elif event.is_action_pressed("2"):
 		animation.play("attack_1")
 	elif event.is_action_pressed("3"):
@@ -131,10 +146,18 @@ func initialize() -> void:
 	animation_player = animation
 
 func after_start() -> void:
-	switch_state(State.SPECIALGOLEM, NpcData.build().add_player(player))
+	switch_state(State.SPECIAL, NpcData.build().add_player(player))
+
+func control_shader() -> void:
+	if is_miss:
+		npc_sprite.set_instance_shader_parameter("outline_width", 0.5)
+	
 
 func _exit_tree() -> void:
 	GameEvents.boss_death.emit()
 
-func change_is_attack() -> void:
-	is_attack = !is_attack
+func change_is_attack(bo: bool = true) -> void:
+	if bo:
+		is_attack = !is_attack
+	else:
+		is_attack = bo

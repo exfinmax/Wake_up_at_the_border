@@ -17,8 +17,9 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("ui_right"):
 		player.body.scale.x = abs(player.body.scale.x)
 		player.heading = 1
-	elif Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
+	elif player.can_dash && Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
 		transfrom_state(Player.State.DASH)
+	
 	elif Input.is_action_just_pressed("interact") && player.can_laser:
 		transfrom_state(Player.State.LASER)
 	

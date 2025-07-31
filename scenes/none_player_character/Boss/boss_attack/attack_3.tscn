@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://gvtmqjv4dsys"]
+[gd_scene load_steps=15 format=3 uid="uid://gvtmqjv4dsys"]
 
 [ext_resource type="Script" uid="uid://cl34yejpe4t0s" path="res://scenes/none_player_character/Boss/boss_attack/attack_3.gd" id="1_gla05"]
 [ext_resource type="Texture2D" uid="uid://ofhe6q8il7s7" path="res://assets/enemy/Golem/Armored/Golem_Armor_AttackC_FX.png" id="1_syohd"]
 [ext_resource type="PackedScene" uid="uid://c7alqo0bumt7" path="res://components/attack.tscn" id="2_gla05"]
+[ext_resource type="Shader" uid="uid://b8hs12otwd03x" path="res://scenes/none_player_character/Boss/boss_attack/attack_3.gdshader" id="4_s4rdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4rdg"]
 size = Vector2(20, 5)
@@ -121,14 +122,35 @@ _data = {
 &"start": SubResource("Animation_myyqt")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b61tg"]
+shader = ExtResource("4_s4rdg")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gla05"]
+atlas = ExtResource("1_syohd")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="Gradient" id="Gradient_s4rdg"]
+colors = PackedColorArray(0, 0, 0.294118, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b61tg"]
+gradient = SubResource("Gradient_s4rdg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myyqt"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 1, 0)
+gravity = Vector3(-98, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_b61tg")
+
 [node name="Area2D" type="Area2D"]
 scale = Vector2(4, 4)
 collision_layer = 0
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_gla05")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
+modulate = Color(0, 0, 0.301961, 1)
 texture = ExtResource("1_syohd")
 hframes = 2
 vframes = 2
@@ -153,6 +175,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_cygpv")
 }
 autoplay = "start"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0.301961, 1)
+material = SubResource("ShaderMaterial_b61tg")
+position = Vector2(0, -1)
+amount = 4
+texture = SubResource("AtlasTexture_gla05")
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_myyqt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

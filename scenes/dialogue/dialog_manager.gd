@@ -63,7 +63,9 @@ func handle_dialog_choice(option):
 		show_dialog(npc)
 	
 	else:
+		dialogue_ui.can_show_button = true
 		show_dialog(npc)
+	
 
 func set_texture(texture: Texture2D) -> void:
 	dialogue_ui.texture = texture 

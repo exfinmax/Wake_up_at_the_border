@@ -37,9 +37,9 @@ func _process(delta: float) -> void:
 		
 	attack_timer -= delta
 	
-	var distance = npc.global_position.distance_to(target.global_position)
+	var distance:float = npc.global_position.distance_squared_to(target.global_position)
 	
-	if distance > npc.attack_range && !is_attack:
+	if distance > (npc.attack_range * npc.attack_range)  && !is_attack:
 		_chase_target(delta)
 	else:
 		_perform_attack()
@@ -51,11 +51,12 @@ func _chase_target(_delta: float) -> void:
 	
 	if abs(npc.velocity.x) > 0:
 		animation.play("move")
-	
 	# 如果距离过远，切换到移动状态
 	if npc.global_position.distance_to(target.global_position) > npc.chase_range:
 		_switch_to_move()
-
+	elif !floor_ray_cast.is_colliding():
+		transfrom_state(BaseNpc.State.MOVE)
+	
 # 执行攻击
 func _perform_attack() -> void:
 	npc.velocity.x = 0

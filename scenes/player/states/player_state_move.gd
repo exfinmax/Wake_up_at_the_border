@@ -46,7 +46,7 @@ func _handle_movement_input(delta:float) -> void:
 		player.velocity.y = -player.jump_speed
 		transfrom_state(Player.State.AIR)
 	# 攻击输入（仅对敌人有效）
-	elif Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
+	elif player.can_dash && Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
 		transfrom_state(Player.State.DASH)
 	elif Input.is_action_just_pressed("interact") && no_npc:
 		transfrom_state(Player.State.ATTACK)

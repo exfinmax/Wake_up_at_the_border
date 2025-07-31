@@ -17,20 +17,25 @@ signal text_show_off
 var can_show_button: bool = true
 var texture: Texture2D
 var total_delta :float
+var is_dia: bool
 
 
 func _ready() -> void:
+	GameEvents.set_end.connect(on_set_end.bind())
 	hide_dialog()
 
 func _process(delta: float) -> void:
-	if dia_text.visible_characters >= 0:
+	if is_dia && Input.is_action_just_pressed("interact"):
+		is_dia = false
+		_on_option_selected("next")
+	elif dia_text.visible_characters >= 0:
 		total_delta += delta
 		if Input.is_action_just_pressed("ui_cancel"):
 			dia_text.visible_characters = dia_text.text.length()
 			emit_signal("text_show_off")
 			set_process(false)
 		
-		if total_delta > text_show_time:
+		if total_delta > (text_show_time / 4):
 			dia_text.visible_characters += 1
 			total_delta = 0.0
 			if dia_text.visible_characters == dia_text.text.length():
@@ -49,7 +54,7 @@ func show_dialog(speaker, text: String, options: Dictionary):
 		dia_speaker_icon.texture = texture  
 	else:
 		dia_speaker_icon.visible = false
-	set_process(true)
+	
 	
 	await text_show_off
 	
@@ -58,28 +63,32 @@ func show_dialog(speaker, text: String, options: Dictionary):
 	
 	if not options.is_empty():
 		for option in options.keys():
+			if option == "next":
+				is_dia = true
+				await get_tree().create_timer(0.1).timeout
+				set_process(true)
+				return
 			var button = Button.new()
 			button.text = option
 			button.add_theme_color_override("font_size", 30)
 			button.pressed.connect(_on_option_selected.bind(button))
 			button.visible = true if can_show_button else false
 			dia_options.add_child(button)
+			
 	
 	else:
+		set_process(true)
 		while true:
 			if Input.is_action_just_pressed("interact"):
 				hide_dialog()
 				break
 			await get_tree().process_frame
 	
-	while not can_show_button:
-		if Input.is_action_just_pressed("interact"):
-			can_show_button = true
-			_on_option_selected("next")
-		await get_tree().process_frame
+		
 
 
 func _on_option_selected(option):
+	set_process(true)
 	get_parent().handle_dialog_choice(option)
 
 
@@ -87,6 +96,8 @@ func hide_dialog():
 	panel.visible = false
 	GameEvents.dialog_end.emit()
 
+func on_set_end() -> void:
+	text_show_time = Global.current_setting.get("Text")
 
 func _on_close_button_pressed() -> void:
 	hide_dialog()

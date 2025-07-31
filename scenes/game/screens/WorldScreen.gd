@@ -2,6 +2,8 @@
 extends Screen
 class_name WorldScreen
 
+const SPARK := preload("res://components/spark.tscn")
+
 # 场景路径常量
 const STAGE_PATH := "res://scenes/game/stages/"
 const STAGE_PREFIX := "stage_"
@@ -13,6 +15,8 @@ var current_stage: Node = null
 # 是否正在切换场景
 var _is_transitioning := false
 
+
+
 func _ready() -> void:
 	# 预加载所有场景
 	Global.current_screen = self
@@ -21,7 +25,7 @@ func _ready() -> void:
 		change_stage(Global.current_stage)
 	else:
 		change_stage("stage_1")
-	
+	GameEvents.spawn_spark.connect(on_spark_spawn.bind())
 	GameEvents.stage_end.connect(next_stage.bind())
 	
 # 预加载所有场景到缓存
@@ -93,7 +97,10 @@ func reload_current_stage() -> void:
 	if Global.current_stage:
 		change_stage(Global.current_stage)
 
-
+func on_spark_spawn(position: Vector2) -> void:
+	var spark = SPARK.instantiate()
+	spark.global_position = position
+	add_child(spark)
 
 # 获取当前场景实例
 func get_current_stage() -> Node:
@@ -101,6 +108,5 @@ func get_current_stage() -> Node:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("set"):
-		$CanvasLayer/SettingComponent.visible = true
-	if event.is_action_pressed("ui_cancel"):
-		next_stage()
+		GameEvents.set_end.emit()
+		$CanvasLayer/SettingComponent.visible = !$CanvasLayer/SettingComponent.visible

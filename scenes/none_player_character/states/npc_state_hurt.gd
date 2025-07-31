@@ -35,10 +35,14 @@ func _process(delta: float) -> void:
 	npc.velocity = Vector2.ZERO
 	# 受伤动画播放完毕后，隐藏血条
 	npc.heading = -direction.x
+	npc.body.scale.x = npc.current_scale * -direction.x
 	
 	# 如果NPC血量归零，则销毁NPC
 	if npc.health.is_hp_zero():
 		npc.queue_free()
 	# 如果NPC血量未归零，则切换到移动状态
 	else:
-		transfrom_state(BaseNpc.State.ATTACK, npc_data)
+		if npc.is_fly:
+			transfrom_state(BaseNpc.State.AIR_MOVE, npc_data)
+		else:
+			transfrom_state(BaseNpc.State.ATTACK, npc_data)

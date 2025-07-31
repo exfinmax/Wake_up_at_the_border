@@ -11,8 +11,6 @@ func _enter_tree() -> void:
 func _process(delta: float) -> void:
 	# 下落时切换动画
 	set_friction(delta)
-	if Input.is_action_just_pressed("ui_down"):
-		player.can_be_hurt = false
 	if player.velocity.y > 0 && !is_fall:
 		animation.play("fall")
 		is_fall = true
@@ -23,9 +21,9 @@ func _process(delta: float) -> void:
 		player.velocity.y = -player.jump_speed
 	
 	
-	if Input.is_action_pressed("ui_down") && Input.is_action_just_pressed("interact") && player.current_energy > 5 && player.can_air_atk:
+	if Input.is_action_pressed("ui_down") && Input.is_action_just_pressed("interact") && player.current_energy > 4 && player.can_air_atk:
 		transfrom_state(Player.State.AIR_ATK)
-	elif Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
+	elif player.can_dash && Input.is_action_just_pressed("interact") && (Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left")) && player.current_energy > 2:
 		transfrom_state(Player.State.DASH)
 	elif player.can_fly_kick && Input.is_action_just_pressed("interact") && player.current_energy > 6:
 		transfrom_state(Player.State.AIR_KICK)

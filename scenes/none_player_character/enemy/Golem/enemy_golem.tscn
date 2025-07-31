@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://dat7kkan4quhg"]
 
-[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_npc.tscn" id="1_fxvmg"]
+[ext_resource type="PackedScene" uid="uid://blq5m6ptshit8" path="res://scenes/none_player_character/base_enemy.tscn" id="1_fxvmg"]
 [ext_resource type="Script" uid="uid://cq7810dlxg0le" path="res://scenes/none_player_character/enemy/Golem/enemy_golem.gd" id="2_r71u1"]
 [ext_resource type="Texture2D" uid="uid://55oe2h1e67vk" path="res://assets/enemy/Golem/No Armor/Golem_IdleB.png" id="3_pcsi1"]
 [ext_resource type="Texture2D" uid="uid://ccb332m7v42le" path="res://assets/enemy/Golem/No Armor/Golem_Run.png" id="4_7e0ku"]
@@ -233,6 +233,18 @@ tracks/8/keys = {
 "method": &"check_attack"
 }]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Attack:atk")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
 
 [sub_resource type="Animation" id="Animation_hgdto"]
 resource_name = "attack_2"
@@ -348,6 +360,18 @@ tracks/8/keys = {
 "method": &"check_attack"
 }]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Attack:atk")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
 
 [sub_resource type="Animation" id="Animation_s160n"]
 resource_name = "attack_3"
@@ -462,6 +486,18 @@ tracks/8/keys = {
 "args": [],
 "method": &"check_attack"
 }]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Attack:atk")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
 }
 
 [sub_resource type="Animation" id="Animation_wqlru"]
@@ -1116,13 +1152,14 @@ texture = ExtResource("3_pcsi1")
 hframes = 4
 
 [node name="Attack_FX" type="Sprite2D" parent="Body" index="1"]
-texture = ExtResource("4_p8saw")
+texture = ExtResource("9_edd01")
 hframes = 3
 vframes = 2
 frame = 5
 
 [node name="Attack" parent="Body" index="2" instance=ExtResource("5_b8ssd")]
 unique_name_in_owner = true
+atk = 15.0
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
 collision_mask = 2
@@ -1142,10 +1179,11 @@ monitorable = false
 polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 101.5, 8, 195.5, 0, 101.5, -7)
 
 [node name="WallRayCast" parent="Body" index="4"]
-target_position = Vector2(21, 0.5)
+target_position = Vector2(18, 0)
 
 [node name="FloorRayCast2D" parent="Body" index="5"]
 position = Vector2(20.5, 1)
+target_position = Vector2(0, 500)
 
 [node name="Health" parent="." index="1"]
 position = Vector2(-29, -32)

@@ -3,9 +3,10 @@
 class_name Player
 extends CharacterBody2D
 
+const Canying := preload("res://scenes/player/canying.tscn")
 
 # 受伤后无敌持续时间（毫秒）
-const DURATION_BETWEEN_HURT := 2500
+const DURATION_BETWEEN_HURT := 3000
 
 # 玩家状态枚举
 enum State {
@@ -31,6 +32,7 @@ enum State {
 @export var can_fly_kick:bool
 @export var can_air_atk:bool
 @export var can_laser:bool
+@export var can_dash:bool
 @export_category("Move")
 @export var acceleration: float
 @export var friction: float
@@ -70,6 +72,7 @@ var time_since_last_hurt:= Time.get_ticks_msec()
 @onready var health_progress_bar: TextureProgressBar = %HealthProgressBar
 @onready var laser: RayCast2D = %Laser
 @onready var animated_sprite_2d: AnimatedSprite2D = $Body/AnimatedSprite2D
+
 
 var camera_2d: Camera2D
 
@@ -115,7 +118,6 @@ func get_hurt(current_atk:float, sourcer: Node2D, lose_energy:float = 1) -> void
 	elif can_be_hurt:
 		can_be_hurt = false
 		health_component.change_hp(-current_atk)
-		time_since_last_hurt = Time.get_ticks_msec()
 		start_blink() # 新增：受伤闪烁
 		switch_state(State.HURT, PlayerData.build().add_body(sourcer))
 	
@@ -124,11 +126,12 @@ func get_hurt(current_atk:float, sourcer: Node2D, lose_energy:float = 1) -> void
 func start_blink():
 	var blink_timer = Timer.new()
 	current_timer = blink_timer
-	blink_timer.wait_time = 0.1
-	blink_timer.one_shot = false
+	blink_timer.wait_time = 3.0
+	blink_timer.one_shot = true
+	time_since_last_hurt = Time.get_ticks_msec()
 	blink_timer.connect("timeout", Callable(self, "_on_blink_timeout"))
-	add_child(blink_timer)
-	blink_timer.start()
+	blink_timer.autostart = true
+	call_deferred("add_child", blink_timer)
 	$Body.modulate = Color(1,1,1,0.5) # 半透明
 
 # 闪烁定时器回调，交替透明度，结束后恢复
@@ -176,6 +179,7 @@ func reload_skill() -> void:
 	can_fly_kick = Global.player_skill[3]
 	health_component.can_recover_hp = Global.player_skill[4]
 	can_laser = Global.player_skill[5]
+	can_dash = Global.player_skill[6]
 
 func on_save_game(save_data:Array[SavedData]):
 	var my_data :PlayerResource = PlayerResource.new()
@@ -222,9 +226,27 @@ func _initialize_skill() -> void:
 	Global.player_skill[3] = can_fly_kick
 	Global.player_skill[4] = health_component.can_recover_hp
 	Global.player_skill[5] = can_laser
+	Global.player_skill[6] = can_dash
 
 func control_shader() -> void:
 	if is_defend || is_laser || !can_be_hurt:
 		animated_sprite_2d.set_instance_shader_parameter("outline_width", 0.5)
 	else:
 		animated_sprite_2d.set_instance_shader_parameter("outline_width", 0)
+
+func create_canying() -> void:
+	if abs(velocity.x) > run_speed:
+		var c = Canying.instantiate()
+		c.scale = Vector2(2.3,2.3) if body.scale.x > 0 else Vector2 (-2.3, 2.3)
+		c.global_position = global_position - Vector2(0, 41.4)
+		var properties := [
+			"sprite_frames",
+			"animation",
+			"frame",
+		]
+		
+		for i in properties:
+			c.set(i, animated_sprite_2d.get(i))
+		
+		get_parent().add_child(c)
+		

@@ -20,6 +20,8 @@ func add_quest(quest: Quest):
 func _remove_quest(quest_id: String):
 	quests.erase(quest_id)
 	quest_list_updated.emit()
+	if quests.is_empty():
+		GameEvents.all_quest_completed.emit()
 
 func get_quest(quest_id: String) -> Quest:
 	return quests.get(quest_id, null)

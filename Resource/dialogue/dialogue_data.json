@@ -5,101 +5,40 @@
 				"branch_id": "npc_1_1",
 				"dialogs": [
 					{
-						"state": "dia_1",
-						"text": "现在是中文对话测试1",
-						"options": {
-							"next": "dia_2",
-						}
-					},
-					{
-						"state": "dia_2",
-						"text": "现在是中文对话测试2,勇者，看到前方的怪物了吗，就决定是你了，给老子上。测试对话上限，测试对话上限，测试对话上限，测试对话上限，测试对话上限，测试对话上限，测试对话上限，",
-						"options": {
-							"next": "start",
-						}
-					},
-					{
 						"state": "start",
-						"text": "Hello, adventurer! What do you need?",
+						"text": "你终于来了，看来时机已到，今日起兵：）",
 						"options": {
-							"Ask About Town": "in_progress",
-							"Receive Quests": "give_quests",
-							"Say Goodbye": "exit"
+							"你是谁": "ask",
+							"什么时机": "give_quests",
 						}
 					},
 					{
-						"state": "in_progress",
-						"text": "This town is known for its beautiful gardens and not so friendly NPC's.",
+						"state": "ask",
+						"text": "我是谁并不重要，我在每个人眼中的形象都不同。重要的是你",
 						"options": {
-							"Say Goodbye": "end",
-							"Go Back": "start"
+							"谜语人给我滚": "give_quests",
 						}
 					},
 					{
-						"state": "give_quests",
-						"text": "Sure! If I have anything, you can find it in your Quest Log.",
+						"state": "az",
+						"text": "没事，这个东西很显眼的。",
 						"options": {
-							"Say Goodbye": "exit",
-							"Go Back": "start"
+						"不是问这个啊喂": "end"
 						}
 					},
 					{
 						"state": "end",
-						"text": "Goodbye, adventurer!",
+						"text": "好了，快走吧，我先走了,这些史莱姆就留给你练手了",
 						"options": {}
-					},
-					{
-						"state": "exit",
-						"text": "Come back soon adventurer!",
-						"options": {}
-					}
-				]
-			},
-			{
-				"branch_id": "npc_1_2",
-				"dialogs": [
-					{
-						"state": "dia_1",
-						"text": "Are you that famous adventurer?!",
-						"options": {
-							"next": "start"
-						}
-					},
-					{
-						"state": "start",
-						"text": "Hey adventurer! Back so soon?",
-						"options": {
-							"Continue Asking About Town": "in_progress",
-							"Receive Quests": "give_quests",
-							"Say Goodbye": "exit"
-						}
-					},
-					{
-						"state": "in_progress",
-						"text": "I heard that Carl over there makes a mean cat-eye soup.",
-						"options": {
-							"Say Goodbye": "end",
-							"Go Back": "start"
-						}
 					},
 					{
 						"state": "give_quests",
-						"text": "Sure! If I have anything, you can find it in your Quest Log.",
+						"text": "算了不浪费时间了，这里有一个东西还需要你去取一下。",
 						"options": {
-							"Say Goodbye": "exit",
-							"Go Back": "start"
+							"那我走了": "end",
+							"不是说清楚啊喂": "az"
 						}
 					},
-					{
-						"state": "end",
-						"text": "Goodbye, adventurer!",
-						"options": {}
-					},
-					{
-						"state": "exit",
-						"text": "Come back soon!",
-						"options": {}
-					}
 				]
 			},
 			{
@@ -107,121 +46,64 @@
 				"dialogs": [
 					{
 						"state": "dia_1",
-						"text": "现在是中文对话测试1",
+						"text": "希望这次你能成吧.....",
 						"options": {
-							"next": "dia_2",
+							"next": "dia_2"
 						}
 					},
 					{
 						"state": "dia_2",
-						"text": "现在是中文对话测试2,勇者，看到前方的怪物了吗，就决定是你了，给老子上。",
+						"text": "真是的，所谓的永恒的生命啊？不管哪种都太过了......",
 						"options": {
-							"next": "start",
+							"next": "dia_3",
 						}
 					},
 					{
-						"state": "start",
-						"text": "现在是中文对话测试3",
-						"options": {
-							"中文选项": "give_quests",
-							"Say 中文选项": "exit",
-							"中文选项 Time": "bad_time"
-						}
-					},
-					{
-						"state": "give_quests",
-						"text": "Sure! If I have anything, you can find it in your Quest Log.",
-						"options": {
-							"Go Back": "start"
-						}
-					},
-					{
-						"state": "bad_time",
-						"text": "It's a beautiful day outside, birds are singing, flowers are growing, one day like this, 
-						kids like you, should be burning in the hell!",
-						"options": {
-							"Say Goodbye": "exit",
-						}
+						"state": "dia_3",
+						"text": "......大不了继续重开",
+						"options": {}
 					},
 				]
 			}
 		]
 	},
-	"npc_2": {
+	"player_1": {
 		"trees": [
 			{
-				"branch_id": "npc_2_1",
+				"branch_id": "player_1",
 				"dialogs": [
 					{
 						"state": "dia_1",
-						"text": "What a beautiful day out side!",
+						"text": "欧耶！看样子这里就是我的梦了！",
 						"options": {
-							"next": "start"
+							"next": "dia_2"
 						}
 					},
 					{
-						"state": "start",
-						"text": "Greetings, traveler! How can I assist you?",
+						"state": "dia_2",
+						"text": "也是终于控梦成功了啊！",
 						"options": {
-							"Ask About Forest": "in_progress",
-							"Receive Quests": "give_quests",
-							"Say Goodbye": "exit"
+							"next": "dia_3"
 						}
 					},
 					{
-						"state": "in_progress",
-						"text": "The forest is home to many mystical creatures.",
+						"state": "dia_3",
+						"text": "不错不错，看来我的潜意识还是挺会捏人的吗！",
 						"options": {
-							"Say Goodbye": "end",
-							"Go Back": "start"
+							"next": "dia_4"
 						}
 					},
 					{
-						"state": "give_quests",
-						"text": "Okay. I've updated your quest log with things I need done.",
+						"state": "dia_4",
+						"text": "让我看看.....这不是我跟着Brackeys做的小游戏吗？",
 						"options": {
-							"Say Goodbye": "exit",
-							"Go Back": "start"
+							"next": "dia_5"
 						}
 					},
 					{
-						"state": "end",
-						"text": "Farewell, traveler!",
+						"state": "dia_5",
+						"text": "不管了，先到处看看吧。（WASD移动，J交互/攻击）",
 						"options": {}
-					},
-					{
-						"state": "exit",
-						"text": "Come back soon!",
-						"options": {}
-					}
-				]
-			},
-			{
-			"branch_id": "npc_default",
-				"dialogs": [
-					{
-						"state": "start",
-						"text": "I wonder why Bobby is always smelling me...",
-						"options": {
-							"Receive Quests": "give_quests",
-							"Say Goodbye": "exit",
-							"Say Bad Time": "bad_time"
-						}
-					},
-					{
-						"state": "give_quests",
-						"text": "Okay. I've updated your quest log with things I need done.",
-						"options": {
-							"Go Back": "start"
-						}
-					},
-					{
-						"state": "bad_time",
-						"text": "It's a beautiful day outside, birds are singing, flowers are growing, one day like this, 
-						kids like you, should be burning in the hell!",
-						"options": {
-							"Say Goodbye": "exit",
-						}
 					},
 				]
 			}

@@ -34,22 +34,27 @@ func _apply_knockback() -> void:
 func _play_hurt_animation() -> void:
 	if health_component.is_hp_zero():
 		animation.play("death")
-		player.collision_layer = 0
+		FreezeManager.frame_freeze(0, 0.1)
 	else:
 		animation.play("hurt")
+		FreezeManager.frame_freeze(0.3, 0.15)
+		
 
 # 处理状态转换
 func _handle_state_transition() -> void:
 	player.velocity = Vector2.ZERO
 	if health_component.is_hp_zero():
+		player.collision_layer = 0
 		_handle_death()
 		return
 	transfrom_state(Player.State.MOVE)
 
 # 处理死亡状态
 func _handle_death() -> void:
-	GameEvents.player_death.emit()
-	player.collision_layer = 0
+	await get_tree().create_timer(0.5).timeout
+	if Global.current_stage != "stage_5":
+		GameEvents.player_death.emit()
+
 
 func set_heading() -> void:
 	if player.velocity.x > 0:

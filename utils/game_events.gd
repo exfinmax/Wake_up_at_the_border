@@ -12,8 +12,10 @@ signal player_death
 signal dialog_end
 signal get_quest
 signal quest_complete
+signal all_quest_completed
 
 # 场景相关信号
+signal spawn_spark(position: Vector2)
 signal stage_changed  #场景切换完成时触发
 signal stage_changing(stage_name: String) #场景开始切换时触发
 signal stage_ready(stage_name: String)    #新场景准备完成时触发

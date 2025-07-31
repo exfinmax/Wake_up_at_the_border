@@ -1,6 +1,6 @@
 # NPC脚本，负责NPC的对话、任务、交互等
 class_name Npc
-extends BaseNpc
+extends Node2D
 
 
 
@@ -19,8 +19,10 @@ var quest_manager: Node2D = null
 
 @onready var dialog_manager: Node2D = $DialogManager
 @onready var npc_sprite: Sprite2D = $Body/NpcSprite
+@onready var body: Node2D = %Body
 
 var current_branch_index = 0
+
 
 
 func _ready() -> void:
@@ -90,6 +92,10 @@ func on_save_game(saved_data:Array[SavedData]):
 	my_data.dialog_resource = dialog_resource
 	my_data.quests = quests
 	saved_data.append(my_data)
+
+func on_before_load_game():
+	get_parent().remove_child(self)
+	queue_free()
 
 func on_load_game(save_data:SavedData):
 	var saved_data:NpcResource = save_data

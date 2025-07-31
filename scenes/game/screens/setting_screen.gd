@@ -12,6 +12,7 @@ func _ready() -> void:
 
 
 func on_button_pressed() -> void:
+	GameEvents.set_end.emit()
 	transition_state(TheGame.ScreenType.MAIN_MENU)
 
 	

@@ -107,6 +107,16 @@ horizontal_alignment = 2
 layout_mode = 2
 bus = &"Strength"
 
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "文字展示间隔"
+horizontal_alignment = 2
+
+[node name="StrengthSlider5" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("4_q8ap3")]
+layout_mode = 2
+bus = &"Text"
+
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 

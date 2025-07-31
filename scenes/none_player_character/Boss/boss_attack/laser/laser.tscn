@@ -10,12 +10,12 @@ point_count = 2
 colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6mjr"]
-size = Vector2(1, 30)
+size = Vector2(1, 15)
 
 [node name="Laser" type="RayCast2D"]
 target_position = Vector2(0, 1)
 script = ExtResource("1_pujge")
-duration = 2.0
+duration = 3.0
 
 [node name="Beam" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 46)
