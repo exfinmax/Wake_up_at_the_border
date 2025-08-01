@@ -1,11 +1,9 @@
 class_name Golem
-extends BaseNpc
+extends BaseEnemy
 
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var attack: Attack = %Attack
 @onready var find_playerarea: Area2D = %FindPlayerarea
-
-
 
 
 

@@ -268,12 +268,6 @@ _data = {
 
 [node name="Heavy_robot" instance=ExtResource("1_0btjx")]
 script = ExtResource("2_77xuh")
-walk_speed = 80.0
-run_speed = 250.0
-attack_range = 80.0
-chase_range = 800.0
-attack_colddown = 2.5
-knock_back = 150.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(5, 5)

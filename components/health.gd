@@ -22,7 +22,7 @@ var current_hp: float
 
 # 信号定义
 
-signal health_depleted(body: BaseNpc)  # 生命值耗尽信号
+signal health_depleted(body: BaseEnemy)  # 生命值耗尽信号
 
 func _ready() -> void:
 	texture_progress_bar.visible = can_show

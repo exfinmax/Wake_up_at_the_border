@@ -346,17 +346,19 @@ _data = {
 [node name="Snail" instance=ExtResource("1_abjy8")]
 script = ExtResource("2_wxksc")
 walk_speed = 80.0
-run_speed = 200.0
-attack_range = 40.0
+run_speed = 250.0
+firection = 20.0
+attack_range = 50.0
 chase_range = 600.0
-attack_colddown = 3.0
-knock_back = 100.0
+attack_colddown = 2.0
+knock_back = 200.0
 
 [node name="Body" parent="." index="0"]
 position = Vector2(0, -30)
 scale = Vector2(-2, 2)
 
 [node name="NpcSprite" parent="Body" index="0"]
+modulate = Color(3, 3, 1, 1)
 texture = ExtResource("2_p3v20")
 hframes = 8
 
@@ -369,7 +371,7 @@ position = Vector2(-20, 11.5)
 
 [node name="Attack" parent="Body" index="3" instance=ExtResource("3_p3v20")]
 unique_name_in_owner = true
-atk = 20.0
+atk = 40.0
 max_atk_index = 1
 
 [node name="AttackArea" parent="Body/Attack" index="0"]
@@ -391,8 +393,7 @@ monitorable = false
 polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 101.5, 8, 195.5, 0, 101.5, -7)
 
 [node name="Health" parent="." index="1"]
-hp_recover_speed = 5.0
-can_recover_hp = true
+max_hp = 200.0
 
 [node name="TextureProgressBar" parent="Health" index="0"]
 offset_left = -3.0

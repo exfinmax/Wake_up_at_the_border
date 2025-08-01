@@ -54,6 +54,8 @@ var can_be_hurt : bool = true
 var can_recover_energy:bool = true
 # 是否处于防御状态
 var is_defend:bool = false
+var can_move: bool = true
+
 var is_laser:bool = false
 var apply_gravity: bool = true
 
@@ -83,6 +85,7 @@ var current_timer: Timer = null
 func _ready() -> void:
 	camera_2d = Global.camera
 	Global.player = self
+	GameEvents.dialog_end.connect(exit_dialog.bind())
 	_initialize_skill()
 	switch_state(State.MOVE)
 
@@ -235,7 +238,7 @@ func control_shader() -> void:
 		animated_sprite_2d.set_instance_shader_parameter("outline_width", 0)
 
 func create_canying() -> void:
-	if abs(velocity.x) > run_speed:
+	if abs(velocity.x) > run_speed && can_dash:
 		var c = Canying.instantiate()
 		c.scale = Vector2(2.3,2.3) if body.scale.x > 0 else Vector2 (-2.3, 2.3)
 		c.global_position = global_position - Vector2(0, 41.4)
@@ -250,3 +253,5 @@ func create_canying() -> void:
 		
 		get_parent().add_child(c)
 		
+func exit_dialog(_id: String) -> void:
+	can_move = true

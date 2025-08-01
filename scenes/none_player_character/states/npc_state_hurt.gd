@@ -39,10 +39,10 @@ func _process(delta: float) -> void:
 	
 	# 如果NPC血量归零，则销毁NPC
 	if npc.health.is_hp_zero():
-		npc.queue_free()
+		GameEvents.enemy_death.emit(npc)
 	# 如果NPC血量未归零，则切换到移动状态
 	else:
 		if npc.is_fly:
-			transfrom_state(BaseNpc.State.AIR_MOVE, npc_data)
+			transfrom_state(BaseEnemy.State.AIR_MOVE, npc_data)
 		else:
-			transfrom_state(BaseNpc.State.ATTACK, npc_data)
+			transfrom_state(BaseEnemy.State.ATTACK, npc_data)

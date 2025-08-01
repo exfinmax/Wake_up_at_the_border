@@ -1,5 +1,5 @@
 class_name Bee
-extends BaseNpc
+extends BaseEnemy
 
 const FireBall := preload("res://scenes/none_player_character/enemy/Fly_ima/fire_ball.tscn")
 

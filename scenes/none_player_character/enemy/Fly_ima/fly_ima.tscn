@@ -158,11 +158,11 @@ _data = {
 [node name="FlyIma" instance=ExtResource("1_6574n")]
 motion_mode = 1
 script = ExtResource("2_d6y23")
-run_speed = 450.0
-firection = 400.0
+firection = 20.0
 attack_range = 200.0
-attack_colddown = 1.0
-knock_back = 300.0
+chase_range = 600.0
+attack_colddown = 1.5
+knock_back = 250.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(3, 3)

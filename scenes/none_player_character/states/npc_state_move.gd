@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	
 	# 如果NPC在垂直方向上有速度，则切换到空中状态
 	if npc.velocity.y != 0:
-		transfrom_state(BaseNpc.State.AIR)
+		transfrom_state(BaseEnemy.State.AIR)
 	
 func ray_cast_detect() -> void:
 	# 射线检测，用于判断NPC是否在地面上
@@ -44,7 +44,7 @@ func ray_cast_detect() -> void:
 func on_detect_player(player: Player) -> void:
 	# 当检测到玩家时触发
 	# 切换到攻击状态，并传递玩家数据
-	transfrom_state(BaseNpc.State.ATTACK,NpcData.build().add_player(player))
+	transfrom_state(BaseEnemy.State.ATTACK,NpcData.build().add_player(player))
 
 func set_rand_change() -> void:
 	# 设置随机改变方向的逻辑
@@ -55,7 +55,8 @@ func set_rand_change() -> void:
 		# 如果随机数大于0.8，则设置为true，否则为false
 		rand_change = true if random_value > 0.9 else false
 		# 等待一段时间后再次尝试设置随机改变方向
-		await get_tree().create_timer(5).timeout
+		if get_tree() != null:
+			await get_tree().create_timer(5).timeout
 		# 递归调用自身，实现循环
 		set_rand_change()
 		

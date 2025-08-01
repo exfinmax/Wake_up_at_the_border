@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmimxi4glk0aa"]
-
-[ext_resource type="Script" uid="uid://3sewjevushw8" path="res://scenes/none_player_character/base_npc.gd" id="1_47qob"]
-
-[node name="BossGolem" type="CharacterBody2D"]
-script = ExtResource("1_47qob")
-metadata/_custom_type_script = "uid://3sewjevushw8"

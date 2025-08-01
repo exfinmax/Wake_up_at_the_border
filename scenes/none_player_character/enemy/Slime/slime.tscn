@@ -138,12 +138,11 @@ _data = {
 
 [node name="Slime" instance=ExtResource("1_211ta")]
 script = ExtResource("2_yl28u")
-run_speed = 250.0
-firection = 30.0
-attack_range = 40.0
-chase_range = 500.0
+firection = 20.0
+attack_range = 50.0
+chase_range = 300.0
 attack_colddown = 1.0
-knock_back = 500.0
+knock_back = 400.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(3, 3)

@@ -926,7 +926,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(21.7391, -14.7826)]
+"values": [Vector2(16.5217, -12.1739)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1007,7 +1007,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(12.6087, -13.0435)]
+"values": [Vector2(15.2174, -13.0435)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1088,7 +1088,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(12.6087, -13.0435)]
+"values": [Vector2(13.913, -13.0435)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -2277,10 +2277,10 @@ autoplay = "idle"
 [node name="InteractArea" type="Area2D" parent="Body"]
 unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 20
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/InteractArea"]
-position = Vector2(21.3043, -14.3478)
+position = Vector2(15.2174, -14.3478)
 shape = SubResource("RectangleShape2D_fm80t")
 
 [node name="Attack" parent="Body" instance=ExtResource("4_qek5x")]

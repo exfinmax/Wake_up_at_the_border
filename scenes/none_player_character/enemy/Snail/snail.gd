@@ -1,5 +1,5 @@
 class_name Snail
-extends BaseNpc
+extends BaseEnemy
 
 
 @onready var attack: Attack = %Attack

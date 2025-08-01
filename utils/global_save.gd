@@ -2,7 +2,7 @@ extends Node
 
 var set_dic: Dictionary = {}
 
-
+signal is_load_over
 
 func _init() -> void:
 	GameEvents.stage_ready.connect(save_game)
@@ -50,6 +50,7 @@ func load_set() -> void:
 func load_game() -> void:
 	var saved_game:SaveGame = load("user://savegame.tres")
 	if saved_game != null:
+		Global.load_time[Global.current_stage.to_int()] += 1
 		Global.current_stage = saved_game.current_stage
 		Global.current_screen.transition_state(TheGame.ScreenType.IN_GAME)
 		await GameEvents.stage_changed

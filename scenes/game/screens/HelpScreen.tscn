@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd0x3a3ovu6b6"]
+[gd_scene load_steps=13 format=3 uid="uid://bd0x3a3ovu6b6"]
 
 [ext_resource type="Script" uid="uid://c0pvtaq1yaxsd" path="res://scenes/game/screens/help_screen.gd" id="1_dsly0"]
-[ext_resource type="Texture2D" uid="uid://bnhjo0i12hme6" path="res://assets/2.png" id="2_a7ags"]
+[ext_resource type="Texture2D" uid="uid://bnhjo0i12hme6" path="res://shader_patterns/2.png" id="2_a7ags"]
 [ext_resource type="Texture2D" uid="uid://8el401x1kwv6" path="res://assets/gdb-keyboard-2.png" id="3_6a6pa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6a6pa"]
@@ -34,10 +34,6 @@ region = Rect2(160, 288, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfgha"]
 atlas = ExtResource("3_6a6pa")
 region = Rect2(64, 272, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdo26"]
-atlas = ExtResource("3_6a6pa")
-region = Rect2(256, 256, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28poh"]
 atlas = ExtResource("3_6a6pa")
@@ -91,30 +87,12 @@ offset_bottom = 530.0
 theme_override_font_sizes/font_size = 100
 text = "查看当前任务"
 
-[node name="Label4" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 555.0
-offset_right = 825.0
-offset_bottom = 667.0
-theme_override_font_sizes/font_size = 100
-text = "快进对话"
-
-[node name="Label5" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 555.0
-offset_right = 825.0
-offset_bottom = 667.0
-theme_override_font_sizes/font_size = 100
-text = "快进对话"
-
 [node name="Label6" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 240.0
-offset_top = 706.0
+offset_top = 576.0
 offset_right = 825.0
-offset_bottom = 818.0
+offset_bottom = 688.0
 theme_override_font_sizes/font_size = 100
 text = "游戏内设置"
 
@@ -201,12 +179,13 @@ text = "+"
 
 [node name="Label16" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 674.0
+offset_left = 28.0
 offset_top = 697.0
-offset_right = 1617.0
-offset_bottom = 809.0
+offset_right = 1881.0
+offset_bottom = 1039.0
 theme_override_font_sizes/font_size = 100
-text = "Tips：冲刺时再按一次J会进入攻击
+text = "Tips：冲刺时再按一次J会进入攻击，成功普通攻击可以增加一格能量
+普通攻击时可以快速点击S进入防御，但会消耗一格能量
 "
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
@@ -339,22 +318,12 @@ scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_bfgha")
 stretch_mode = 2
 
-[node name="TextureRect5" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 535.0
-offset_right = 46.0
-offset_bottom = 551.0
-scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_sdo26")
-stretch_mode = 2
-
 [node name="TextureRect6" type="TextureRect" parent="Control"]
 layout_mode = 0
 offset_left = 38.0
-offset_top = 673.0
+offset_top = 544.0
 offset_right = 86.0
-offset_bottom = 689.0
+offset_bottom = 560.0
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_28poh")
 stretch_mode = 2
@@ -362,9 +331,9 @@ stretch_mode = 2
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 666.0
-offset_top = 882.0
+offset_top = 924.0
 offset_right = 1216.0
-offset_bottom = 983.0
+offset_bottom = 1025.0
 theme_override_font_sizes/font_size = 100
 text = "返回主菜单"
 

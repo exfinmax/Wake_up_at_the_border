@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnyyp8me8vtjc"]
+
+[ext_resource type="Shader" uid="uid://ebdn7qfmhf3q" path="res://scenes/game/stage_organ/nextstage.gdshader" id="1_qytal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m08fs"]
+size = Vector2(14, 833)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nug1v"]
+shader = ExtResource("1_qytal")
+shader_parameter/horizontalMovement = 0.1
+shader_parameter/verticalMovement = 0.1
+shader_parameter/frequencyStar = 0.1
+shader_parameter/sizeStar = 100.0
+shader_parameter/brightnessStar = 3.0
+shader_parameter/shineFrequencyStar = 8.0
+shader_parameter/transparencyStar = 0.0
+shader_parameter/starIterations = 3
+shader_parameter/frequencyBgStar = 0.996
+shader_parameter/shineFrequencyBgStar = 1.0
+shader_parameter/transparencyBgStar = 0.0
+shader_parameter/colorBackground = Color(0.05, 0.04, 0.2, 1)
+shader_parameter/transparencyBackground = 0.0
+shader_parameter/seed = 0.0
+
+[node name="NextStage" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -339.5)
+shape = SubResource("RectangleShape2D_m08fs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nug1v")
+offset_left = 8.0
+offset_top = -752.0
+offset_right = 1008.0
+offset_bottom = 328.0
+metadata/_edit_use_anchors_ = true

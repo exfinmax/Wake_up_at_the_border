@@ -1,4 +1,4 @@
-extends BaseNpc
+extends BaseEnemy
 
 const Laser = preload("res://scenes/none_player_character/Boss/boss_attack/laser/laser.tscn")
 const BOSSGolem = preload("res://scenes/none_player_character/Boss/boss_golme.tscn")

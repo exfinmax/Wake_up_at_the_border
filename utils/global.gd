@@ -14,6 +14,13 @@ var current_screen: Screen
 
 var loader_screen: LoaderScreen
 
+var load_time:Array = [0, 0, 0, 0, 0, 0]
+
+var is_first_talk_2:bool
+var is_first_talk_3:bool
+var is_first_talk_4:bool
+
+
 var current_setting:Dictionary = {
 	"Master": null,
 	"BGM": null,

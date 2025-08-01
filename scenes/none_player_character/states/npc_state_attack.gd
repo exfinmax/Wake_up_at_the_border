@@ -55,7 +55,7 @@ func _chase_target(_delta: float) -> void:
 	if npc.global_position.distance_to(target.global_position) > npc.chase_range:
 		_switch_to_move()
 	elif !floor_ray_cast.is_colliding():
-		transfrom_state(BaseNpc.State.MOVE)
+		transfrom_state(BaseEnemy.State.MOVE)
 	
 # 执行攻击
 func _perform_attack() -> void:
@@ -90,4 +90,4 @@ func _perform_backstep() -> void:
 
 # 切换到移动状态
 func _switch_to_move() -> void:
-	transfrom_state(BaseNpc.State.MOVE)
+	transfrom_state(BaseEnemy.State.MOVE)

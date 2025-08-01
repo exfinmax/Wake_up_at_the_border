@@ -1,9 +1,9 @@
 class_name NpcState
 extends Node
 
-signal state_change(state:BaseNpc.State, data: NpcData)
+signal state_change(state:BaseEnemy.State, data: NpcData)
 
-var npc :BaseNpc
+var npc :BaseEnemy
 var npc_data : NpcData
 var animation: AnimationPlayer
 var player_detect_area : Area2D
@@ -13,7 +13,7 @@ var attack_conpoment: Node2D
 
 
 
-func setup(context_npc: BaseNpc, context_animation: AnimationPlayer, context_player_detect_area: Area2D, context_floor_ray_cast: RayCast2D, context_wall_ray_cast: RayCast2D, context_data: NpcData = null) -> void:
+func setup(context_npc: BaseEnemy, context_animation: AnimationPlayer, context_player_detect_area: Area2D, context_floor_ray_cast: RayCast2D, context_wall_ray_cast: RayCast2D, context_data: NpcData = null) -> void:
 	npc = context_npc
 	animation = context_animation
 	player_detect_area = context_player_detect_area
@@ -24,5 +24,5 @@ func setup(context_npc: BaseNpc, context_animation: AnimationPlayer, context_pla
 	
 	attack_conpoment = npc.get_node_or_null("%Attack")
 
-func transfrom_state(state: BaseNpc.State, data: NpcData = NpcData.new()) -> void:
+func transfrom_state(state: BaseEnemy.State, data: NpcData = NpcData.new()) -> void:
 	state_change.emit(state, data)

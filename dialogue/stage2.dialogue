@@ -1,0 +1,37 @@
+~ start
+if Global.load_time[Global.current_stage.to_int()] < 1 and not GameEvents.is_load_game:
+	我: 不是这给我干道哪里来了。这还是sb？
+	我: 这梦也是有够奇特的啊，霓虹城市配无人荒野吗？
+	我: 还是先找找这个梦的主人在哪吧。
+do GameEvents.dialogue_end("1")
+=> END
+
+~ stage2_1
+if not Global.is_first_talk_2:
+	set Global.is_first_talk_2 = true
+	梦主：勇者？: 你是谁？是个没见过的人呢？
+	- 我是来帮助你起床的
+		梦主：勇者？: 起床？哦不，你在说什么啊？你这个人很怪啊？（不好说错了） => stage2_1_1
+		
+	- 我是来帮助你讨伐的 => stage2_1_1
+		 
+else
+	梦主：勇者？: 那只邪恶蜗牛就交给你了！谢谢你的付出！
+	梦主：勇者？: 但是要记住，只有把前面所有的怪物消灭后蜗牛才会出现
+	do GameEvents.push_quest.emit("2", "stage2")
+	do GameEvents.dialogue_end("1")
+	=> END
+
+
+
+
+
+
+~ stage2_1_1
+梦主：勇者？: 你难道想说的是让那只蜗牛起床吗？你不知道那只蜗牛有多强吗？
+- 愿闻其详
+	梦主：勇者？: 那只蜗牛，简直就是噩梦，力量和防御都十分强大,我的剑只能在他的壳上造成划痕。
+	梦主：勇者？: 即便如此，你也要去挑战吗？
+	- 我可不怕区区一只蜗牛 => stage2_1
+- 我可不怕区区一只蜗牛 => stage2_1
+=> END

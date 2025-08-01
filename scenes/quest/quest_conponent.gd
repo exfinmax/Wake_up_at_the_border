@@ -55,7 +55,7 @@ func handle_quest_completed(quest: Quest):
 		elif reward.reward_type == "energy_speed":
 			Global.player.energy_recover_speed += reward.reward_amount / 2.0
 		elif reward.reward_type == "hp":
-			Global.player.max_hp += reward.reward_amount
+			Global.player.health_component.max_hp += reward.reward_amount
 		elif reward.reward_type == "atk":
 			Global.player.attack_component.atk += reward.reward_amount
 		elif reward.reward_type == "skill":

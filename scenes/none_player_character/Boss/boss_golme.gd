@@ -1,5 +1,5 @@
 class_name BossGolem
-extends BaseNpc
+extends BaseEnemy
 
 
 

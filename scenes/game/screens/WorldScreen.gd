@@ -102,6 +102,9 @@ func on_spark_spawn(position: Vector2) -> void:
 	spark.global_position = position
 	add_child(spark)
 
+
+	
+
 # 获取当前场景实例
 func get_current_stage() -> Node:
 	return current_stage
@@ -110,3 +113,5 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("set"):
 		GameEvents.set_end.emit()
 		$CanvasLayer/SettingComponent.visible = !$CanvasLayer/SettingComponent.visible
+	elif event.is_action_pressed("1"):
+		next_stage()

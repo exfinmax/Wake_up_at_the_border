@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bjw1pph41n6q4"]
+[gd_scene load_steps=43 format=4 uid="uid://bjw1pph41n6q4"]
 
 [ext_resource type="Script" uid="uid://ca3l8l30y2awb" path="res://scenes/game/stages/stage_1.gd" id="1_17055"]
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="2_6fxdo"]
@@ -10,16 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://c2x8d653dr1qh" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Parallax_Backgrounds/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 8/5.png" id="7_xgxe4"]
 [ext_resource type="TileSet" uid="uid://b8dgg6mhle5ab" path="res://tres/tilemaps/tile_map_layer1.tres" id="8_monkk"]
 [ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="8_mr2jy"]
-[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="12_17055"]
-[ext_resource type="Texture2D" uid="uid://dgl6j8y2x46f2" path="res://assets/sprites/knight.png" id="13_6fxdo"]
-[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="14_qqjix"]
-[ext_resource type="Script" uid="uid://d3d2ro25cssre" path="res://Resource/quest/objectives.gd" id="15_6w053"]
-[ext_resource type="Script" uid="uid://dhj536scdleo3" path="res://Resource/quest/rewards.gd" id="16_m08fs"]
+[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="16_6w053"]
 [ext_resource type="PackedScene" uid="uid://cd65tdqhbvta6" path="res://scenes/quest/QUESTITEM.tscn" id="17_m08fs"]
+[ext_resource type="Texture2D" uid="uid://dgl6j8y2x46f2" path="res://assets/sprites/knight.png" id="17_mr2jy"]
+[ext_resource type="Resource" uid="uid://cs53odgry8ap6" path="res://dialogue/stage1.dialogue" id="17_xgxe4"]
+[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="18_spwpj"]
 [ext_resource type="Texture2D" uid="uid://l821w7nyamao" path="res://assets/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png" id="18_xgxe4"]
+[ext_resource type="Script" uid="uid://d3d2ro25cssre" path="res://Resource/quest/objectives.gd" id="19_7c6p0"]
 [ext_resource type="PackedScene" uid="uid://cqxaqfgmhyp4v" path="res://scenes/none_player_character/enemy/Slime/slime.tscn" id="19_mr2jy"]
 [ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="19_spwpj"]
 [ext_resource type="PackedScene" uid="uid://1m4hqb7k68t0" path="res://scenes/game/stage_organ/platform_2d.tscn" id="19_xgxe4"]
+[ext_resource type="Script" uid="uid://dhj536scdleo3" path="res://Resource/quest/rewards.gd" id="20_nug1v"]
+[ext_resource type="PackedScene" uid="uid://bnyyp8me8vtjc" path="res://scenes/game/stage_organ/next_stage.tscn" id="21_7c6p0"]
 
 [sub_resource type="Animation" id="Animation_spwpj"]
 length = 0.001
@@ -33,12 +35,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1202, 635)]
+"values": [Vector2(1202, 855)]
 }
 
 [sub_resource type="Animation" id="Animation_mr2jy"]
 resource_name = "move"
-length = 5.0
+length = 6.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -47,10 +49,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1196, 637), Vector2(2588, 637)]
+"values": [Vector2(1196, 861), Vector2(2588, 861)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7c6p0"]
@@ -58,67 +60,6 @@ _data = {
 &"RESET": SubResource("Animation_spwpj"),
 &"move": SubResource("Animation_mr2jy")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfx6a"]
-atlas = ExtResource("13_6fxdo")
-region = Rect2(9, 9, 13, 19)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgxe4"]
-atlas = ExtResource("13_6fxdo")
-region = Rect2(9, 9, 13, 19)
-
-[sub_resource type="Resource" id="Resource_qqjix"]
-script = ExtResource("15_6w053")
-id = "ob1"
-description = "寻找奇怪的东西"
-target_id = "sward"
-target_type = "collection"
-objective_dialog = ""
-required_quantity = 1
-collected_quantity = 0
-is_completed = false
-metadata/_custom_type_script = "uid://d3d2ro25cssre"
-
-[sub_resource type="Resource" id="Resource_6w053"]
-script = ExtResource("15_6w053")
-id = "ob2"
-description = "找到后给？？，他会在前面等你的。"
-target_id = "npc_1"
-target_type = "talk_to"
-objective_dialog = "这本来就是你的东西，给你了（解锁防御，长按S进入）"
-required_quantity = 0
-collected_quantity = 0
-is_completed = false
-metadata/_custom_type_script = "uid://d3d2ro25cssre"
-
-[sub_resource type="Resource" id="Resource_mr2jy"]
-script = ExtResource("16_m08fs")
-reward_type = "energy"
-reward_amount = 5
-metadata/_custom_type_script = "uid://dhj536scdleo3"
-
-[sub_resource type="Resource" id="Resource_spwpj"]
-script = ExtResource("16_m08fs")
-reward_type = "skill"
-reward_amount = 0
-metadata/_custom_type_script = "uid://dhj536scdleo3"
-
-[sub_resource type="Resource" id="Resource_nug1v"]
-script = ExtResource("16_m08fs")
-reward_type = "energy_speed"
-reward_amount = 1
-metadata/_custom_type_script = "uid://dhj536scdleo3"
-
-[sub_resource type="Resource" id="Resource_7c6p0"]
-script = ExtResource("14_qqjix")
-quest_id = "npc_1_1"
-quest_name = " ？？的请求"
-quest_description = "请帮助？？找回遗失的？？"
-state = "not_started"
-unlock_id = "npc_1_1"
-objectives = Array[ExtResource("15_6w053")]([SubResource("Resource_qqjix"), SubResource("Resource_6w053")])
-rewards = Array[ExtResource("16_m08fs")]([SubResource("Resource_mr2jy"), SubResource("Resource_spwpj"), SubResource("Resource_nug1v")])
-metadata/_custom_type_script = "uid://bfo61evwd64sn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr2jy"]
 atlas = ExtResource("18_xgxe4")
@@ -132,87 +73,105 @@ shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
-[sub_resource type="Resource" id="Resource_m08fs"]
-script = ExtResource("14_qqjix")
-quest_id = ""
-quest_name = ""
-quest_description = ""
+[sub_resource type="AtlasTexture" id="AtlasTexture_spwpj"]
+atlas = ExtResource("17_mr2jy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c6p0"]
+atlas = ExtResource("17_mr2jy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nug1v"]
+atlas = ExtResource("17_mr2jy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bckvw"]
+atlas = ExtResource("17_mr2jy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvpeh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spwpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c6p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nug1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bckvw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8ws1"]
+atlas = ExtResource("17_mr2jy")
+region = Rect2(9, 9, 13, 19)
+
+[sub_resource type="Resource" id="Resource_spwpj"]
+script = ExtResource("19_7c6p0")
+id = "cl_1"
+description = "找到奇怪的东西"
+target_id = "sward"
+target_type = "collection"
+required_quantity = 1
+collected_quantity = 0
+is_completed = false
+metadata/_custom_type_script = "uid://d3d2ro25cssre"
+
+[sub_resource type="Resource" id="Resource_7c6p0"]
+script = ExtResource("20_nug1v")
+reward_type = "hp"
+reward_amount = 20
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_nug1v"]
+script = ExtResource("20_nug1v")
+reward_type = "energy_speed"
+reward_amount = 1
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_gvpeh"]
+script = ExtResource("20_nug1v")
+reward_type = "skill"
+reward_amount = 0
+metadata/_custom_type_script = "uid://dhj536scdleo3"
+
+[sub_resource type="Resource" id="Resource_bckvw"]
+script = ExtResource("18_spwpj")
+quest_id = "stage1"
+quest_name = "???的请求"
+quest_description = "???会帮你觉醒力量，只要你能找到那个东西。"
 state = "not_started"
-unlock_id = "player_1"
-objectives = Array[ExtResource("15_6w053")]([])
-rewards = Array[ExtResource("16_m08fs")]([])
+objectives = Array[ExtResource("19_7c6p0")]([SubResource("Resource_spwpj")])
+rewards = Array[ExtResource("20_nug1v")]([SubResource("Resource_7c6p0"), SubResource("Resource_nug1v"), SubResource("Resource_gvpeh")])
 metadata/_custom_type_script = "uid://bfo61evwd64sn"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m08fs"]
+[sub_resource type="Animation" id="Animation_xgxe4"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_m08fs"]
 resource_name = "start"
 length = 2.0
 step = 1.0
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Label:visible_ratio")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 1.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.9, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/Label")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"queue_free"
+"method": &"start_dialog"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_xgxe4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mr2jy"]
@@ -220,6 +179,9 @@ _data = {
 &"RESET": SubResource("Animation_xgxe4"),
 &"start": SubResource("Animation_m08fs")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c6p0"]
+size = Vector2(1959, 20)
 
 [node name="Stage_1" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_17055")
@@ -275,17 +237,17 @@ motion_mirroring = Vector2(1920, 0)
 scale = Vector2(3.3333, 3.33331)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(0, -243)
+position = Vector2(0, -21)
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAABABMAAAABAAYAAAABABQAAAAAAAAAAAABABUAAAAAAAEAAAABABYAAAAAAAEAAAACABMAAAABAAEAAAACABQAAAAAAAAAAAACABUAAAAAAAEAAAACABYAAAABAAEAAAADABIAAAAAAAAAAAADABMAAAAAAAEAAAADABQAAAAAAAEAAAADABUAAAAAAAEAAAADABYAAAAAAAEAAAAEABIAAAAAAAAAAAAEABMAAAAAAAEAAAAEABQAAAAAAAEAAAAEABUAAAABAAAAAAAEABYAAAAAAAEAAAAFABQAAAAGAAAAAAAFABUAAAAGAAEAAAAFABYAAAAGAAEAAAAGAA4AAAAAAAAAAAAGAA8AAAAAAAEAAAAGABQAAAAHAAAAAAAGABUAAAAIAAAAAAAGABYAAAAGAAEAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAEAAAAHAA8AAAAAAAEAAAAHABQAAAAGAAAAAAAHABUAAAAGAAEAAAAHABYAAAAGAAEAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAEAAAAIAA8AAAAAAAEAAAAIABQAAAAJAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAEAAAAJABQAAAAKAAAAAAAKAAoAAAAAAAMAAAAKAAsAAAAAAAQAAAAKAAwAAAAAAAQAAAAKAA0AAAAAAAQAAAAKAA4AAAAAAAUAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAEAAAAKABQAAAALAAAAAAALAA8AAAAJAAAAAAALABMAAAAAAAgAAAALABQAAAAGAAAAAAALABUAAAAGAAEAAAALABYAAAAGAAEAAAAMAA8AAAALAAAAAAAMABQAAAAGAAAAAAAMABUAAAAGAAEAAAAMABYAAAAGAAEAAAANAA8AAAAAAAAAAAANABAAAAAAAAEAAAAOAA4AAAAAAAAAAAAOAA8AAAAAAAEAAAAOABAAAAAAAAEAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAEAAAAPABAAAAAAAAEAAAAPABQAAAAGAAAAAAAPABUAAAAGAAEAAAAPABYAAAAGAAEAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAEAAAAQABQAAAAGAAAAAAAQABUAAAAIAAEAAAAQABYAAAAGAAEAAAARABAAAAAEAAAAAAARABEAAAAEAAEAAAASAA8AAAAIAAYAAAASABAAAAAEAAAAAAASABEAAAAEAAEAAAATAA0AAAAFAAMAAAATAA4AAAAFAAQAAAATAA8AAAAFAAUAAAATABAAAAAEAAAAAAATABEAAAAEAAEAAAATABIAAAAEAAEAAAAUABEAAAAFAAAAAAAUABIAAAAEAAEAAAAUABMAAAAEAAEAAAAVABEAAAAFAAgAAAAVABIAAAAFAAAAAAAVABMAAAAEAAEAAAAWABIAAAAEAAAAAAAWABMAAAAEAAEAAAAWABQAAAAEAAEAAAAWABUAAAAEAAEAAAAWABYAAAAEAAEAAAAXABIAAAAEAAAAAAAXABMAAAAEAAEAAAAXABQAAAAEAAEAAAAXABUAAAAFAAAAAAAXABYAAAAEAAEAAABrABMAAAAAAAEAAABrABQAAAAAAAEAAABrABUAAAAAAAEAAABrABYAAAAAAAEAAABsABMAAAAAAAEAAABsABQAAAAAAAEAAABsABUAAAAAAAEAAABsABYAAAAAAAEAAABtABMAAAAAAAEAAABtABQAAAAAAAEAAABtABUAAAAAAAEAAABtABYAAAAAAAEAAABuABMAAAAAAAEAAABuABQAAAAAAAEAAABuABUAAAAAAAEAAABuABYAAAAAAAEAAABrABIAAAAAAAAAAABsABIAAAAAAAAAAABtABIAAAAAAAAAAABuABIAAAAAAAAAAAA1AAYAAAAEAAEAAAA1AAcAAAAEAAEAAAA2AAUAAAAEAAEAAAA2AAYAAAAEAAEAAAA2AAcAAAAEAAEAAAA2AAgAAAAEAAEAAAA2AAkAAAAFAAAAAAA2AAoAAAAEAAEAAAA3AAQAAAAFAAAAAAA3AAUAAAAFAAEAAAA3AAYAAAAEAAEAAAA3AAcAAAAEAAEAAAA3AAgAAAAEAAEAAAA3AAkAAAAEAAEAAAA3AAoAAAAEAAEAAAA3AAsAAAAEAAEAAAA3ABIAAAAAAAAAAAA3ABMAAAABAAAAAAA3ABQAAAAAAAEAAAA3ABUAAAAAAAEAAAA3ABYAAAAAAAEAAAA4AAkAAAAEAAAAAAA4AAoAAAAFAAAAAAA4AAsAAAAEAAEAAAA4ABIAAAAAAAAAAAA4ABMAAAAAAAEAAAA4ABQAAAAAAAEAAAA4ABUAAAAAAAEAAAA4ABYAAAAAAAEAAAA5AAkAAAAEAAAAAAA5AAoAAAAEAAEAAAA5AAsAAAAEAAEAAAA5ABMAAAAGAAcAAAA5ABQAAAAAAAEAAAA5ABUAAAABAAAAAAA5ABYAAAAAAAEAAAA6AAkAAAAEAAAAAAA6AAoAAAAEAAEAAAA6ABQAAAAAAAEAAAA6ABUAAAAAAAEAAAA6ABYAAAAAAAEAAAA7AAkAAAAEAAAAAAA7AAoAAAAEAAEAAAA7AA8AAAACAAQAAAA7ABEAAAADAAcAAAA7ABIAAAADAAcAAAA7ABMAAAADAAcAAAA7ABQAAAAAAAEAAAA7ABUAAAAAAAEAAAA7ABYAAAAAAAEAAAA8AAkAAAAEAAAAAAA8AAoAAAAFAAAAAAA8ABQAAAAAAAEAAAA8ABUAAAAAAAEAAAA8ABYAAAAAAAEAAAA9AAkAAAAEAAAAAAA9AAoAAAAFAAAAAAA9ABQAAAAAAAEAAAA9ABUAAAAAAAEAAAA9ABYAAAAAAAEAAAA+AAkAAAAEAAAAAAA+AAoAAAAEAAEAAAA+AA4AAAACAAQAAAA+ABAAAAADAAgAAAA+ABEAAAADAAgAAAA+ABIAAAADAAgAAAA+ABMAAAADAAgAAAA+ABQAAAAAAAEAAAA+ABUAAAAAAAEAAAA+ABYAAAAAAAEAAAA/AAgAAAAEAAgAAAA/AAkAAAAEAAAAAAA/AAoAAAAEAAEAAAA/AAsAAAAEAAEAAAA/ABQAAAAAAAEAAAA/ABUAAAAAAAEAAAA/ABYAAAAAAAEAAABAAAkAAAAEAAAAAABAAAoAAAAEAAEAAABAAAsAAAAEAAEAAABAABMAAAABAAAAAABAABQAAAAAAAEAAABAABUAAAAAAAEAAABAABYAAAAAAAEAAABBAAoAAAAFAAEAAABBAAsAAAAEAAEAAABBAAwAAAAEAAEAAABBABIAAAAAAAAAAABBABMAAAAAAAEAAABBABQAAAAAAAEAAABBABUAAAAAAAEAAABBABYAAAAAAAEAAABCAAgAAAAFAAMAAABCAAkAAAAFAAQAAABCAAoAAAAFAAUAAABCAAsAAAAEAAAAAABCAAwAAAAFAAAAAABCABIAAAAAAAAAAABCABMAAAAAAAEAAABCABQAAAAAAAEAAABCABUAAAAAAAEAAABCABYAAAAAAAEAAABDAAsAAAAEAAAAAABDAAwAAAAEAAEAAABEABAAAAACAAAAAABEABEAAAADAAEAAABFAA4AAAACAAAAAABFAA8AAAADAAAAAABFABAAAAACAAEAAABFABEAAAACAAEAAABGAA4AAAACAAAAAABGAA8AAAACAAEAAABGABAAAAACAAEAAABHAA4AAAAJAAEAAABIAA4AAAAKAAEAAABJAA4AAAAKAAEAAABKAA4AAAALAAEAAABLAAsAAAAAAAMAAABLAAwAAAAAAAQAAABLAA0AAAAAAAUAAABLAA4AAAACAAAAAABLAA8AAAACAAEAAABMAA4AAAACAAAAAABMAA8AAAACAAEAAABMABAAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAABABMAAAABAAYAAAABABQAAAAAAAAAAAABABUAAAAAAAEAAAABABYAAAAAAAEAAAACABMAAAABAAEAAAACABQAAAAAAAAAAAACABUAAAAAAAEAAAACABYAAAABAAEAAAADABIAAAAAAAAAAAADABMAAAAAAAEAAAADABQAAAAAAAEAAAADABUAAAAAAAEAAAADABYAAAAAAAEAAAAEABIAAAAAAAAAAAAEABMAAAAAAAEAAAAEABQAAAAAAAEAAAAEABUAAAABAAAAAAAEABYAAAAAAAEAAAAFABQAAAAGAAAAAAAFABUAAAAGAAEAAAAFABYAAAAGAAEAAAAGAA4AAAAAAAAAAAAGAA8AAAAAAAEAAAAGABQAAAAHAAAAAAAGABUAAAAIAAAAAAAGABYAAAAGAAEAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAEAAAAHAA8AAAAAAAEAAAAHABQAAAAGAAAAAAAHABUAAAAGAAEAAAAHABYAAAAGAAEAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAEAAAAIAA8AAAAAAAEAAAAIABQAAAAJAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAEAAAAJABQAAAAKAAAAAAAKAAoAAAAAAAMAAAAKAAsAAAAAAAQAAAAKAAwAAAAAAAQAAAAKAA0AAAAAAAQAAAAKAA4AAAAAAAUAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAEAAAAKABQAAAALAAAAAAALAA8AAAAJAAAAAAALABMAAAAAAAgAAAALABQAAAAGAAAAAAALABUAAAAGAAEAAAALABYAAAAGAAEAAAAMAA8AAAALAAAAAAAMABQAAAAGAAAAAAAMABUAAAAGAAEAAAAMABYAAAAGAAEAAAANAA8AAAAAAAAAAAANABAAAAAAAAEAAAAOAA4AAAAAAAAAAAAOAA8AAAAAAAEAAAAOABAAAAAAAAEAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAEAAAAPABAAAAAAAAEAAAAPABQAAAAGAAAAAAAPABUAAAAGAAEAAAAPABYAAAAGAAEAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAEAAAAQABQAAAAGAAAAAAAQABUAAAAIAAEAAAAQABYAAAAGAAEAAAARABAAAAAEAAAAAAARABEAAAAEAAEAAAASAA8AAAAIAAYAAAASABAAAAAEAAAAAAASABEAAAAEAAEAAAATAA0AAAAFAAMAAAATAA4AAAAFAAQAAAATAA8AAAAFAAUAAAATABAAAAAEAAAAAAATABEAAAAEAAEAAAATABIAAAAEAAEAAAAUABEAAAAFAAAAAAAUABIAAAAEAAEAAAAUABMAAAAEAAEAAAAVABEAAAAFAAgAAAAVABIAAAAFAAAAAAAVABMAAAAEAAEAAAAWABIAAAAEAAAAAAAWABMAAAAEAAEAAAAWABQAAAAEAAEAAAAWABUAAAAEAAEAAAAWABYAAAAEAAEAAAAXABIAAAAEAAAAAAAXABMAAAAEAAEAAAAXABQAAAAEAAEAAAAXABUAAAAFAAAAAAAXABYAAAAEAAEAAABrABMAAAAAAAEAAABrABQAAAAAAAEAAABrABUAAAAAAAEAAABrABYAAAAAAAEAAABsABMAAAAAAAEAAABsABQAAAAAAAEAAABsABUAAAAAAAEAAABsABYAAAAAAAEAAABtABMAAAAAAAEAAABtABQAAAAAAAEAAABtABUAAAAAAAEAAABtABYAAAAAAAEAAABuABMAAAAAAAEAAABuABQAAAAAAAEAAABuABUAAAAAAAEAAABuABYAAAAAAAEAAABrABIAAAAAAAAAAABsABIAAAAAAAAAAABtABIAAAAAAAAAAABuABIAAAAAAAAAAAA1AAYAAAAEAAEAAAA1AAcAAAAEAAEAAAA2AAUAAAAEAAEAAAA2AAYAAAAEAAEAAAA2AAcAAAAEAAEAAAA2AAgAAAAEAAEAAAA2AAkAAAAFAAAAAAA2AAoAAAAEAAEAAAA3AAQAAAAFAAAAAAA3AAUAAAAFAAEAAAA3AAYAAAAEAAEAAAA3AAcAAAAEAAEAAAA3AAgAAAAEAAEAAAA3AAkAAAAEAAEAAAA3AAoAAAAEAAEAAAA3AAsAAAAEAAEAAAA3ABIAAAAAAAAAAAA3ABMAAAABAAAAAAA3ABQAAAAAAAEAAAA3ABUAAAAAAAEAAAA3ABYAAAAAAAEAAAA4AAkAAAAEAAAAAAA4AAoAAAAFAAAAAAA4AAsAAAAEAAEAAAA4ABIAAAAAAAAAAAA4ABMAAAAAAAEAAAA4ABQAAAAAAAEAAAA4ABUAAAAAAAEAAAA4ABYAAAAAAAEAAAA5AAkAAAAEAAAAAAA5AAoAAAAEAAEAAAA5AAsAAAAEAAEAAAA5ABMAAAAGAAcAAAA5ABQAAAAAAAEAAAA5ABUAAAABAAAAAAA5ABYAAAAAAAEAAAA6AAkAAAAEAAAAAAA6AAoAAAAEAAEAAAA6ABQAAAAAAAEAAAA6ABUAAAAAAAEAAAA6ABYAAAAAAAEAAAA7AAkAAAAEAAAAAAA7AAoAAAAEAAEAAAA7AA8AAAACAAQAAAA7ABEAAAADAAcAAAA7ABIAAAADAAcAAAA7ABMAAAADAAcAAAA7ABQAAAAAAAEAAAA7ABUAAAAAAAEAAAA7ABYAAAAAAAEAAAA8AAkAAAAEAAAAAAA8AAoAAAAFAAAAAAA8ABQAAAAAAAEAAAA8ABUAAAAAAAEAAAA8ABYAAAAAAAEAAAA9AAkAAAAEAAAAAAA9AAoAAAAFAAAAAAA9ABQAAAAAAAEAAAA9ABUAAAAAAAEAAAA9ABYAAAAAAAEAAAA+AAkAAAAEAAAAAAA+AAoAAAAEAAEAAAA+AA4AAAACAAQAAAA+ABAAAAADAAgAAAA+ABEAAAADAAgAAAA+ABIAAAADAAgAAAA+ABMAAAADAAgAAAA+ABQAAAAAAAEAAAA+ABUAAAAAAAEAAAA+ABYAAAAAAAEAAAA/AAgAAAAEAAgAAAA/AAkAAAAEAAAAAAA/AAoAAAAEAAEAAAA/AAsAAAAEAAEAAAA/ABQAAAAAAAEAAAA/ABUAAAAAAAEAAAA/ABYAAAAAAAEAAABAAAkAAAAEAAAAAABAAAoAAAAEAAEAAABAAAsAAAAEAAEAAABAABMAAAABAAAAAABAABQAAAAAAAEAAABAABUAAAAAAAEAAABAABYAAAAAAAEAAABBAAoAAAAFAAEAAABBAAsAAAAEAAEAAABBAAwAAAAEAAEAAABBABIAAAAAAAAAAABBABMAAAAAAAEAAABBABQAAAAAAAEAAABBABUAAAAAAAEAAABBABYAAAAAAAEAAABCAAgAAAAFAAMAAABCAAkAAAAFAAQAAABCAAoAAAAFAAUAAABCAAsAAAAEAAAAAABCAAwAAAAFAAAAAABCABIAAAAAAAAAAABCABMAAAAAAAEAAABCABQAAAAAAAEAAABCABUAAAAAAAEAAABCABYAAAAAAAEAAABDAAsAAAAEAAAAAABDAAwAAAAEAAEAAABEABAAAAACAAAAAABEABEAAAADAAEAAABFAA4AAAACAAAAAABFAA8AAAADAAAAAABFABAAAAACAAEAAABFABEAAAACAAEAAABGAA4AAAACAAAAAABGAA8AAAACAAEAAABGABAAAAACAAEAAABHAA4AAAAJAAEAAABIAA4AAAAKAAEAAABJAA4AAAAKAAEAAABKAA4AAAALAAEAAABLAAsAAAAAAAMAAABLAAwAAAAAAAQAAABLAA0AAAAAAAUAAABLAA4AAAACAAAAAABLAA8AAAACAAEAAABMAA4AAAACAAAAAABMAA8AAAACAAEAAABMABAAAAADAAAAAABUABMAAAABAAAAAABUABQAAAAAAAEAAABUABUAAAAAAAEAAABUABYAAAAAAAEAAABVABMAAAAAAAEAAABVABQAAAAAAAEAAABVABUAAAAAAAEAAABVABYAAAAAAAEAAABWABMAAAAAAAEAAABWABQAAAABAAAAAABWABUAAAAAAAEAAABWABYAAAAAAAEAAABXABMAAAAAAAEAAABXABQAAAAAAAEAAABXABUAAAAAAAEAAABXABYAAAAAAAEAAABYABMAAAAAAAEAAABYABQAAAAAAAEAAABYABUAAAABAAAAAABYABYAAAAAAAEAAABZABMAAAAAAAEAAABZABQAAAAAAAEAAABZABUAAAAAAAEAAABZABYAAAAAAAEAAABaABMAAAAAAAEAAABaABQAAAAAAAEAAABaABUAAAAAAAEAAABaABYAAAAAAAEAAABbABMAAAAAAAEAAABbABQAAAAAAAEAAABbABUAAAAAAAEAAABbABYAAAABAAAAAABcABMAAAAAAAEAAABcABQAAAAAAAEAAABcABUAAAAAAAEAAABcABYAAAAAAAEAAABdABMAAAAAAAEAAABdABQAAAAAAAEAAABdABUAAAAAAAEAAABdABYAAAAAAAEAAABeABMAAAAAAAEAAABeABQAAAAAAAEAAABeABUAAAAAAAEAAABeABYAAAAAAAEAAABfABMAAAAAAAEAAABfABQAAAAAAAEAAABfABUAAAAAAAEAAABfABYAAAABAAEAAABgABMAAAAAAAEAAABgABQAAAAAAAEAAABgABUAAAAAAAEAAABgABYAAAABAAAAAABhABMAAAAAAAEAAABhABQAAAAAAAEAAABhABUAAAAAAAEAAABhABYAAAAAAAEAAABiABMAAAAAAAEAAABiABQAAAAAAAEAAABiABUAAAAAAAEAAABiABYAAAAAAAEAAABjABMAAAABAAEAAABjABQAAAAAAAEAAABjABUAAAAAAAEAAABjABYAAAABAAEAAABkABMAAAAAAAEAAABkABQAAAAAAAEAAABkABUAAAAAAAEAAABkABYAAAAAAAEAAABlABMAAAABAAEAAABlABQAAAAAAAEAAABlABUAAAABAAAAAABlABYAAAAAAAEAAABmABMAAAAAAAEAAABmABQAAAAAAAEAAABmABUAAAAAAAEAAABmABYAAAAAAAEAAABnABMAAAAAAAEAAABnABQAAAAAAAEAAABnABUAAAAAAAEAAABnABYAAAAAAAEAAABoABMAAAAAAAEAAABoABQAAAABAAAAAABoABUAAAAAAAEAAABoABYAAAAAAAEAAABpABMAAAAAAAEAAABpABQAAAAAAAEAAABpABUAAAAAAAEAAABpABYAAAAAAAEAAABqABMAAAAAAAEAAABqABQAAAAAAAEAAABqABUAAAAAAAEAAABqABYAAAABAAAAAABUABIAAAAAAAAAAABVABIAAAAAAAAAAABWABIAAAAAAAAAAABXABIAAAAAAAAAAABYABIAAAAAAAAAAABZABIAAAAAAAAAAABaABIAAAAAAAAAAABbABIAAAAAAAAAAABcABIAAAAAAAAAAABdABIAAAAAAAAAAABeABIAAAAAAAAAAABfABIAAAAAAAAAAABgABIAAAAAAAAAAABhABIAAAAAAAAAAABiABIAAAAAAAAAAABjABIAAAAAAAAAAABkABIAAAAAAAAAAABlABIAAAAAAAAAAABmABIAAAAAAAAAAABnABIAAAAAAAAAAABoABIAAAAAAAAAAABpABIAAAAAAAAAAABqABIAAAAAAAAAAABaAAwAAAACAAQAAABaABEAAAADAAgAAABaAA0AAAADAAcAAABaAA4AAAADAAcAAABaAA8AAAADAAcAAABaABAAAAADAAcAAABiAA4AAAAAAAMAAABiAA8AAAAAAAQAAABiABAAAAAAAAQAAABiABEAAAAAAAUAAAA=")
 tile_set = ExtResource("8_monkk")
 
 [node name="platform2D" parent="." instance=ExtResource("19_xgxe4")]
-position = Vector2(207, 515)
+position = Vector2(207, 737)
 scale = Vector2(3, 3)
 
 [node name="platform2D2" parent="." instance=ExtResource("19_xgxe4")]
-position = Vector2(1202, 635)
+position = Vector2(1202, 855)
 scale = Vector2(3, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="platform2D2"]
@@ -295,17 +257,13 @@ libraries = {
 autoplay = "move"
 
 [node name="Player" parent="." instance=ExtResource("8_mr2jy")]
-position = Vector2(270, 714)
+position = Vector2(270, 936)
 
-[node name="Npc" parent="." instance=ExtResource("12_17055")]
-position = Vector2(132, 588)
-sprite = SubResource("AtlasTexture_hfx6a")
-custom_scale = Vector2(3, 3)
-dia_texture = SubResource("AtlasTexture_xgxe4")
-quests = Array[ExtResource("14_qqjix")]([SubResource("Resource_7c6p0")])
+[node name="Health" parent="Player" index="4"]
+can_recover_hp = true
 
 [node name="QuestItem" parent="." instance=ExtResource("17_m08fs")]
-position = Vector2(2716, 157)
+position = Vector2(2716, 379)
 scale = Vector2(2, 2)
 item_id = "sward"
 item_quantity = 1
@@ -316,33 +274,45 @@ custom_scale = Vector2(2, 2)
 material = SubResource("ShaderMaterial_7c6p0")
 texture = SubResource("AtlasTexture_mr2jy")
 
-[node name="Player2" parent="." instance=ExtResource("12_17055")]
-position = Vector2(309, 682)
-npc_id = "player_1"
-npc_name = "我"
-current_dia_state = "dia_1"
-quests = Array[ExtResource("14_qqjix")]([SubResource("Resource_m08fs")])
+[node name="Npc3" parent="." instance=ExtResource("16_6w053")]
+position = Vector2(0, 222)
+npc_id = "1"
+dialogue_resource = ExtResource("17_xgxe4")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(3942, 512)
+[node name="Npc" parent="." instance=ExtResource("16_6w053")]
+position = Vector2(2686, 816)
+npc_id = "2"
+dialogue_resource = ExtResource("17_xgxe4")
+dialogue_start = "stage1_1"
+sprite_frames = SubResource("SpriteFrames_gvpeh")
+custom_scale = Vector2(2.5, 2.5)
+dia_texture = SubResource("AtlasTexture_x8ws1")
+is_once = true
+quests = Array[ExtResource("18_spwpj")]([SubResource("Resource_bckvw")])
 
-[node name="NextStage" type="Area2D" parent="."]
-position = Vector2(0, -243)
+[node name="Npc4" parent="." instance=ExtResource("16_6w053")]
+position = Vector2(0, 222)
+npc_id = "3"
+dialogue_resource = ExtResource("17_xgxe4")
+dialogue_start = "player1"
+is_once = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NextStage"]
-shape = SubResource("RectangleShape2D_m08fs")
+[node name="Npc2" parent="." instance=ExtResource("16_6w053")]
+position = Vector2(4546, 821)
+npc_id = "4"
+dialogue_resource = ExtResource("17_xgxe4")
+dialogue_start = "stage1_2"
+sprite_frames = SubResource("SpriteFrames_gvpeh")
+custom_scale = Vector2(-2.5, 2.5)
+dia_texture = SubResource("AtlasTexture_x8ws1")
+is_once = true
+quests = Array[ExtResource("18_spwpj")]([SubResource("Resource_bckvw")])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CollisionShape2D" parent="Npc2" index="1"]
+position = Vector2(0, 0.5)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
-offset_left = 650.0
-offset_top = 40.0
-offset_right = 1087.0
-offset_bottom = 152.0
-theme_override_colors/font_color = Color(3, 0, 3, 1)
-theme_override_font_sizes/font_size = 100
-text = "PART1: \"我的梦\""
+[node name="NextStage" parent="." instance=ExtResource("21_7c6p0")]
+position = Vector2(5326, 764)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -351,17 +321,47 @@ libraries = {
 autoplay = "start"
 
 [node name="Slime" parent="." instance=ExtResource("19_mr2jy")]
-position = Vector2(553, 429)
+position = Vector2(553, 651)
+walk_speed = 0.0
+run_speed = 0.0
+firection = 0.0
+attack_range = 0.0
+chase_range = 0.0
+attack_colddown = 0.0
+knock_back = 0.0
 
 [node name="Slime2" parent="." instance=ExtResource("19_mr2jy")]
-position = Vector2(2804, 684)
+position = Vector2(2804, 906)
+walk_speed = 0.0
+run_speed = 0.0
+firection = 0.0
+attack_range = 0.0
+chase_range = 0.0
+attack_colddown = 0.0
+knock_back = 0.0
 
 [node name="Slime3" parent="." instance=ExtResource("19_mr2jy")]
-position = Vector2(2879, 163)
+position = Vector2(2879, 385)
+walk_speed = 0.0
+run_speed = 0.0
+firection = 0.0
+attack_range = 0.0
+chase_range = 0.0
+attack_colddown = 0.0
+knock_back = 0.0
 
-[connection signal="area_entered" from="NextStage" to="." method="_on_next_stage_area_entered"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(6313, 1072)
+shape = SubResource("RectangleShape2D_7c6p0")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="ParallaxBackground"]
-[editable path="Npc"]
+[editable path="Player"]
+[editable path="Player/Body/Attack"]
+[editable path="Player/Health"]
+[editable path="Player/Laser"]
 [editable path="QuestItem"]
+[editable path="Npc2"]

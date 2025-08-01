@@ -10,7 +10,6 @@ extends Resource
 @export var quest_name: String
 @export var quest_description: String
 @export var state: String = "not_started"
-@export var unlock_id: String
 @export var objectives: Array[Objectives] = []
 @export var rewards: Array[Reawrds] = []
 
@@ -29,9 +28,6 @@ func complete_objective(objective_id: String, quantity: int = 1):
 					objective.is_completed = true
 			elif objective.target_type == "talk_to":
 				objective.is_completed = true
-			elif objective.target_type == "fight_with":
-				if objective.collected_quantity >= objective.required_quantity:
-					objective.is_completed = true 
 			break
 	
 	if is_completed():

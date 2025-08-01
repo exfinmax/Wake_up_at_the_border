@@ -18,7 +18,7 @@ func _enter_tree() -> void:
 
 func _process(_delta: float) -> void:
 	if npc.is_on_floor():
-		transfrom_state(BaseNpc.State.MOVE)
+		transfrom_state(BaseEnemy.State.MOVE)
 
 
 	

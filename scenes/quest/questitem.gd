@@ -27,6 +27,7 @@ func on_save_game(save_data:Array[SavedData]) -> void:
 	var my_data = ItemResource.new()
 	my_data.position = global_position
 	my_data.scene_path = scene_file_path
+	my_data.item_shader = item.material
 	my_data.item_icon = item_icon
 	my_data.item_quantity = item_quantity
 	my_data.item_id = item_id
@@ -41,6 +42,7 @@ func on_load_game(saved_data:SavedData) -> void:
 	var my_data:ItemResource = saved_data
 	global_position = my_data.position
 	item_icon = my_data.item_icon
+	item.material = my_data.item_shader
 	item_quantity = my_data.item_quantity
 	item_id = my_data.item_id
 	item_icon = my_data.item_icon

@@ -452,9 +452,10 @@ _data = {
 
 [node name="Imp" instance=ExtResource("1_cadnu")]
 script = ExtResource("2_ijroi")
+firection = 20.0
 attack_range = 60.0
-chase_range = 600.0
-attack_colddown = 2.0
+chase_range = 700.0
+attack_colddown = 1.0
 knock_back = 300.0
 
 [node name="Body" parent="." index="0"]

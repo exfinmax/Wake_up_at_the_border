@@ -1,5 +1,5 @@
 # NPC基类，负责NPC的基础属性和行为
-class_name BaseNpc
+class_name BaseEnemy
 extends CharacterBody2D
 
 const GRAVITY :float = 980.0
@@ -15,7 +15,7 @@ enum State {
 	AIR_MOVE,
 }
 
-@export_category("BaseNpc")
+@export_category("BaseEnemy")
 @export var type:Type
 @export var walk_speed:float
 @export var run_speed:float

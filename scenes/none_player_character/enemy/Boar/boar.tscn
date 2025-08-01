@@ -320,10 +320,9 @@ _data = {
 
 [node name="Boar" instance=ExtResource("1_p21id")]
 script = ExtResource("2_liwsi")
-walk_speed = 120.0
-run_speed = 450.0
-attack_range = 50.0
-chase_range = 1000.0
+firection = 20.0
+attack_range = 40.0
+chase_range = 500.0
 attack_colddown = 1.0
 knock_back = 300.0
 
@@ -341,6 +340,7 @@ target_position = Vector2(-24.5, 0.5)
 
 [node name="FloorRayCast2D" parent="Body" index="2"]
 position = Vector2(-26.5, 8)
+target_position = Vector2(0, 12)
 
 [node name="Attack" parent="Body" index="3" instance=ExtResource("3_liwsi")]
 unique_name_in_owner = true

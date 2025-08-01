@@ -1136,12 +1136,12 @@ _data = {
 
 [node name="EnemyGolem" groups=["Enemy"] instance=ExtResource("1_fxvmg")]
 script = ExtResource("2_r71u1")
-run_speed = 250.0
-firection = 50.0
-attack_range = 60.0
-chase_range = 400.0
-attack_colddown = 2.0
-knock_back = 200.0
+run_speed = 330.0
+firection = 20.0
+attack_range = 50.0
+chase_range = 700.0
+attack_colddown = 1.5
+knock_back = 250.0
 
 [node name="Body" parent="." index="0"]
 scale = Vector2(2, 2)
@@ -1187,7 +1187,7 @@ target_position = Vector2(0, 500)
 
 [node name="Health" parent="." index="1"]
 position = Vector2(-29, -32)
-max_hp = 50.0
+max_hp = 60.0
 hp_recover_speed = 2.5
 can_recover_hp = true
 

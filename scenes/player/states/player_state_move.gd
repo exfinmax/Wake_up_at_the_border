@@ -10,7 +10,6 @@ var target: Node2D = null
 # 是否为敌人，决定按键行为
 var no_npc := true
 # 是否正在对话中，防止重复触发
-var is_in_dia := false
 var is_in_air := false
 
 var time_since_jump:float
@@ -18,7 +17,6 @@ var time_since_jump:float
 func _enter_tree() -> void:
 	player.can_be_hurt = true
 	# 连接交互区域的信号
-	GameEvents.dialog_end.connect(exit_dialog.bind())
 	interact_area.body_entered.connect(_on_interact_area_entered.bind())
 	interact_area.area_entered.connect(_on_interact_area_entered.bind())
 	interact_area.body_exited.connect(_on_interact_area_exited.bind())
@@ -28,7 +26,7 @@ func _enter_tree() -> void:
 
 # 物理帧处理，处理输入和动画切换
 func _process(delta: float) -> void:
-	if !is_in_dia:
+	if player.can_move:
 		_handle_movement_input(delta)
 		_update_animation()
 		# 如果y方向有速度，切换到空中状态
@@ -79,15 +77,15 @@ func _on_interact_area_exited(body) -> void:
 # 处理输入事件（如对话、物品交互、任务日志）
 func _input(event: InputEvent) -> void:
 	# 如果不在对话中
-	if not is_in_dia:
+	if player.can_move:
 		# 按下交互键
 		if event.is_action_pressed("interact"):
 			if target:
 				# 与NPC对话
 				if target.is_in_group("NPC"):
-					is_in_dia = true
+					player.can_move = false
 					animation.play("idle")
-					target.start_dialogue()
+					target.action()
 					quest_conponent.check_quest_objectives(target.npc_id, "talk_to")
 				# 拾取物品
 				if target.is_in_group("Item"):
@@ -114,6 +112,3 @@ func set_friction(delta:float) -> void:
 	# 速度很小时直接归零，防止滑动
 	if absf(player.velocity.x) < 2.0:
 		player.velocity.x = 0.0
-
-func exit_dialog() -> void:
-	is_in_dia = false

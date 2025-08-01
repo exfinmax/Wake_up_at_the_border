@@ -645,7 +645,7 @@ _data = {
 
 [node name="Dream_Boss" groups=["Enemy"] instance=ExtResource("1_kuqfq")]
 script = ExtResource("2_po1ra")
-type = 2
+type = 1
 run_speed = 350.0
 firection = 50.0
 attack_range = 300.0

@@ -1,5 +1,5 @@
 class_name Slime
-extends BaseNpc
+extends BaseEnemy
 
 enum SlimeType {Green, Purple}
 

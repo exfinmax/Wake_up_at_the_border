@@ -34,6 +34,7 @@ func on_start_pressed() -> void:
 	v.visible = false
 
 func on_load_pressed() -> void:
+	GameEvents.is_load_game = true
 	GlobalSave.load_game()
 	queue_free()
 	

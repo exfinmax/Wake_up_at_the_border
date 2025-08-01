@@ -16,8 +16,6 @@ var player:Player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.camera = self
-	GameEvents.boss_death
-	GameEvents.boss_start
 	GameEvents.stage_changed.connect(on_load_over.bind())
 	shake_strength = Global.current_setting.get("Strength")
 
