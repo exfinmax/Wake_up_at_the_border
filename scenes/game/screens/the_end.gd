@@ -1,1 +1,2 @@
-extends ScreenData
+class_name TheEnd
+extends Screen

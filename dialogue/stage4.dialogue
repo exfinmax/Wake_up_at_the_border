@@ -1,0 +1,7 @@
+~ start
+if Global.load_time[Global.current_stage.to_int()] < 1 and not GameEvents.is_load_game:
+	我: 不是这给我干道哪里来了。这还是sb？
+	我: 这梦也是有够奇特的啊，霓虹城市配无人荒野吗？
+	我: 还是先找找这个梦的主人在哪吧。
+do GameEvents.dialogue_end("1")
+=> END

@@ -1137,7 +1137,6 @@ _data = {
 [node name="EnemyGolem" groups=["Enemy"] instance=ExtResource("1_fxvmg")]
 script = ExtResource("2_r71u1")
 run_speed = 330.0
-firection = 20.0
 attack_range = 50.0
 chase_range = 700.0
 attack_colddown = 1.5

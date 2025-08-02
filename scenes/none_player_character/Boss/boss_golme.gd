@@ -20,13 +20,14 @@ var death_index:int = 1
 var is_death:bool = false
 
 func _ready() -> void:
-	animation.play("start")
-	Global.camera.shake(3)
-	MusicPlayer.play_bgm(preload("res://assets/Mp3/FEARMONGER.mp3"))
-	player = Global.player
 	_initialize_bar()
 	initialize()
+	player = Global.player
 	current_scale = body.scale.x
+	await animation.animation_finished
+	
+	Global.camera.shake(3)
+	MusicPlayer.play_bgm(preload("res://assets/Mp3/FEARMONGER.mp3"))
 	
 
 
@@ -47,11 +48,13 @@ func get_hurt(current_atk:float, _sourcer: Node2D, number: int) -> void:
 			start_blink()
 			health.change_hp(-current_atk / 2)
 			rand_attack()
-	if health.is_hp_zero() && is_first_low:
+	if health.is_hp_zero():
 		if current_state_node != null:
 			current_state_node.queue_free()
+		health.can_recover_hp = false
 		health.current_hp = 0
 		is_death = true
+		death()
 		
 
 func _process(delta: float) -> void:
@@ -113,31 +116,33 @@ func attack_3() -> void:
 func defend() -> void:
 	if current_state_node != null:
 		current_state_node.queue_free()
-	if animation.is_playing():
-		await animation.animation_finished
 	velocity = Vector2.ZERO
+	if animation.is_playing():
+		animation.play("defend")
 	animation.play("defend")
 
+
 func death() -> void:
-	if animation.is_playing():
-		await animation.animation_finished
 	velocity = Vector2.ZERO
 	animation.play("death_1")
+	await animation.animation_finished
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "start" || anim_name == "hurt":
-		switch_state(State.SPECIAL, NpcData.build().add_player(player))
+		switch_state(State.SPECIAL, NpcData.build().add_player(Global.player))
 	elif anim_name.begins_with("death"):
 		death_index = clampi(death_index + 1, 2, 4)
 		animation.play("death_%s" % str(death_index))
+		GameEvents.enemy_death.emit(self)
 
 func set_heading() -> void:
-	var direction := (player.global_position - global_position).normalized()
-	if direction.x > 0:
-		body.scale.x = current_scale
-	else:
-		body.scale.x = -current_scale
+	if player != null:
+		var direction := (player.global_position - global_position).normalized()
+		if direction.x > 0:
+			body.scale.x = current_scale
+		else:
+			body.scale.x = -current_scale
 
 func rand_attack() -> void:
 	var number = randi_range(0,9)

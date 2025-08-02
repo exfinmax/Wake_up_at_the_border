@@ -9,7 +9,7 @@ var npcs: Array[Npc]
 
 func _ready() -> void:
 	GameEvents.enemy_death.connect(on_enemy_death.bind())
-	next_stage.body_entered.connect(_on_next_stage_body_entered)
+	next_stage.body_entered.connect(_on_next_stage_body_entered, CONNECT_ONE_SHOT)
 	Global.current_stage = name
 	var timer = Timer.new()
 	timer.wait_time = 1.0
@@ -43,4 +43,6 @@ func _on_next_stage_body_entered(_body: Node2D) -> void:
 	get_parent().next_stage()
 
 func on_enemy_death(enemy: BaseEnemy) -> void:
-	enemy.queue_free()
+	if enemy.type == BaseEnemy.Type.Enemy:
+		await enemy.animation_player.animation_finished
+		enemy.queue_free()

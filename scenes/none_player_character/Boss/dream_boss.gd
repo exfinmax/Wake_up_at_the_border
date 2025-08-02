@@ -20,6 +20,8 @@ func _ready() -> void:
 	player = Global.player
 	current_scale = body.scale.x
 	_initialize_bar()
+	await animation.animation_finished
+	
 	
 	MusicPlayer.play_bgm(preload("res://assets/Mp3/2. Shadowforge Convergence.mp3"))
 
@@ -69,7 +71,6 @@ func miss() -> void:
 	is_miss = true
 	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.4).timeout
-	control_shader()
 	bossgolem.global_position = global_position - Vector2(0,200)
 	get_parent().call_deferred("add_child", bossgolem)
 	loop_attack_2()
@@ -134,23 +135,21 @@ func updata_bar() -> void:
 	health_progress_bar.value = health.current_hp
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("1"):
+	if event.is_action_pressed("2"):
 		animation.play("start")
 		Global.camera.shake(3)
-	elif event.is_action_pressed("2"):
-		animation.play("attack_1")
 	elif event.is_action_pressed("3"):
+		animation.play("attack_1")
+	elif event.is_action_pressed("4"):
 		animation.play("attack_2")
 
 func initialize() -> void:
 	animation_player = animation
 
 func after_start() -> void:
-	switch_state(State.SPECIAL, NpcData.build().add_player(player))
+	switch_state(State.SPECIAL, NpcData.build().add_player(Global.player))
 
-func control_shader() -> void:
-	if is_miss:
-		npc_sprite.set_instance_shader_parameter("outline_width", 0.5)
+
 	
 
 func _exit_tree() -> void:

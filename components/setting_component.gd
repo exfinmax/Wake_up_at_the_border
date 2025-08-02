@@ -14,10 +14,12 @@ func _ready() -> void:
 
 
 func on_button_pressed() -> void:
+	get_tree().paused = false
 	GameEvents.set_end.emit()
 	visible = false
 
 func on_button_2_pressed() -> void:
+	get_tree().paused = false
 	GameEvents.set_end.emit()
 	visible = false
 	get_parent().get_parent().transition_state(TheGame.ScreenType.MAIN_MENU)

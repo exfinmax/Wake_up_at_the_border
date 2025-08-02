@@ -17,6 +17,7 @@ position = Vector2(0, 1080)
 shape = SubResource("WorldBoundaryShape2D_dfk5k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 3
 
 [node name="SettingComponent" parent="CanvasLayer" instance=ExtResource("3_dfk5k")]

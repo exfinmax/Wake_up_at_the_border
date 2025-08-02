@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dd37k351lv05v"]
+[gd_scene load_steps=21 format=3 uid="uid://dd37k351lv05v"]
 
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="1_bg"]
 [ext_resource type="Script" uid="uid://cr6m6pxi84nw1" path="res://scenes/game/stages/stage_5.gd" id="1_dy653"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://r5lbbvb86s1f" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0002_7.png" id="12_tgyi6"]
 [ext_resource type="Texture2D" uid="uid://t38djpbusmq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/PNG/Background layers/Layer_0001_8.png" id="13_8s5el"]
 [ext_resource type="Shader" uid="uid://celeu0mvojgro" path="res://scenes/game/screens/main_menu.gdshader" id="17_tiqhl"]
+[ext_resource type="PackedScene" uid="uid://bnyyp8me8vtjc" path="res://scenes/game/stage_organ/next_stage.tscn" id="18_gpekr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c850b"]
 size = Vector2(4403.49, 13.7388)
@@ -152,13 +153,6 @@ scale = Vector2(1.166, 1.166)
 texture = ExtResource("12_tgyi6")
 centered = false
 
-[node name="Boss" type="Node2D" parent="."]
-position = Vector2(600, 300)
-
-[node name="DialogManager" type="Node2D" parent="."]
-
-[node name="Endings" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("9_krcsg")]
 position = Vector2(607, 739)
 max_energy = 20.0
@@ -170,7 +164,7 @@ can_air_atk = true
 can_laser = true
 can_dash = true
 
-[node name="Attack" parent="Player/Body" index="3"]
+[node name="Attack" parent="Player/Body" index="2"]
 atk = 25.0
 
 [node name="Health" parent="Player" index="4"]
@@ -180,7 +174,6 @@ can_recover_hp = true
 
 [node name="Dream_Boss" parent="." instance=ExtResource("10_k5hb3")]
 position = Vector2(1051, 843)
-attack_colddown = 1.5
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(28, 267)
@@ -215,12 +208,17 @@ offset_left = -1944.0
 offset_right = -24.0
 offset_bottom = 1080.0
 
+[node name="NextStage" parent="." instance=ExtResource("18_gpekr")]
+position = Vector2(2539, 756)
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_gpekr")
 custom_minimum_size = Vector2(1920, 1080)
 offset_left = 2528.0
 offset_right = 4448.0
 offset_bottom = 1080.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [editable path="ParallaxBackground"]
 [editable path="Player"]

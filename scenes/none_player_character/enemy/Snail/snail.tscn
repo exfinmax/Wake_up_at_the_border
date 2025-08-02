@@ -347,7 +347,6 @@ _data = {
 script = ExtResource("2_wxksc")
 walk_speed = 80.0
 run_speed = 250.0
-firection = 20.0
 attack_range = 50.0
 chase_range = 600.0
 attack_colddown = 2.0

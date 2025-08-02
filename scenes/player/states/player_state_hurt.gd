@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 	_play_hurt_animation()
 
 func _process(_delta: float) -> void:
+	set_process(false)
 	await animation.animation_finished
 	_handle_state_transition()
 
@@ -44,6 +45,7 @@ func _play_hurt_animation() -> void:
 func _handle_state_transition() -> void:
 	player.velocity = Vector2.ZERO
 	if health_component.is_hp_zero():
+		
 		player.collision_layer = 0
 		_handle_death()
 		return

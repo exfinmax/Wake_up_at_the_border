@@ -16,14 +16,22 @@ var loader_screen: LoaderScreen
 
 var load_time:Array = [0, 0, 0, 0, 0, 0]
 
-var is_first_talk_2:bool
-var is_first_talk_3:bool
-var is_first_talk_4:bool
+var is_first_talk_2:bool = false
+var is_first_talk_3:bool = false
+var is_first_talk_4:bool = false
+
+var unlock_end1:bool = false
+var unlock_end2:bool = false
+var unlock_end3:bool = false
+
+var screct1:bool = false
+var screct2:bool = false
+
+
 
 
 var current_setting:Dictionary = {
 	"Master": null,
 	"BGM": null,
 	"SFX": null,
-	"unlock_end": [],
 }

@@ -26,15 +26,18 @@ func _enter_tree() -> void:
 
 # 物理帧处理，处理输入和动画切换
 func _process(delta: float) -> void:
+	_update_animation()
 	if player.can_move:
 		_handle_movement_input(delta)
-		_update_animation()
 		# 如果y方向有速度，切换到空中状态
 		if player.velocity.y != 0:
 			if Time.get_ticks_msec() - time_since_jump > DURATION:
 				transfrom_state(Player.State.AIR)
 		else:
 			time_since_jump = Time.get_ticks_msec()
+	else:
+		player.velocity = Vector2.ZERO
+	
 
 # 处理玩家输入
 func _handle_movement_input(delta:float) -> void:

@@ -21,6 +21,9 @@ func _enter_tree() -> void:
 	npc.body.scale.x = npc.current_scale * -direction.x
 	if npc.health.is_hp_zero():
 		animation.play("death")
+		npc.can_get_hurt = false
+		if npc.type == BaseEnemy.Type.Enemy:
+			GameEvents.enemy_death.emit(npc)
 	# 如果NPC血量未归零，则播放受伤动画
 	else:
 		animation.play("hurt")
@@ -31,6 +34,7 @@ func _process(delta: float) -> void:
 	npc.velocity.x = lerpf(npc.velocity.x, 0, delta * 2)
 	# 等待受伤动画播放完毕
 	await animation.animation_finished
+	
 	# 受伤动画播放完毕后，NPC停止移动
 	npc.velocity = Vector2.ZERO
 	# 受伤动画播放完毕后，隐藏血条
@@ -39,7 +43,9 @@ func _process(delta: float) -> void:
 	
 	# 如果NPC血量归零，则销毁NPC
 	if npc.health.is_hp_zero():
-		GameEvents.enemy_death.emit(npc)
+		set_process(false)
+		
+		
 	# 如果NPC血量未归零，则切换到移动状态
 	else:
 		if npc.is_fly:

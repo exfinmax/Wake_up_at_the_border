@@ -61,12 +61,12 @@ func handle_quest_completed(quest: Quest):
 		elif reward.reward_type == "skill":
 			Global.player_skill[reward.reward_amount] = true
 			Global.player.reload_skill()
-		elif reward.reward_type == "unlock_hp":
-			Global.player.health_component.can_recover_hp = true
+		elif reward.reward_type == "recover_hp":
+			Global.player.health_component.hp_recover_speed += reward.reward_amount 
 	update_quest_tracker(quest)
 	quest_manager.update_quest(quest.quest_id, "completed")
 	GameEvents.quest_complete.emit()
-	
+
 
 
 
@@ -91,7 +91,7 @@ func update_quest_tracker(quest: Quest):
 				label.add_theme_color_override("font_color", Color(1, 0, 0))
 			
 			objectives.add_child(label)
-			GameEvents.get_quest.emit()
+			
 	else:
 		quest_tracker.visible = false
 

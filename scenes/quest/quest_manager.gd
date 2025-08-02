@@ -15,6 +15,7 @@ var quests := {}
 
 func add_quest(quest: Quest):
 	quests[quest.quest_id] = quest
+	GameEvents.get_quest.emit()
 	quest_updated.emit(quest.quest_id)
 
 func _remove_quest(quest_id: String):

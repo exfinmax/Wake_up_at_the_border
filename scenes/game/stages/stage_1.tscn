@@ -303,7 +303,7 @@ npc_id = "4"
 dialogue_resource = ExtResource("17_xgxe4")
 dialogue_start = "stage1_2"
 sprite_frames = SubResource("SpriteFrames_gvpeh")
-custom_scale = Vector2(-2.5, 2.5)
+custom_scale = Vector2(2.5, 2.5)
 dia_texture = SubResource("AtlasTexture_x8ws1")
 is_once = true
 quests = Array[ExtResource("18_spwpj")]([SubResource("Resource_bckvw")])
@@ -322,33 +322,12 @@ autoplay = "start"
 
 [node name="Slime" parent="." instance=ExtResource("19_mr2jy")]
 position = Vector2(553, 651)
-walk_speed = 0.0
-run_speed = 0.0
-firection = 0.0
-attack_range = 0.0
-chase_range = 0.0
-attack_colddown = 0.0
-knock_back = 0.0
 
 [node name="Slime2" parent="." instance=ExtResource("19_mr2jy")]
 position = Vector2(2804, 906)
-walk_speed = 0.0
-run_speed = 0.0
-firection = 0.0
-attack_range = 0.0
-chase_range = 0.0
-attack_colddown = 0.0
-knock_back = 0.0
 
 [node name="Slime3" parent="." instance=ExtResource("19_mr2jy")]
 position = Vector2(2879, 385)
-walk_speed = 0.0
-run_speed = 0.0
-firection = 0.0
-attack_range = 0.0
-chase_range = 0.0
-attack_colddown = 0.0
-knock_back = 0.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

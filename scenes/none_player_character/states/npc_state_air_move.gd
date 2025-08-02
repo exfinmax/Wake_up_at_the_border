@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	if npc_data.target != null:
 		var distance:float = npc.global_position.distance_squared_to(npc_data.target.global_position)
 		if distance > (npc.attack_range * npc.attack_range) && !is_attack:
-			var direction = npc.global_position.direction_to(npc_data.target.global_position + Vector2(0, 50))
+			var direction = npc.global_position.direction_to(npc_data.target.global_position - Vector2(0, 50))
 			npc.velocity = npc.velocity.move_toward(direction * npc.run_speed, npc.firection * delta)
 			set_ani()
 		else:

@@ -320,7 +320,6 @@ _data = {
 
 [node name="Boar" instance=ExtResource("1_p21id")]
 script = ExtResource("2_liwsi")
-firection = 20.0
 attack_range = 40.0
 chase_range = 500.0
 attack_colddown = 1.0

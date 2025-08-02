@@ -12,7 +12,7 @@ const Balloon = preload("res://dialogue/balloon.tscn")
 @export var sprite_frames: SpriteFrames
 @export var custom_scale: Vector2
 @export var dia_texture: Texture2D
-@export var is_once:bool
+@export var is_once: bool
 
 @export var quests: Array[Quest] = []
 var quest_manager: Node2D = null

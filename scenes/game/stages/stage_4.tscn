@@ -1,18 +1,60 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnc8y5e12t413"]
+[gd_scene load_steps=20 format=3 uid="uid://dnc8y5e12t413"]
 
 [ext_resource type="Script" uid="uid://0s5x1052hdb4" path="res://scenes/game/stages/stage_4.gd" id="1_1ak51"]
 [ext_resource type="PackedScene" uid="uid://b8d1p2nql8j7r" path="res://scenes/game/stages/parallax_background.tscn" id="1_bg"]
 [ext_resource type="AudioStream" uid="uid://6vndsifhijav" path="res://assets/Mp3/Crossing The Depths Of Sorrow.mp3" id="2_b8ol0"]
-[ext_resource type="Texture2D" uid="uid://dkwqpdimoe7ym" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/SkyLayer6.png" id="2_bg1"]
-[ext_resource type="Texture2D" uid="uid://c4lwsbjode60s" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/SunLayer5.png" id="3_bg2"]
-[ext_resource type="Texture2D" uid="uid://22jogvvbj6im" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/CloudsLayerLayer4.png" id="4_bg3"]
-[ext_resource type="Texture2D" uid="uid://co8so8as72kuq" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/GroundLayer3.png" id="5_bg4"]
-[ext_resource type="Texture2D" uid="uid://dhl34hkpedj2y" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/GroundLayer2.png" id="6_bg5"]
-[ext_resource type="Texture2D" uid="uid://ctq5r6tx8oumk" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/ParralaxLayers/GroundLayer1.png" id="7_bg6"]
 [ext_resource type="PackedScene" uid="uid://ckoi2bs7alwus" path="res://scenes/player/player.tscn" id="9_pbn5s"]
+[ext_resource type="PackedScene" uid="uid://bnyyp8me8vtjc" path="res://scenes/game/stage_organ/next_stage.tscn" id="11_m48bm"]
+[ext_resource type="PackedScene" uid="uid://c8dj0klo2odvc" path="res://scenes/none_player_character/npc/npc.tscn" id="12_2l1qg"]
+[ext_resource type="Resource" uid="uid://3b8dlm456rba" path="res://dialogue/stage4.dialogue" id="13_c1v5a"]
+[ext_resource type="Texture2D" uid="uid://crxuwesun6dpn" path="res://assets/Npc/individual sprites/medieval/beggar/beggar_00.png" id="14_j8s2d"]
+[ext_resource type="Texture2D" uid="uid://5201gi03rrq" path="res://assets/Npc/individual sprites/medieval/beggar/beggar_01.png" id="15_x1nhc"]
+[ext_resource type="Texture2D" uid="uid://beiy8r14p6i4m" path="res://assets/Npc/individual sprites/medieval/beggar/beggar_02.png" id="16_42an8"]
+[ext_resource type="Texture2D" uid="uid://cr2cpa3nujm88" path="res://assets/Npc/individual sprites/medieval/beggar/beggar_03.png" id="17_a105i"]
+[ext_resource type="Texture2D" uid="uid://olgd6cglme2o" path="res://assets/Npc/individual sprites/medieval/beggar/beggar_04.png" id="18_j3hny"]
+[ext_resource type="Script" uid="uid://bfo61evwd64sn" path="res://Resource/quest/quests.gd" id="19_e0rgn"]
+[ext_resource type="Script" uid="uid://d3d2ro25cssre" path="res://Resource/quest/objectives.gd" id="20_r1sos"]
+[ext_resource type="Script" uid="uid://dhj536scdleo3" path="res://Resource/quest/rewards.gd" id="21_8ppwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ak51"]
 size = Vector2(3988, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71fgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_j8s2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x1nhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_42an8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_a105i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_j3hny")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2laqn"]
+atlas = ExtResource("14_j8s2d")
+region = Rect2(4, 12, 9, 7)
+
+[sub_resource type="Resource" id="Resource_apmam"]
+script = ExtResource("19_e0rgn")
+quest_id = ""
+quest_name = ""
+quest_description = ""
+state = "not_started"
+objectives = Array[ExtResource("20_r1sos")]([])
+rewards = Array[ExtResource("21_8ppwv")]([])
+metadata/_custom_type_script = "uid://bfo61evwd64sn"
 
 [node name="Stage_4" type="Node2D" groups=["Can_Save"]]
 script = ExtResource("1_1ak51")
@@ -25,42 +67,36 @@ motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SkyLayer" index="0"]
 scale = Vector2(6, 4.873)
-texture = ExtResource("2_bg1")
 
 [node name="SunLayer" parent="ParallaxBackground" index="1"]
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/SunLayer" index="0"]
 scale = Vector2(2.7, 2.7)
-texture = ExtResource("3_bg2")
 
 [node name="CloudsLayer" parent="ParallaxBackground" index="2"]
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/CloudsLayer" index="0"]
 scale = Vector2(6, 4.873)
-texture = ExtResource("4_bg3")
 
 [node name="TreesBackLayer" parent="ParallaxBackground" index="3"]
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesBackLayer" index="0"]
 scale = Vector2(6, 4.873)
-texture = ExtResource("5_bg4")
 
 [node name="TreesFrontLayer" parent="ParallaxBackground" index="4"]
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/TreesFrontLayer" index="0"]
 scale = Vector2(6, 4.873)
-texture = ExtResource("6_bg5")
 
 [node name="GroundLayer" parent="ParallaxBackground" index="5"]
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" parent="ParallaxBackground/GroundLayer" index="0"]
 scale = Vector2(6, 4.873)
-texture = ExtResource("7_bg6")
 
 [node name="MemoryPieces" type="Node2D" parent="."]
 
@@ -109,13 +145,31 @@ can_double_jump = true
 can_air_atk = true
 can_dash = true
 
-[node name="Attack" parent="Player/Body" index="3"]
+[node name="Attack" parent="Player/Body" index="2"]
 atk = 15.0
 
 [node name="Health" parent="Player" index="4"]
 max_hp = 150.0
 hp_recover_speed = 1.0
 can_recover_hp = true
+
+[node name="NextStage" parent="." instance=ExtResource("11_m48bm")]
+position = Vector2(3779, 668)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Npc" parent="." instance=ExtResource("12_2l1qg")]
+npc_id = "1"
+dialogue_resource = ExtResource("13_c1v5a")
+
+[node name="Npc2" parent="." instance=ExtResource("12_2l1qg")]
+npc_id = "2"
+dialogue_resource = ExtResource("13_c1v5a")
+dialogue_start = "stage4_1"
+sprite_frames = SubResource("SpriteFrames_71fgc")
+custom_scale = Vector2(2.3, 2.3)
+dia_texture = SubResource("AtlasTexture_2laqn")
+quests = Array[ExtResource("19_e0rgn")]([SubResource("Resource_apmam")])
 
 [editable path="ParallaxBackground"]
 [editable path="Player"]

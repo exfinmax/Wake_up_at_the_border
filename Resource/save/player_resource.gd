@@ -9,3 +9,5 @@ extends SavedData
 @export var energy_recover_speed:float
 @export var quests:Dictionary
 @export var jump_speed:float
+@export var is_have_screct1:bool
+@export var is_have_screct2:bool

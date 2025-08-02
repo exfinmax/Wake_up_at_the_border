@@ -59,6 +59,8 @@ var can_move: bool = true
 var is_laser:bool = false
 var apply_gravity: bool = true
 
+
+
 # 上次受伤时间戳
 var time_since_last_hurt:= Time.get_ticks_msec()
 
@@ -187,6 +189,8 @@ func reload_skill() -> void:
 func on_save_game(save_data:Array[SavedData]):
 	var my_data :PlayerResource = PlayerResource.new()
 	
+	my_data.is_have_screct1 = Global.screct1
+	my_data.is_have_screct2 = Global.screct2
 	my_data.position = global_position
 	my_data.current_atk = attack_component.atk
 	my_data.current_energy = current_energy
@@ -208,6 +212,8 @@ func on_before_load_game():
 func on_load_game(save_data:SavedData):
 	var saved_data:PlayerResource = save_data
 	
+	Global.screct1 = saved_data.is_have_screct1
+	Global.screct2 = saved_data.is_have_screct2
 	global_position = saved_data.position
 	attack_component.atk = saved_data.current_atk
 	current_energy = saved_data.current_energy

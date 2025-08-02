@@ -452,7 +452,6 @@ _data = {
 
 [node name="Imp" instance=ExtResource("1_cadnu")]
 script = ExtResource("2_ijroi")
-firection = 20.0
 attack_range = 60.0
 chase_range = 700.0
 attack_colddown = 1.0
@@ -496,8 +495,7 @@ monitorable = false
 polygon = PackedVector2Array(20.6667, -11.3333, 20.6667, 11.3333, 101.5, 8, 195.5, 0, 101.5, -7)
 
 [node name="Health" parent="." index="1"]
-hp_recover_speed = 2.0
-can_recover_hp = true
+max_hp = 60.0
 
 [node name="TextureProgressBar" parent="Health" index="0"]
 offset_left = -4.0
@@ -506,7 +504,7 @@ offset_right = 54.0
 offset_bottom = 13.0
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(1, -27)
+position = Vector2(-4, -18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 unique_name_in_owner = true

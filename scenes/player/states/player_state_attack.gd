@@ -40,7 +40,7 @@ func _start_attack() -> void:
 	time_start_attack = Time.get_ticks_msec()
 	if attack_component.is_useful_attack:
 		player.current_energy += 1
-		GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+		
 		
 
 
@@ -57,7 +57,7 @@ func _continue_combo() -> void:
 	is_animation_finished = false
 	if attack_component.is_useful_attack:
 		player.current_energy += 1
-		GameEvents.spawn_spark.emit(attack_component.collision_shape_2d.global_position)
+		
 		
 
 func _input(event: InputEvent) -> void:

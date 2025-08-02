@@ -7,7 +7,6 @@ signal is_load_over
 func _init() -> void:
 	GameEvents.stage_ready.connect(save_game)
 	GameEvents.get_quest.connect(save_game)
-	GameEvents.quest_complete.connect(save_game)
 	GameEvents.player_death.connect(load_game)
 	GameEvents.set_end.connect(save_set)
 
